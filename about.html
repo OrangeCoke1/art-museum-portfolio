@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="About Gallery Walk, an interactive digital museum website designed around slower looking."
+    />
+    <title>Gallery Walk · About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="about.css" />
+  </head>
+  <body class="app-shell about-shell">
+    <header class="site-header" id="top">
+      <a class="logo" href="index.html">
+        <img
+          class="logo-img"
+          src="images/logo.png"
+          alt="Gallery Walk"
+          width="160"
+          height="40"
+        />
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="gallery.html" class="site-nav__link" data-nav="painting"
+          >Painting</a
+        >
+        <a href="sculpture.html" class="site-nav__link" data-nav="sculpture"
+          >Sculpture</a
+        >
+        <a href="photography.html" class="site-nav__link" data-nav="photography"
+          >Photography</a
+        >
+        <a href="about.html" class="site-nav__link is-active" data-nav="about"
+          >About</a
+        >
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" aria-label="Search">
+          <svg
+            class="icon-btn__svg"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <circle
+              cx="11"
+              cy="11"
+              r="6.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              d="M16 16l5 5"
+            />
+          </svg>
+        </button>
+        <div class="language-switcher">
+          <button
+            type="button"
+            class="language-toggle"
+            aria-expanded="false"
+            aria-controls="languageMenu"
+          >
+            English
+          </button>
+          <div class="language-menu" id="languageMenu" hidden>
+            <button type="button" data-lang-option="en">English</button>
+            <button type="button" data-lang-option="ja">日本語</button>
+            <button type="button" data-lang-option="zh-CN">简体中文</button>
+            <button type="button" data-lang-option="zh-TW">繁體中文</button>
+            <button type="button" data-lang-option="fr">Français</button>
+            <button type="button" data-lang-option="es">Español</button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="icon-btn"
+          id="btnMenu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+        >
+          <svg
+            class="icon-btn__svg"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              d="M4 7h16M4 12h16M4 17h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav
+      class="mobile-nav"
+      id="mobileNav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="gallery.html" class="site-nav__link" data-nav="painting"
+        >Painting</a
+      >
+      <a href="sculpture.html" class="site-nav__link" data-nav="sculpture"
+        >Sculpture</a
+      >
+      <a href="photography.html" class="site-nav__link" data-nav="photography"
+        >Photography</a
+      >
+      <a href="about.html" class="site-nav__link is-active" data-nav="about"
+        >About</a
+      >
+    </nav>
+
+    <main class="about-main">
+      <section class="about-hero" aria-labelledby="aboutTitle">
+        <div class="about-hero__copy" id="aboutTitle">
+          <p data-i18n="aboutIntro">
+            Gallery Walk is an interactive digital museum website designed
+            around the idea of
+          </p>
+          <p class="about-quote" data-i18n="aboutQuote">"Slowing down the act of looking"</p>
+          <p data-i18n="aboutP1">
+            On the web, artworks are often consumed quickly as images, with
+            little time spent on their details, context, or material qualities.
+            This project aims to create a more patient viewing experience by
+            allowing users to engage with artworks through scrolling, clicking,
+            dragging, zooming, and rotating.
+          </p>
+          <p data-i18n="aboutP2">
+            Each art form is presented through a different interaction model.
+            Paintings are displayed in a horizontal gallery with classical
+            frames, where the centered artwork gradually becomes clearer as if a
+            museum light has been turned on. Sculptures are shown with pedestals
+            and 3D model previews, allowing users to explore their volume,
+            material, and form from different angles. Photography is presented
+            through the visual language of photographic prints and darkroom
+            development, emphasizing tone, contrast, and the process of
+            revealing an image.
+          </p>
+          <p data-i18n="aboutP3">
+            The website also provides detailed artwork information, including
+            artist, year, medium, dimensions, location, subject, and collection
+            data. By combining visual interaction with contextual information,
+            the project encourages users to move beyond passive browsing and
+            spend more time understanding each work.
+          </p>
+          <p data-i18n="aboutP4">
+            The goal of Gallery Walk is to transform digital art viewing into a
+            slower, more immersive, and more meaningful experience.
+          </p>
+          <p class="about-thanks" data-i18n="aboutThanks">Thanks for your reading.</p>
+        </div>
+
+        <div class="about-hero__visual">
+          <button
+            class="about-art-button"
+            type="button"
+            aria-label="Randomly change about artwork"
+          >
+            <img
+              class="about-art-image"
+              id="aboutArtwork"
+              src="images/about/1.png"
+              alt="Gallery Walk artwork detail"
+              width="520"
+              height="620"
+            />
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="i18n.js"></script>
+    <script>
+      const btnMenu = document.getElementById("btnMenu");
+      const mobileNav = document.getElementById("mobileNav");
+
+      btnMenu?.addEventListener("click", () => {
+        if (!mobileNav) return;
+        const open = !mobileNav.classList.contains("is-open");
+        mobileNav.classList.toggle("is-open", open);
+        mobileNav.hidden = !open;
+        btnMenu.setAttribute("aria-expanded", String(open));
+      });
+
+      const aboutArtwork = document.getElementById("aboutArtwork");
+      const aboutArtworkButton = aboutArtwork?.closest(".about-art-button");
+      let currentArtworkIndex = 1;
+
+      aboutArtworkButton?.addEventListener("click", () => {
+        let nextIndex = currentArtworkIndex;
+        while (nextIndex === currentArtworkIndex) {
+          nextIndex = Math.floor(Math.random() * 6) + 1;
+        }
+        currentArtworkIndex = nextIndex;
+        aboutArtwork.src = `images/about/${nextIndex}.png`;
+      });
+    </script>
+  </body>
+</html>

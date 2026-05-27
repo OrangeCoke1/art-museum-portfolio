@@ -1,0 +1,258 @@
+/* ==========================================================================
+   Gallery Walk — Sculpture hall
+   独立雕塑页样式：沿用 Gallery Walk 色彩与排版，不复用金色画框。
+   ========================================================================== */
+
+.sculpture-shell {
+  background: #f8f4e3;
+}
+
+.sculpture-main {
+  background: #f8f4e3;
+}
+
+.sculpture-section {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(255, 255, 255, 0.46) 0%,
+      rgba(248, 244, 227, 0.88) 34%,
+      rgba(248, 244, 227, 1) 72%
+    ),
+    #f8f4e3;
+}
+
+.sculpture-hall {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow-anchor: none;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.sculpture-hall.is-dragging {
+  cursor: grabbing;
+}
+
+.sculpture-hall::-webkit-scrollbar {
+  display: none;
+}
+
+.sculpture-track {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(2.75rem, 7vw, 6.25rem);
+  width: max-content;
+  height: 100%;
+  min-height: 0;
+  padding: 0 clamp(2.5rem, 8vw, 6rem) clamp(3.1rem, 8vh, 4.75rem);
+}
+
+.sculpture-card {
+  --sculpture-max-w: min(300px, 32vw);
+  --sculpture-max-h: min(52vh, 480px);
+
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(13rem, 23vw, 19.5rem);
+  min-height: min(68vh, 620px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 0.2rem;
+  outline: none;
+  opacity: 0.48;
+  transform: scale(0.94);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.sculpture-card::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: clamp(7rem, 16vh, 9.75rem);
+  width: 150%;
+  height: 58%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at 50% 64%,
+    rgba(255, 250, 226, 0.62) 0%,
+    rgba(255, 250, 226, 0.22) 42%,
+    rgba(255, 250, 226, 0) 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 0;
+}
+
+.sculpture-figure {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--sculpture-max-h);
+  margin: 0;
+}
+
+.sculpture-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: var(--sculpture-max-w);
+  max-height: var(--sculpture-max-h);
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.62);
+  opacity: 0.72;
+  transform: translateY(0) scale(0.96);
+  transform-origin: 50% 100%;
+  transition:
+    filter 0.85s ease,
+    opacity 0.85s ease,
+    transform 0.85s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.sculpture-label {
+  position: relative;
+  z-index: 2;
+  margin: 1rem 0 0;
+  text-align: center;
+  opacity: 0.46;
+  transform: translateY(7px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.sculpture-label h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.82rem, 1.2vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: #3b5fb9;
+}
+
+.sculpture-label p {
+  margin: 0.28rem 0 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  color: #3b5fb9;
+  opacity: 0.82;
+}
+
+.sculpture-card.is-active {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.sculpture-card.is-active::before {
+  opacity: 1;
+}
+
+.sculpture-card.is-active .sculpture-image {
+  filter: grayscale(0%) brightness(1.08);
+  opacity: 1;
+  transform: translateY(-0.35rem) scale(1.04);
+}
+
+.sculpture-card.is-active .sculpture-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sculpture-card:focus-visible .sculpture-image {
+  outline: 2px solid #3b5fb9;
+  outline-offset: 0.75rem;
+}
+
+.sculpture-footer {
+  background: transparent;
+}
+
+.sculpture-3d-viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(255, 255, 255, 0.58),
+      transparent 48%
+    ),
+    var(--modal-viewer-bg, #f4f1e8);
+  overflow: hidden;
+  cursor: grab;
+}
+
+.sculpture-3d-viewer.is-dragging {
+  cursor: grabbing;
+}
+
+.sketchfab-embed-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.sketchfab-embed-wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+
+.sculpture-3d-toolbar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+@media (max-width: 768px) {
+  .sculpture-track {
+    gap: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+
+  .sculpture-card {
+    --sculpture-max-w: min(240px, 62vw);
+    --sculpture-max-h: 46vh;
+    width: min(70vw, 17rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sculpture-card,
+  .sculpture-card::before,
+  .sculpture-image,
+  .sculpture-label {
+    transition: none !important;
+  }
+}

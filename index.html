@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Gallery Walk — A quiet digital museum where artworks reveal themselves through light, color, and movement."
+    />
+    <title>Gallery Walk · Museum Entrance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="entrance.css" />
+  </head>
+  <body class="entrance-page">
+    <section class="entrance-screen" id="entrance" aria-label="Museum entrance">
+      <p class="entrance-label">
+        <span class="entrance-label__num">01</span> / Museum Entrance
+      </p>
+
+      <div class="entrance-hero" aria-hidden="true">
+        <div class="entrance-title">
+          <img
+            class="entrance-title__gallery"
+            src="images/gallery.png"
+            alt=""
+            width="520"
+            height="120"
+          />
+          <img
+            class="entrance-title__walk"
+            src="images/walk.png"
+            alt=""
+            width="360"
+            height="120"
+          />
+        </div>
+        <div
+          class="entrance-thinker thinker-viewer"
+          id="thinkerPngAnchor"
+          data-white-src="images/think-wh.png"
+        >
+          <img
+            class="entrance-thinker__color"
+            src="images/thinker-co.png"
+            alt="The Thinker sculpture"
+            width="421"
+            height="553"
+          />
+          <canvas class="thinker-veil" aria-hidden="true"></canvas>
+        </div>
+      </div>
+      <h1 class="entrance-visually-hidden">Gallery Walk</h1>
+
+      <div class="entrance-intro">
+        <span class="entrance-intro__line" aria-hidden="true"></span>
+        <p>
+          A quiet digital museum where artworks reveal themselves through light,
+          color, and movement.
+        </p>
+      </div>
+
+      <a class="entrance-enter" href="gallery.html">Enter Gallery →</a>
+
+      <a class="entrance-scroll-hint" href="#about">
+        <span class="entrance-scroll-hint__line" aria-hidden="true"></span>
+        <span class="entrance-scroll-hint__text">Scroll to explore</span>
+      </a>
+    </section>
+
+    <section class="entrance-about" id="about" aria-label="About Gallery Walk">
+      <p class="entrance-label entrance-label--about">
+        <span class="entrance-label__num">02</span> / Interactive Object
+      </p>
+
+      <div class="entrance-about__inner" id="thinkerEndAnchor">
+        <p class="entrance-about__eyebrow">Digital Museum Experience</p>
+        <h2 class="entrance-about__title">A quiet way to encounter art.</h2>
+        <p class="entrance-about__lead">
+          Gallery Walk is a digital museum where each artwork is encountered
+          slowly — through light, color, and movement rather than speed.
+        </p>
+        <div class="entrance-about__columns">
+          <article class="entrance-about__col">
+            <span class="entrance-about__col-rule" aria-hidden="true"></span>
+            <h3 class="entrance-about__col-title">01 Walk</h3>
+            <p>
+              Move through the gallery at your own pace, as if walking through a
+              quiet exhibition space.
+            </p>
+          </article>
+          <article class="entrance-about__col">
+            <span class="entrance-about__col-rule" aria-hidden="true"></span>
+            <h3 class="entrance-about__col-title">02 Reveal</h3>
+            <p>
+              Artworks gradually reveal their color and detail as you explore
+              them with light.
+            </p>
+          </article>
+          <article class="entrance-about__col">
+            <span class="entrance-about__col-rule" aria-hidden="true"></span>
+            <h3 class="entrance-about__col-title">03 Discover</h3>
+            <p>
+              Each piece invites closer observation, turning viewing into a calm
+              act of discovery.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="banana-physics-stage" id="bananaPhysicsStage">
+        <img
+          class="drag-hint-text"
+          src="images/drag it.png"
+          alt="drag it"
+          width="300"
+          height="120"
+          draggable="false"
+        />
+        <img
+          class="drag-hint-arrow"
+          src="images/arrow.png"
+          alt=""
+          width="220"
+          height="220"
+          draggable="false"
+        />
+        <img
+          class="banana-part banana-flesh"
+          id="bananaFlesh"
+          src="images/banana-flesh.png"
+          alt="Banana flesh"
+          width="1192"
+          height="1452"
+          draggable="false"
+        />
+        <img
+          class="banana-part banana-peel"
+          id="bananaPeel"
+          src="images/banana-peel.png"
+          alt="Banana peel"
+          width="1192"
+          height="1452"
+          draggable="false"
+        />
+      </div>
+    </section>
+
+    <section
+      class="entrance-collection"
+      id="collection"
+      aria-label="Collection preview"
+    >
+      <p class="entrance-label entrance-label--collection">
+        <span class="entrance-label__num">03</span> / Collection Preview
+      </p>
+
+      <div class="entrance-collection__inner">
+        <div class="entrance-collection__copy">
+          <h2 class="entrance-collection__title">
+            <span class="entrance-collection__title-line">Selected</span>
+            <span class="entrance-collection__title-line">Artworks</span>
+          </h2>
+          <p class="entrance-collection__text">
+            A curated selection of iconic visual references is presented as
+            movable objects inside a quiet digital exhibition space.
+          </p>
+          <p class="entrance-collection__text">
+            Each piece can be explored
+            <strong
+              >through interaction — dragged, revealed, peeled, or repositioned,
+              turning the act of viewing into a physical gesture.</strong
+            >
+          </p>
+
+          <div class="entrance-collection__features">
+            <article class="entrance-collection__feature">
+              <img
+                class="entrance-collection__feature-icon"
+                src="images/move-icon.png"
+                alt=""
+                width="48"
+                height="48"
+                draggable="false"
+              />
+              <div class="entrance-collection__feature-body">
+                <span class="entrance-collection__feature-label">MODE</span>
+                <p class="entrance-collection__feature-title">
+                  Interactive viewing
+                </p>
+              </div>
+            </article>
+            <article class="entrance-collection__feature">
+              <img
+                class="entrance-collection__feature-icon"
+                src="images/b-view.png"
+                alt=""
+                width="48"
+                height="48"
+                draggable="false"
+              />
+              <div class="entrance-collection__feature-body">
+                <span class="entrance-collection__feature-label">FOCUS</span>
+                <p class="entrance-collection__feature-title">
+                  Image, object, surface
+                </p>
+              </div>
+            </article>
+            <article class="entrance-collection__feature">
+              <img
+                class="entrance-collection__feature-icon"
+                src="images/hand-icon.png"
+                alt=""
+                width="48"
+                height="48"
+                draggable="false"
+              />
+              <div class="entrance-collection__feature-body">
+                <span class="entrance-collection__feature-label">GESTURE</span>
+                <p class="entrance-collection__feature-title">
+                  Drag / peel / reveal
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <a class="entrance-enter entrance-enter--in-copy" href="gallery.html"
+            >Enter Gallery →</a
+          >
+        </div>
+      </div>
+
+      <div class="entrance-collection__wall" aria-hidden="true">
+        <div class="wall-framed">
+          <div class="wall-frame-wrap">
+            <div class="wall-artwork-clip">
+              <div class="wall-parallax" id="wallParallax">
+                <img
+                  class="wall-layer wall-layer--1"
+                  src="3d/1.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="wall-layer wall-layer--2"
+                  src="3d/2.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="wall-layer wall-layer--3"
+                  src="3d/3.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="wall-layer wall-layer--4"
+                  src="3d/4.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="wall-layer wall-layer--5"
+                  src="3d/5.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="wall-layer wall-layer--6"
+                  src="3d/6.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="wall-layer wall-layer--7"
+                  src="3d/7.png"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+            </div>
+            <img
+              class="wall-frame"
+              src="images/frame2.png"
+              alt=""
+              draggable="false"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="thinker-reveal.js"></script>
+    <script src="entrance-scroll.js"></script>
+    <script src="wall-parallax.js"></script>
+    <script src="banana-physics.js?v=12-rotated-alpha-hit"></script>
+  </body>
+</html>

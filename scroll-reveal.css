@@ -1,0 +1,71 @@
+/* ==========================================================================
+   滚动浮现 / 划出消失（配合 scroll-reveal.js）
+   已有独立动画的元素请用 data-reveal="skip"
+   ========================================================================== */
+
+[data-reveal]:not([data-reveal="skip"]):not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal]:not([data-reveal="skip"]).is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-reveal="left"]:not([data-reveal="skip"]):not(.is-revealed) {
+  transform: translate3d(-2rem, 0, 0);
+}
+
+[data-reveal="right"]:not([data-reveal="skip"]):not(.is-revealed) {
+  transform: translate3d(2rem, 0, 0);
+}
+
+[data-reveal="x"]:not([data-reveal="skip"]):not(.is-revealed) {
+  transform: translate3d(2.5rem, 0, 0);
+}
+
+[data-reveal-delay="1"]:not([data-reveal="skip"]) {
+  transition-delay: 0.08s;
+}
+
+[data-reveal-delay="2"]:not([data-reveal="skip"]) {
+  transition-delay: 0.16s;
+}
+
+[data-reveal-delay="3"]:not([data-reveal="skip"]) {
+  transition-delay: 0.24s;
+}
+
+/* 第三页整段进入视口时，内部文字错落浮现 */
+[data-reveal-section] [data-reveal]:not([data-reveal="skip"]):not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 1.35rem, 0);
+}
+
+[data-reveal-section] [data-reveal="right"]:not([data-reveal="skip"]):not(.is-revealed) {
+  transform: translate3d(2.25rem, 0, 0);
+}
+
+[data-reveal-section].is-section-revealed [data-reveal]:not([data-reveal="skip"]).is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* 画廊：is-revealed 必须与中心聚光的 scale 叠在一起（否则后者的 transform 会被上面规则盖住） */
+.gallery-hall .artwork-card[data-reveal]:not([data-reveal="skip"]).is-revealed.is-active {
+  transform: translate3d(0, 0, 0) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal]:not([data-reveal="skip"]) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+}

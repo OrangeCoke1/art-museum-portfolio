@@ -1,0 +1,134 @@
+html,
+body.about-shell {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.about-shell {
+  display: block;
+  max-height: none;
+}
+
+.about-main {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: var(--header-h) 0 0;
+  background: var(--wall);
+}
+
+.about-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - var(--header-h));
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: clamp(2.2rem, 6vh, 4.5rem) clamp(2rem, 7vw, 6rem) 0;
+}
+
+.about-hero__copy {
+  position: relative;
+  z-index: 2;
+  width: min(760px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-hero__copy p {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(0.86rem, 1vw, 1rem);
+  font-weight: 600;
+  line-height: 1.65;
+  color: #111;
+}
+
+.about-hero__copy p + p {
+  margin-top: clamp(1.4rem, 3vh, 2.2rem);
+}
+
+.about-hero__copy .about-quote {
+  margin-top: 0.3rem;
+  font-size: clamp(1.02rem, 1.25vw, 1.22rem);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.about-hero__visual {
+  position: absolute;
+  z-index: 1;
+  right: clamp(-8rem, -7vw, -3rem);
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: min(42vw, 520px);
+  overflow: visible;
+}
+
+.about-art-button {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: min(calc(100vh - var(--header-h)), 720px);
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.about-art-image {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: bottom center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.about-thanks {
+  margin-top: clamp(1.8rem, 4vh, 2.8rem);
+}
+
+@media (max-width: 900px) {
+  .about-main {
+    padding-top: var(--header-h);
+  }
+
+  .about-hero {
+    display: flex;
+    padding: 2rem 1.25rem 0;
+  }
+
+  .about-hero__copy {
+    padding-bottom: 0;
+  }
+
+  .about-hero__visual {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .about-art-button {
+    height: min(54vh, 440px);
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .about-art-image {
+    width: auto;
+    height: 100%;
+  }
+}

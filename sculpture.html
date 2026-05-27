@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gallery Walk — Sculpture 横向雕塑展厅" />
+    <title>Gallery Walk · Sculpture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="sculpture.css" />
+  </head>
+  <body class="app-shell sculpture-shell">
+    <header class="site-header" id="top">
+      <a class="logo" href="index.html">
+        <img
+          class="logo-img"
+          src="images/logo.png"
+          alt="Gallery Walk"
+          width="160"
+          height="40"
+        />
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <a href="gallery.html" class="site-nav__link" data-nav="painting"
+          >Painting</a
+        >
+        <a
+          href="sculpture.html"
+          class="site-nav__link is-active"
+          data-nav="sculpture"
+          >Sculpture</a
+        >
+        <a href="photography.html" class="site-nav__link" data-nav="photography"
+          >Photography</a
+        >
+        <a href="about.html" class="site-nav__link" data-nav="about">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          type="button"
+          class="icon-btn"
+          id="btnSearch"
+          aria-label="搜索雕塑"
+        >
+          <svg
+            class="icon-btn__svg"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <circle
+              cx="11"
+              cy="11"
+              r="6.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              d="M16 16l5 5"
+            />
+          </svg>
+        </button>
+        <div class="language-switcher">
+          <button
+            type="button"
+            class="language-toggle"
+            aria-expanded="false"
+            aria-controls="languageMenu"
+          >
+            English
+          </button>
+          <div class="language-menu" id="languageMenu" hidden>
+            <button type="button" data-lang-option="en">English</button>
+            <button type="button" data-lang-option="ja">日本語</button>
+            <button type="button" data-lang-option="zh-CN">简体中文</button>
+            <button type="button" data-lang-option="zh-TW">繁體中文</button>
+            <button type="button" data-lang-option="fr">Français</button>
+            <button type="button" data-lang-option="es">Español</button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="icon-btn"
+          id="btnMenu"
+          aria-label="打开菜单"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+        >
+          <svg
+            class="icon-btn__svg"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              d="M4 7h16M4 12h16M4 17h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航" hidden>
+      <a href="gallery.html" class="site-nav__link" data-nav="painting"
+        >Painting</a
+      >
+      <a
+        href="sculpture.html"
+        class="site-nav__link is-active"
+        data-nav="sculpture"
+        >Sculpture</a
+      >
+      <a href="photography.html" class="site-nav__link" data-nav="photography"
+        >Photography</a
+      >
+      <a href="about.html" class="site-nav__link" data-nav="about">About</a>
+    </nav>
+
+    <main class="app-main sculpture-main">
+      <section class="sculpture-section" aria-label="横向雕塑展厅">
+        <div class="sculpture-hall" id="sculptureHall" tabindex="0">
+          <div class="sculpture-track" id="sculptureTrack"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer sculpture-footer" id="about">
+      <div class="scroll-progress-wrap">
+        <label class="scroll-progress-label" for="scrollProgress" data-i18n="progressSculpture"
+          >雕塑展厅进度</label
+        >
+        <div class="scroll-progress-bar" role="presentation">
+          <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+          <input
+            type="range"
+            class="scroll-progress-input"
+            id="scrollProgress"
+            min="0"
+            max="100"
+            value="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            aria-label="横向滚动进度"
+          />
+        </div>
+        <p class="footer-copy" data-i18n="footerSculpture">Gallery Walk · Sculpture hall</p>
+      </div>
+    </footer>
+
+    <div
+      class="modal"
+      id="artModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      hidden
+    >
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-panel" role="document">
+        <div class="modal-body museum-modal-layout">
+          <aside class="modal-sidebar" aria-label="Artwork information">
+            <div class="modal-sidebar-head">
+              <h2 class="modal-title" id="modalTitle"></h2>
+              <p class="modal-subtitle" id="modalSubtitle"></p>
+            </div>
+            <div
+              class="modal-info-card"
+              id="modalInfoCard"
+              role="button"
+              tabindex="0"
+              aria-label="Flip artwork information card"
+            >
+              <div class="modal-info-card__inner">
+                <div class="modal-info-card__face modal-info-card__front">
+                  <dl class="modal-meta"></dl>
+                  <button
+                    class="modal-info-card__flip"
+                    type="button"
+                    id="modalFlipToBack"
+                    aria-label="Show artwork story"
+                  >
+                    <span data-i18n="readBackground">Read background</span>
+                  </button>
+                </div>
+                <div class="modal-info-card__face modal-info-card__back">
+                  <p class="modal-story-label" data-i18n="backgroundLabel">Background</p>
+                  <h3 class="modal-story-title" id="modalStoryTitle"></h3>
+                  <p class="modal-story-text" id="modalStoryText"></p>
+                  <button
+                    class="modal-info-card__flip"
+                    type="button"
+                    id="modalFlipToFront"
+                    aria-label="Show artwork details"
+                  >
+                    <span data-i18n="backToDetails">Back to details</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <a
+              class="modal-museum-btn"
+              id="modalLink"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="modal-museum-btn__icon"
+                src="images/museum.png"
+                alt=""
+                width="18"
+                height="18"
+                aria-hidden="true"
+              />
+              <span data-i18n="visitMuseum">Visit Museum Website</span>
+              <img
+                class="modal-museum-btn__external"
+                src="images/link.png"
+                alt=""
+                width="16"
+                height="16"
+                aria-hidden="true"
+              />
+            </a>
+          </aside>
+          <section
+            class="modal-viewer"
+            id="modalViewer"
+            aria-label="Sculpture 3D model viewer"
+          ></section>
+        </div>
+      </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="sculpture.js"></script>
+    <script type="module" src="sculpture-modal-3d.js"></script>
+  </body>
+</html>

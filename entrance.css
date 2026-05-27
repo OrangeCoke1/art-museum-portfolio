@@ -1,0 +1,866 @@
+/* ==========================================================================
+   Gallery Walk — Museum Entrance (homepage)
+   背景与 gallery.html 展厅一致：--wall #f8f4e3
+   ========================================================================== */
+
+:root {
+  --entrance-bg: #f8f4e3;
+  --entrance-blue: #3b5fb9;
+  --entrance-ink: #5c5a56;
+  --entrance-serif: "Playfair Display", "Times New Roman", Georgia, serif;
+  --entrance-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body.entrance-page {
+  margin: 0;
+  min-height: 100%;
+}
+
+body.entrance-page {
+  background: var(--entrance-bg);
+  color: var(--entrance-ink);
+  font-family: var(--entrance-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.entrance-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- 首屏：入口 ---------- */
+.entrance-screen {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--entrance-bg);
+}
+
+.entrance-label {
+  position: absolute;
+  z-index: 5;
+  top: clamp(1.75rem, 4.5vh, 2.75rem);
+  left: clamp(1.75rem, 4.5vw, 3.25rem);
+  margin: 0;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--entrance-ink);
+}
+
+.entrance-label__num {
+  color: #3b5fb9;
+}
+
+.entrance-label--about {
+  z-index: 50;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.entrance-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(4rem, 10vh, 6rem) clamp(1rem, 4vw, 2rem)
+    clamp(6rem, 12vh, 8rem);
+}
+
+.entrance-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.25rem, 1.2vw, 1.25rem);
+  max-width: min(96vw, 1300px);
+  pointer-events: none;
+}
+
+.entrance-title__gallery,
+.entrance-title__walk {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.entrance-title__gallery {
+  height: clamp(5.46rem, 18vw, 13.7rem);
+  max-width: 81.6vw;
+  transform: translate(-60px, -40px);
+}
+
+.entrance-title__walk {
+  height: clamp(3.5rem, 11.5vw, 8.75rem);
+  max-width: 52vw;
+  margin-left: clamp(-2.5rem, -4vw, -0.75rem);
+  margin-bottom: 0.02em;
+  transform: translate(0px, 15px);
+}
+
+.entrance-thinker {
+  --thinker-max-h: clamp(27rem, 81vh, 47.5rem);
+  --thinker-max-w: min(94vw, 879px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  isolation: isolate;
+  display: block;
+  overflow: visible;
+  width: min(var(--thinker-max-w), calc(var(--thinker-max-h) * 421 / 553));
+  height: min(var(--thinker-max-h), calc(var(--thinker-max-w) * 553 / 421));
+  transform: translate(-50%, -54%);
+  line-height: 0;
+  touch-action: none;
+  cursor: default;
+}
+
+.entrance-thinker.thinker-viewer--active {
+  cursor: crosshair;
+}
+
+.entrance-thinker__color {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.thinker-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
+/* 左下：介绍文案 */
+.entrance-intro {
+  position: absolute;
+  z-index: 4;
+  left: clamp(1.75rem, 4.5vw, 3.25rem);
+  bottom: clamp(2.5rem, 6vh, 3.5rem);
+  width: min(16rem, 38vw);
+}
+
+.entrance-intro__line {
+  display: block;
+  width: 2.75rem;
+  height: 1px;
+  margin-bottom: 0.85rem;
+  background: var(--entrance-blue);
+}
+
+.entrance-intro p {
+  margin: 0;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.78rem, 1.05vw, 0.9rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--entrance-ink);
+}
+
+/* 右下：进入展厅 */
+.entrance-enter {
+  position: absolute;
+  z-index: 5;
+  right: clamp(1.75rem, 4.5vw, 3.25rem);
+  bottom: clamp(2.5rem, 6vh, 3.5rem);
+  font-family: var(--entrance-serif);
+  font-size: clamp(1.05rem, 2.8vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--entrance-blue);
+  text-decoration: none;
+  border-bottom: 1px solid var(--entrance-blue);
+  padding-bottom: 0.15rem;
+  transition: opacity 0.25s ease;
+}
+
+.entrance-enter:hover {
+  opacity: 0.75;
+}
+
+.entrance-enter:focus-visible {
+  outline: 2px solid var(--entrance-blue);
+  outline-offset: 4px;
+}
+
+/* 底部居中：向下滚动提示 */
+.entrance-scroll-hint {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: clamp(1.5rem, 3.5vh, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: var(--entrance-ink);
+  transition: opacity 0.25s ease;
+}
+
+.entrance-scroll-hint:hover {
+  opacity: 0.72;
+}
+
+.entrance-scroll-hint:focus-visible {
+  outline: 2px solid var(--entrance-blue);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.entrance-scroll-hint__line {
+  display: block;
+  width: 1px;
+  height: 1.75rem;
+  background: var(--entrance-blue);
+}
+
+.entrance-scroll-hint__text {
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.6875rem, 0.95vw, 0.8125rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--entrance-ink);
+}
+
+/* ---------- 向下滚动：第二页（预览图布局） ---------- */
+.entrance-about {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: clamp(4rem, 9vh, 6.5rem) clamp(1.75rem, 5vw, 4rem);
+  background: var(--entrance-bg);
+  overflow: hidden;
+}
+
+.entrance-about__inner {
+  position: relative;
+  z-index: 1;
+  width: min(36rem, 46vw);
+  margin-right: clamp(1rem, 5vw, 6rem);
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+/* 第二屏：进入时淡入（与划出时 0.5s 渐隐对称，由 entrance-scroll.js 切换阶段类） */
+body.entrance-page.is-about-phase:not(.is-collection-phase)
+  .entrance-label--about,
+body.entrance-page.is-about-phase:not(.is-collection-phase)
+  .entrance-about__inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.entrance-label--about {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.drag-hint-text,
+.drag-hint-arrow {
+  opacity: 0;
+  transition: opacity 0.65s ease;
+}
+
+body.entrance-page.is-about-phase:not(.is-collection-phase) .drag-hint-text,
+body.entrance-page.is-about-phase:not(.is-collection-phase) .drag-hint-arrow {
+  opacity: 1;
+}
+
+.entrance-about__eyebrow {
+  margin: 0 0 1.35rem;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.6875rem, 0.95vw, 0.8125rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--entrance-blue);
+}
+
+.entrance-about__title {
+  margin: 0 0 1.5rem;
+  font-family: var(--entrance-serif);
+  font-size: clamp(2.35rem, 4.8vw, 3.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--entrance-blue);
+}
+
+.entrance-about__lead {
+  margin: 0 0 clamp(2.25rem, 5vh, 3rem);
+  max-width: 32rem;
+  font-size: clamp(0.9375rem, 1.35vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--entrance-ink);
+}
+
+.entrance-about__columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.entrance-about__col {
+  margin: 0;
+}
+
+.entrance-about__col-rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 0.85rem;
+  background: rgba(92, 90, 86, 0.35);
+}
+
+.entrance-about__col-title {
+  margin: 0 0 0.55rem;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--entrance-blue);
+}
+
+.entrance-about__col p {
+  margin: 0;
+  font-size: clamp(0.8125rem, 1.05vw, 0.9375rem);
+  line-height: 1.55;
+  color: var(--entrance-ink);
+}
+
+/* 滚入第二页时淡出首屏元素（含 Thinker 彩图与白膜） */
+body.entrance-page.is-about-phase .entrance-screen > .entrance-label,
+body.entrance-page.is-about-phase .entrance-title,
+body.entrance-page.is-about-phase .entrance-thinker,
+body.entrance-page.is-about-phase .entrance-intro,
+body.entrance-page.is-about-phase .entrance-screen > .entrance-enter,
+body.entrance-page.is-about-phase .entrance-scroll-hint {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* 滚入第三页时淡出第二屏（与首屏划出同一套 opacity 渐隐） */
+body.entrance-page.is-collection-phase .entrance-label--about,
+body.entrance-page.is-collection-phase .entrance-about__inner,
+body.entrance-page.is-collection-phase .drag-hint-text,
+body.entrance-page.is-collection-phase .drag-hint-arrow,
+body.entrance-page.is-collection-phase .banana-part {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .entrance-hero {
+    padding-bottom: clamp(9rem, 20vh, 11rem);
+  }
+
+  .entrance-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .entrance-title__gallery {
+    height: clamp(4.3rem, 21.6vw, 7rem);
+    max-width: 88vw;
+    transform: translate(16px, -28px);
+  }
+
+  .entrance-title__walk {
+    height: clamp(2.75rem, 14vw, 4.5rem);
+    max-width: 88vw;
+    transform: translate(16px, 12px);
+  }
+
+  .entrance-thinker {
+    --thinker-max-h: clamp(20.3rem, 61vh, 28.6rem);
+    transform: translate(-50%, -50%);
+  }
+
+  .entrance-intro {
+    bottom: clamp(6.5rem, 16vh, 8rem);
+    width: min(14rem, 82vw);
+  }
+
+  .entrance-enter {
+    bottom: clamp(1.5rem, 4vh, 2rem);
+    right: clamp(1.5rem, 5vw, 2rem);
+    font-size: 1rem;
+  }
+
+  .entrance-scroll-hint {
+    bottom: clamp(0.85rem, 2.5vh, 1.25rem);
+  }
+
+  .entrance-about {
+    justify-content: center;
+    padding-top: clamp(6rem, 14vh, 8rem);
+    padding-bottom: clamp(3rem, 8vh, 4rem);
+  }
+
+  .entrance-about__inner {
+    width: min(34rem, 92vw);
+    margin-right: 0;
+  }
+
+  .entrance-about__columns {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .drag-hint-text {
+    left: calc(7vw + 20px);
+    top: 16vh;
+    width: 6.75rem;
+  }
+
+  .drag-hint-arrow {
+    left: calc(13vw + 20px);
+    top: 24vh;
+    width: 4.25rem;
+  }
+}
+
+/* ---------- 第二页：Warhol Banana 全屏物理层（最上层） ---------- */
+.banana-physics-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.drag-hint-text,
+.drag-hint-arrow {
+  position: absolute;
+  z-index: 35;
+  display: block;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.drag-hint-text {
+  left: calc(clamp(4.5rem, 6.5vw, 8rem) + 70px);
+  top: clamp(5.25rem, 15vh, 8.75rem);
+  width: clamp(7.5rem, 12vw, 10rem);
+  transform: rotate(-4deg);
+}
+
+.drag-hint-arrow {
+  left: calc(clamp(6.75rem, 11vw, 10rem) + 80px);
+  top: clamp(8.25rem, 25vh, 13rem);
+  width: clamp(4.75rem, 7.5vw, 6.25rem);
+  transform: rotate(8deg);
+}
+
+.banana-part {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(504px, 60vw);
+  max-height: min(86.4vh, 984px);
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center center;
+  will-change: transform;
+  cursor: grab;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.banana-part.is-dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.22));
+}
+
+.banana-flesh {
+  z-index: 31;
+  pointer-events: none;
+}
+
+.banana-flesh.is-unlocked {
+  pointer-events: auto;
+}
+
+.banana-peel {
+  z-index: 32;
+  pointer-events: auto;
+}
+
+/* ---------- 第三页：Collection Preview ---------- */
+.entrance-collection {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--entrance-bg);
+  overflow: visible;
+}
+
+.entrance-label--collection {
+  z-index: 5;
+  left: clamp(2.5rem, 7vw, 8rem);
+  top: clamp(2.35rem, 5.5vh, 3.35rem);
+}
+
+.entrance-collection__inner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(5rem, 10.5vh, 7.25rem) clamp(1.75rem, 5vw, 4rem)
+    clamp(4rem, 9vh, 6.5rem);
+}
+
+/* 与第二页 entrance-about__inner 左右对称：第二页靠右，第三页靠左 */
+.entrance-collection__copy {
+  width: min(36rem, 46vw);
+  margin-left: clamp(2.5rem, 7vw, 8rem);
+  margin-right: 0;
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.entrance-label--collection {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+body.entrance-page.is-collection-phase .entrance-label--collection,
+body.entrance-page.is-collection-phase .entrance-collection__copy {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.entrance-page.is-collection-phase .entrance-collection__wall {
+  opacity: 1;
+}
+
+.entrance-collection__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0.85rem;
+  font-family: var(--entrance-serif);
+  font-size: clamp(2.85rem, 5.8vw, 4.75rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--entrance-blue);
+}
+
+.entrance-collection__title-line {
+  display: block;
+}
+
+.entrance-collection__text {
+  margin: 0 0 1.2rem;
+  max-width: 30rem;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--entrance-ink);
+}
+
+.entrance-collection__text strong {
+  font-weight: 500;
+  color: var(--entrance-ink);
+}
+
+.entrance-collection__text:last-of-type {
+  margin-bottom: clamp(2.5rem, 5vh, 3.25rem);
+}
+
+.entrance-collection__features {
+  margin: 0 0 clamp(2.25rem, 4.5vh, 3rem);
+  max-width: 26rem;
+}
+
+.entrance-collection__feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.35rem);
+  margin: 0;
+  padding: clamp(1rem, 2vh, 1.25rem) 0;
+}
+
+.entrance-collection__feature + .entrance-collection__feature {
+  border-top: 1px solid rgba(92, 90, 86, 0.32);
+}
+
+.entrance-collection__feature-icon {
+  display: block;
+  width: clamp(2rem, 3.2vw, 2.65rem);
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.entrance-collection__feature-body {
+  margin: 0;
+}
+
+.entrance-collection__feature-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.625rem, 0.85vw, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(92, 90, 86, 0.72);
+}
+
+.entrance-collection__feature-title {
+  margin: 0;
+  font-family: var(--entrance-sans);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--entrance-ink);
+}
+
+/* 第三页文案内：与首屏 Enter Gallery 同款样式，随文档流排列 */
+.entrance-enter--in-copy {
+  position: static;
+  display: inline-block;
+  z-index: auto;
+}
+
+/* 与第二页香蕉对称；外容器与 frame2.png 同比例，画框铺满、开口紧贴金边内沿 */
+.entrance-collection__wall {
+  --wall-frame-w: 4251;
+  --wall-frame-h: 6107;
+  /* frame2 金边内开口（相对外框百分比，由素材测量） */
+  --wall-mat-top: 0.64%;
+  --wall-mat-right: 0.56%;
+  --wall-mat-bottom: 0.67%;
+  --wall-mat-left: 0.75%;
+  position: absolute;
+  left: 68%;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  z-index: 1;
+  aspect-ratio: var(--wall-frame-w) / var(--wall-frame-h);
+  width: min(
+    1140px,
+    92vw,
+    calc(min(86vh, 1990px) * var(--wall-frame-w) / var(--wall-frame-h))
+  );
+  height: auto;
+  max-width: calc(100% - min(36rem, 46vw) - clamp(2rem, 8vw, 8rem));
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.65s ease;
+  overflow: visible;
+}
+
+.wall-framed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wall-frame-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: clamp(760px, 76vw, 980px);
+  perspective-origin: var(--wall-perspective-x, 50%)
+    var(--wall-perspective-y, 50%);
+}
+
+/* 开口对齐 frame2 金边内沿；视差超出部分裁掉 */
+.wall-artwork-clip {
+  position: absolute;
+  z-index: 1;
+  top: var(--wall-mat-top);
+  right: var(--wall-mat-right);
+  bottom: var(--wall-mat-bottom);
+  left: var(--wall-mat-left);
+  overflow: hidden;
+}
+
+/* 3D 场景：整体后移再 orbit，子层靠 translateZ 分出纵深 */
+.wall-parallax {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transform: translateZ(var(--wall-depth, -200px))
+    rotateX(var(--wall-rotate-x, 0deg)) rotateY(var(--wall-rotate-y, 0deg));
+  will-change: transform;
+}
+
+.wall-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform: translate3d(
+    var(--layer-x, 0px),
+    var(--layer-y, 0px),
+    var(--layer-z, 0px)
+  );
+  will-change: transform;
+}
+
+/* 静态画框：与容器同比例铺满，不参与 3D */
+.wall-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .entrance-collection__inner {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: clamp(6.25rem, 13vh, 7.75rem);
+    padding-bottom: clamp(4rem, 9vh, 6.5rem);
+  }
+
+  .entrance-collection__copy {
+    margin-left: clamp(2.5rem, 7vw, 8rem);
+  }
+
+  .entrance-collection__wall {
+    left: 66%;
+    top: 52%;
+    width: min(1080px, 88vw);
+    max-width: calc(100% - clamp(1rem, 5vw, 6rem) - min(34rem, 52vw));
+  }
+}
+
+@media (max-width: 768px) {
+  .entrance-collection__copy {
+    width: min(34rem, 100%);
+    margin-left: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .entrance-label--collection {
+    left: clamp(1.25rem, 4vw, 2rem);
+    top: clamp(2rem, 5vh, 2.75rem);
+  }
+
+  .entrance-collection__wall {
+    left: 50%;
+    top: auto;
+    bottom: clamp(0.35rem, 1.5vh, 0.85rem);
+    width: min(
+      88vw,
+      53rem,
+      calc(min(65vh, 850px) * var(--wall-frame-w) / var(--wall-frame-h))
+    );
+    max-width: 100%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .entrance-enter,
+  .entrance-scroll-hint {
+    transition: none;
+  }
+
+  .entrance-collection__wall {
+    perspective: none;
+  }
+
+  .wall-parallax,
+  .wall-layer {
+    transform: none !important;
+  }
+}

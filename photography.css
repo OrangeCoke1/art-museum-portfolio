@@ -1,0 +1,215 @@
+/* ==========================================================================
+   Gallery Walk — Photography wall
+   相纸 / 暗房显影视觉，不使用金色画框。
+   ========================================================================== */
+
+.photography-page,
+.photography-section,
+.photography-shell {
+  background: var(--wall);
+}
+
+.photography-section {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.photography-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 38%,
+      rgba(255, 255, 255, 0.36),
+      rgba(248, 244, 227, 0) 58%
+    ),
+    linear-gradient(180deg, rgba(59, 95, 185, 0.018), rgba(59, 95, 185, 0));
+}
+
+.photography-hall {
+  position: relative;
+  z-index: 1;
+}
+
+.photography-track {
+  align-items: center;
+  gap: clamp(2rem, 5.5vw, 4.5rem);
+  padding-inline: clamp(2rem, 7vw, 5.5rem);
+}
+
+.photo-card {
+  width: clamp(220px, 24vw, 360px);
+  text-align: center;
+  transform-origin: center center;
+}
+
+.photo-print {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: clamp(0.7rem, 1.2vw, 1rem) clamp(0.7rem, 1.2vw, 1rem)
+    clamp(0.95rem, 1.65vw, 1.3rem);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.88),
+    rgba(246, 242, 231, 0.82)
+  );
+  border: 1px solid rgba(60, 52, 40, 0.08);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  transition:
+    box-shadow 0.8s ease,
+    transform 0.8s ease,
+    border-color 0.8s ease,
+    background 0.8s ease;
+  isolation: isolate;
+}
+
+.photo-light {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 244, 214, 0.34) 0%,
+    rgba(255, 244, 214, 0.14) 34%,
+    rgba(255, 244, 214, 0) 68%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.8s ease;
+}
+
+.photo-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(300px, 34vw);
+  max-height: min(360px, 42vh);
+  object-fit: contain;
+  filter: grayscale(100%) contrast(0.72) brightness(0.82);
+  opacity: 0.58;
+  transform: scale(0.96);
+  transition:
+    filter 0.8s ease,
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.photo-label {
+  margin: clamp(0.7rem, 1.15vw, 0.95rem) 0 0;
+  opacity: 0.45;
+  transform: translateY(6px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.photo-label h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.88rem, 1.25vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.photo-label p {
+  margin: 0.25rem 0 0;
+  font-size: clamp(0.64rem, 0.9vw, 0.76rem);
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  color: var(--text);
+  opacity: 0.72;
+}
+
+.photo-card.is-active {
+  transform: scale(1.05);
+}
+
+.photo-card.is-active .photo-print {
+  border-color: rgba(59, 95, 185, 0.16);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(248, 244, 235, 0.92)
+  );
+  box-shadow:
+    0 24px 42px rgba(0, 0, 0, 0.12),
+    0 8px 18px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+}
+
+.photo-card.is-active .photo-light {
+  opacity: 1;
+}
+
+.photo-card.is-active .photo-image {
+  filter: grayscale(0%) contrast(1.08) brightness(1.04);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.photo-card.is-active .photo-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.photo-card:not(.is-active):hover .photo-print {
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.photo-card:not(.is-active):hover .photo-image {
+  filter: grayscale(40%) contrast(0.92) brightness(0.94);
+  opacity: 0.86;
+  transform: scale(0.985);
+}
+
+.photo-card:focus-visible .photo-print {
+  outline: 2px solid var(--accent-alt);
+  outline-offset: 0.6rem;
+}
+
+.photography-footer {
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .photo-card {
+    width: clamp(210px, 62vw, 300px);
+  }
+
+  .photo-image {
+    max-width: min(280px, 58vw);
+    max-height: 36vh;
+  }
+
+  .photography-track {
+    gap: 2rem;
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-card,
+  .photo-print,
+  .photo-light,
+  .photo-image,
+  .photo-label {
+    transition: none !important;
+  }
+}
