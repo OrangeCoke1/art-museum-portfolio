@@ -18,8 +18,7 @@ const ARTWORKS = [
     museumUrl:
       "https://www.museodelprado.es/en/the-collection/art-work/las-meninas/9fdc7750-aa54-1b8a-b2c5-9aa5b9af7293",
     category: "Painting",
-    image:
-      "images/Las_Meninas,_by_Diego_Velázquez,_from_Prado_in_Google_Earth.jpg",
+    image: "images/las-meninas.jpg",
   },
   {
     id: "third-of-may-1808",
@@ -83,7 +82,7 @@ const ARTWORKS = [
     museumUrl:
       "https://www.musee-orsay.fr/en/artworks/le-dejeuner-sur-lherbe-77",
     category: "Painting",
-    image: "images/Édouard_Manet_-_Le_Déjeuner_sur_l'herbe.jpg",
+    image: "images/dejeuner-sur-herbe.jpg",
   },
   {
     id: "arnolfini-portrait",
