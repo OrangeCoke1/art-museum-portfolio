@@ -33,6 +33,8 @@
   let lastY = 0;
   let lastTime = 0;
   let fleshUnlocked = false;
+  let animationFrame = 0;
+  let isVisible = false;
   const alphaMaps = new WeakMap();
   const ALPHA_HIT_THRESHOLD = 3;
   const ALPHA_HIT_RADIUS = 4;
@@ -415,7 +417,17 @@
     physics(flesh);
     physics(peel);
     syncAll();
-    requestAnimationFrame(tick);
+    if (isVisible) {
+      animationFrame = requestAnimationFrame(tick);
+    } else {
+      animationFrame = 0;
+    }
+  }
+
+  function startTick() {
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(tick);
+    }
   }
 
   function init() {
@@ -436,7 +448,19 @@
       stage._bananaResizeTimer = window.setTimeout(reset, 180);
     });
 
-    requestAnimationFrame(tick);
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) startTick();
+        },
+        { rootMargin: "160px" },
+      );
+      observer.observe(stage);
+    } else {
+      isVisible = true;
+      startTick();
+    }
   }
 
   function waitForImages() {

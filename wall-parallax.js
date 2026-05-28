@@ -38,6 +38,8 @@
   let targetY = 0;
   let currentX = 0;
   let currentY = 0;
+  let animationFrame = 0;
+  let isVisible = false;
 
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
@@ -85,7 +87,17 @@
       el.style.setProperty("--layer-y", `${ty}px`);
     });
 
-    requestAnimationFrame(animate);
+    if (isVisible) {
+      animationFrame = requestAnimationFrame(animate);
+    } else {
+      animationFrame = 0;
+    }
+  }
+
+  function startAnimation() {
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(animate);
+    }
   }
 
   scene.addEventListener("pointermove", updateTarget);
@@ -103,5 +115,17 @@
     if (inside) updateTarget(event);
   });
 
-  animate();
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) startAnimation();
+      },
+      { rootMargin: "160px" },
+    );
+    observer.observe(stage);
+  } else {
+    isVisible = true;
+    startAnimation();
+  }
 })();
