@@ -17,15 +17,15 @@ const SCULPTURES = [
     storyTitle: "Vénus de Milo",
     story:
       "The Vénus de Milo is generally attributed to Alexandros of Antioch, a sculptor active in the Hellenistic period, though very little is known about his life. Unlike the better-documented artists of the Renaissance, ancient sculptors often survive through inscriptions, fragments, and later historical reconstruction rather than biography. This uncertainty is part of the work's aura: the sculpture is famous, but its maker remains partly hidden behind the object itself. Discovered on the island of Melos in 1820, the marble figure quickly became one of the Louvre's defining icons. Its missing arms, poised contrapposto, and twisting torso place it between fragment and ideal form. The body appears calm, but the turned posture creates movement, inviting viewers to imagine the lost gesture. The sculpture also reflects Hellenistic taste for elegance, sensuality, and complex viewing angles, where meaning unfolds as the viewer moves around the figure.",
-    image: "images/sculpture/Vénus_de_Milo.png",
-    modelSrc: "images/sculpture/models/Ve%CC%81nus_de_Milo.stl",
+    image: "images/sculpture/venus-de-milo.png",
+    modelSrc: "images/sculpture/models/venus-de-milo.stl",
   },
   {
     id: "laocoon-and-his-sons",
     title: "Laocoön and His Sons",
     artist: "Agesander, Athenodoros and Polydorus",
     year: "1st century BCE",
-    image: "images/sculpture/Laocoön and His Sons.png",
+    image: "images/sculpture/laocoon-and-his-sons.png",
   },
   {
     id: "bird-in-space",
@@ -53,7 +53,7 @@ const SCULPTURES = [
     title: "Pietà",
     artist: "Michelangelo",
     year: "1498-1499",
-    image: "images/sculpture/Pietà.png",
+    image: "images/sculpture/pieta.png",
   },
   {
     id: "winged-victory",
