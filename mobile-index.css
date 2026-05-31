@@ -1,0 +1,109 @@
+/* mobile section 02 redesign: mobile-only refinements for the index page */
+@media (max-width: 768px), (pointer: coarse) {
+  .entrance-about {
+    position: relative;
+    display: block;
+    min-height: 126svh;
+    padding: 0 24px clamp(5.5rem, 14svh, 7.5rem);
+    overflow: hidden;
+  }
+
+  .entrance-label--about {
+    top: clamp(1.75rem, 5svh, 2.4rem);
+    left: 24px;
+    z-index: 60;
+  }
+
+  .entrance-about__inner {
+    z-index: 45;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding-top: clamp(5.4rem, 14svh, 7rem);
+  }
+
+  .entrance-about__eyebrow {
+    margin-bottom: 1rem;
+    font-size: 0.72rem;
+  }
+
+  .entrance-about__title {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: clamp(1.35rem, 4svh, 1.9rem);
+    font-size: clamp(2.75rem, 12.4vw, 3.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+
+  .entrance-about__lead {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: clamp(9rem, 28svh, 12rem);
+    font-size: clamp(1.0625rem, 4.6vw, 1.1875rem);
+    line-height: 1.6;
+  }
+
+  .entrance-about__columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+    gap: clamp(1.35rem, 4svh, 1.85rem);
+  }
+
+  .entrance-about__col {
+    padding-top: 0.95rem;
+  }
+
+  .entrance-about__col-rule {
+    margin-bottom: 0.75rem;
+  }
+
+  .entrance-about__col-title {
+    margin-bottom: 0.45rem;
+    font-size: 0.95rem;
+  }
+
+  .entrance-about__col p {
+    max-width: 92%;
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+
+  .banana-physics-stage {
+    z-index: 30;
+    pointer-events: none;
+    touch-action: pan-y;
+  }
+
+  .banana-part {
+    width: clamp(8.5rem, 42vw, 12.5rem);
+    max-height: 36svh;
+    pointer-events: auto;
+    touch-action: pan-y;
+    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.14));
+  }
+
+  .banana-peel {
+    transform-origin: center center;
+  }
+
+  .drag-hint-text {
+    z-index: 46;
+    left: auto;
+    right: 24px;
+    top: clamp(8.25rem, 21svh, 10.75rem);
+    width: clamp(4.8rem, 19vw, 6rem);
+    transform: rotate(-5deg);
+  }
+
+  .drag-hint-arrow {
+    z-index: 46;
+    left: auto;
+    right: clamp(3.8rem, 16vw, 5.4rem);
+    top: clamp(10.7rem, 27svh, 13.4rem);
+    width: clamp(3rem, 12vw, 4rem);
+    transform: rotate(12deg);
+  }
+}

@@ -241,10 +241,10 @@
     buildAlphaMap(peel);
     buildAlphaMap(flesh);
 
-    /* mobile index fix: keep the banana as a smaller side object, away from copy */
+    /* mobile section 02 redesign: place the banana in the reserved mid-page device area */
     const mobile = isMobileIndexView();
-    const x = r.width * (mobile ? 0.78 : 0.32);
-    const y = r.height * (mobile ? 0.68 : 0.44);
+    const x = r.width * (mobile ? 0.72 : 0.32);
+    const y = r.height * (mobile ? 0.47 : 0.44);
 
     [peel, flesh].forEach((part) => {
       part.x = x;
@@ -437,7 +437,7 @@
   }
 
   function init() {
-    /* mobile index fix: the full-screen banana layer must not block page scroll */
+    /* mobile section 02 redesign: the full-screen banana layer must not block page scroll */
     const mobile = isMobileIndexView();
     stage.style.pointerEvents = mobile ? "none" : "auto";
     stage.style.touchAction = mobile ? "pan-y" : "none";
