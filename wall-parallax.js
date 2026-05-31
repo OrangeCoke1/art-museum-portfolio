@@ -11,6 +11,7 @@
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
   /** 1 最前 → 7 最后（Z 越大越靠近镜头）；7 仍最靠后但参与视差 */
   const LAYER_Z = [150, 112, 78, 52, 32, 16, 10];
@@ -26,10 +27,10 @@
   });
 
   /** 绕垂直轴：一侧离你更近、另一侧明显地退回景深（rotateY） */
-  const MAX_ROT_Y = reducedMotion ? 0 : 26;
+  const MAX_ROT_Y = reducedMotion ? 0 : coarsePointer ? 10 : 26;
   /** 绕水平轴：上边略翘起或下边离你更近（rotateX） */
-  const MAX_ROT_X = reducedMotion ? 0 : 18;
-  const MAX_SHIFT = reducedMotion ? 0 : 36;
+  const MAX_ROT_X = reducedMotion ? 0 : coarsePointer ? 7 : 18;
+  const MAX_SHIFT = reducedMotion ? 0 : coarsePointer ? 16 : 36;
   const SCENE_PULL_Z = -200;
   /** 透视中心紧跟鼠标，加强「铰链」感 */
   const PERSPECTIVE_SHIFT = 54;
@@ -40,6 +41,8 @@
   let currentY = 0;
   let animationFrame = 0;
   let isVisible = false;
+  let orientationEnabled = false;
+  let orientationPermissionAsked = false;
 
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
@@ -56,6 +59,47 @@
   function resetTarget() {
     targetX = 0;
     targetY = 0;
+  }
+
+  /* mobile index fix: use subtle phone tilt for the third-page parallax */
+  function updateTargetFromOrientation(event) {
+    if (!coarsePointer || reducedMotion) return;
+
+    const gamma = typeof event.gamma === "number" ? event.gamma : 0;
+    const beta = typeof event.beta === "number" ? event.beta : 0;
+    targetX = clamp(gamma / 28, -0.5, 0.5);
+    targetY = clamp((beta - 45) / 42, -0.5, 0.5);
+  }
+
+  function enableOrientationParallax() {
+    if (orientationEnabled || !("DeviceOrientationEvent" in window)) return;
+
+    orientationEnabled = true;
+    window.addEventListener("deviceorientation", updateTargetFromOrientation, {
+      passive: true,
+    });
+  }
+
+  function requestOrientationPermissionOnce() {
+    if (!coarsePointer || orientationPermissionAsked || reducedMotion) return;
+    orientationPermissionAsked = true;
+
+    const orientation = window.DeviceOrientationEvent;
+    if (!orientation) return;
+
+    if (typeof orientation.requestPermission === "function") {
+      orientation
+        .requestPermission()
+        .then((state) => {
+          if (state === "granted") enableOrientationParallax();
+        })
+        .catch(() => {
+          orientationEnabled = false;
+        });
+      return;
+    }
+
+    enableOrientationParallax();
   }
 
   function animate() {
@@ -104,7 +148,9 @@
   scene.addEventListener("pointerleave", resetTarget);
   stage.addEventListener("pointerleave", resetTarget);
 
-  window.addEventListener("mousemove", (event) => {
+  function updateTargetIfInside(event) {
+    if (orientationEnabled && coarsePointer) return;
+
     const rect = stage.getBoundingClientRect();
     const inside =
       event.clientX >= rect.left &&
@@ -113,7 +159,18 @@
       event.clientY <= rect.bottom;
 
     if (inside) updateTarget(event);
+  }
+
+  window.addEventListener("mousemove", updateTargetIfInside);
+  window.addEventListener("pointermove", updateTargetIfInside, {
+    passive: true,
   });
+  window.addEventListener("pointerdown", requestOrientationPermissionOnce, {
+    once: true,
+    passive: true,
+  });
+
+  if (coarsePointer) enableOrientationParallax();
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(

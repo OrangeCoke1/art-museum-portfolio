@@ -864,3 +864,167 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
     transform: none !important;
   }
 }
+
+/* mobile index fix: keep the entrance exhibition feel while restoring natural touch scroll */
+@media (max-width: 768px), (pointer: coarse) {
+  html,
+  body.entrance-page {
+    overflow-x: hidden;
+    overscroll-behavior-y: auto;
+  }
+
+  body.entrance-page {
+    touch-action: pan-y;
+  }
+
+  .entrance-screen,
+  .entrance-about,
+  .entrance-collection {
+    min-height: 100svh;
+  }
+
+  .entrance-hero {
+    align-items: flex-start;
+    padding: clamp(4.75rem, 13svh, 6.5rem) clamp(1rem, 5vw, 1.5rem)
+      clamp(7rem, 18svh, 9rem);
+  }
+
+  .entrance-title {
+    z-index: 4;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: clamp(0.2rem, 1vw, 0.45rem);
+    max-width: 94vw;
+    margin-top: clamp(0.75rem, 4svh, 1.75rem);
+  }
+
+  .entrance-title__gallery {
+    height: clamp(3.2rem, 14vw, 4.85rem);
+    max-width: 62vw;
+    transform: none;
+  }
+
+  .entrance-title__walk {
+    height: clamp(2.35rem, 10.5vw, 3.75rem);
+    max-width: 36vw;
+    margin-left: clamp(-0.4rem, -1vw, -0.15rem);
+    transform: translateY(0.08em);
+  }
+
+  .entrance-thinker {
+    --thinker-max-h: clamp(16rem, 44svh, 23rem);
+    --thinker-max-w: min(78vw, 25rem);
+    z-index: 2;
+    top: 56%;
+    transform: translate(-50%, -43%);
+    pointer-events: none;
+    touch-action: pan-y;
+  }
+
+  .entrance-intro {
+    z-index: 5;
+    bottom: clamp(5.25rem, 13svh, 7rem);
+    width: min(16rem, 76vw);
+  }
+
+  .entrance-scroll-hint {
+    z-index: 6;
+  }
+
+  .entrance-about {
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 112svh;
+    padding: clamp(5.5rem, 13svh, 7rem) clamp(1.25rem, 5vw, 2rem)
+      clamp(5rem, 12svh, 7rem);
+  }
+
+  .entrance-about__inner {
+    z-index: 40;
+    width: min(32rem, 88vw);
+    margin: 0;
+  }
+
+  .entrance-about__title {
+    max-width: 13rem;
+    font-size: clamp(2rem, 11vw, 3.1rem);
+  }
+
+  .entrance-about__lead {
+    max-width: 18rem;
+    margin-bottom: clamp(1.35rem, 4svh, 2rem);
+  }
+
+  .entrance-about__columns {
+    max-width: 18rem;
+    gap: 1.1rem;
+  }
+
+  .banana-physics-stage {
+    z-index: 20;
+    pointer-events: none;
+    touch-action: pan-y;
+  }
+
+  .banana-part {
+    width: clamp(8.5rem, 34vw, 13rem);
+    max-height: 42svh;
+    pointer-events: auto;
+    touch-action: none;
+  }
+
+  .drag-hint-text {
+    left: auto;
+    right: clamp(1.25rem, 6vw, 2rem);
+    top: clamp(8rem, 20svh, 10.5rem);
+    width: clamp(5.5rem, 22vw, 7rem);
+  }
+
+  .drag-hint-arrow {
+    left: auto;
+    right: clamp(3.2rem, 15vw, 5rem);
+    top: clamp(11rem, 28svh, 14rem);
+    width: clamp(3.5rem, 15vw, 4.75rem);
+  }
+
+  .entrance-collection {
+    min-height: 112svh;
+    overflow: hidden;
+  }
+
+  .entrance-collection__inner {
+    z-index: 4;
+    align-items: flex-start;
+    padding: clamp(5.5rem, 12svh, 7rem) clamp(1.25rem, 5vw, 2rem)
+      clamp(16rem, 36svh, 20rem);
+  }
+
+  .entrance-collection__copy {
+    width: min(21rem, 78vw);
+    margin-left: 0;
+  }
+
+  .entrance-collection__title {
+    font-size: clamp(2.35rem, 12vw, 3.55rem);
+  }
+
+  .entrance-collection__text,
+  .entrance-collection__features {
+    max-width: 18.5rem;
+  }
+
+  .entrance-collection__wall {
+    z-index: 1;
+    left: 72%;
+    top: auto;
+    bottom: clamp(1rem, 4svh, 2.5rem);
+    width: min(
+      58vw,
+      23rem,
+      calc(min(48svh, 34rem) * var(--wall-frame-w) / var(--wall-frame-h))
+    );
+    max-width: none;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+}

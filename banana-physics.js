@@ -39,6 +39,10 @@
   const ALPHA_HIT_THRESHOLD = 3;
   const ALPHA_HIT_RADIUS = 4;
 
+  function isMobileIndexView() {
+    return window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+  }
+
   function createPart(el, locked) {
     return {
       el,
@@ -237,8 +241,10 @@
     buildAlphaMap(peel);
     buildAlphaMap(flesh);
 
-    const x = r.width * 0.32;
-    const y = r.height * 0.44;
+    /* mobile index fix: keep the banana as a smaller side object, away from copy */
+    const mobile = isMobileIndexView();
+    const x = r.width * (mobile ? 0.78 : 0.32);
+    const y = r.height * (mobile ? 0.68 : 0.44);
 
     [peel, flesh].forEach((part) => {
       part.x = x;
@@ -431,8 +437,10 @@
   }
 
   function init() {
-    stage.style.pointerEvents = "auto";
-    stage.style.touchAction = "none";
+    /* mobile index fix: the full-screen banana layer must not block page scroll */
+    const mobile = isMobileIndexView();
+    stage.style.pointerEvents = mobile ? "none" : "auto";
+    stage.style.touchAction = mobile ? "pan-y" : "none";
     peelEl.style.pointerEvents = "auto";
     fleshEl.style.pointerEvents = "none";
 
