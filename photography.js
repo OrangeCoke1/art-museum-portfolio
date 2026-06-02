@@ -246,10 +246,18 @@ function updateLoopBounds() {
 function centerInitialPhoto() {
   updateLoopBounds();
   if (loop.width <= 0) return;
-  hall.scrollLeft = Math.max(
-    loop.start,
-    Math.round(loop.start + loop.width / 2 - hall.clientWidth / 2),
-  );
+
+  const first = track.querySelector('[data-loop-zone="original"]');
+  if (!first) {
+    hall.scrollLeft = loop.start;
+    return;
+  }
+
+  const targetCenter = first.offsetLeft + first.offsetWidth / 2;
+  const centered = Math.max(0, Math.round(targetCenter - hall.clientWidth / 2));
+  const min = loop.start;
+  const max = Math.max(loop.start, loop.start + loop.width - hall.clientWidth);
+  hall.scrollLeft = Math.min(Math.max(centered, min), max);
 }
 
 function normalizeLoopScroll() {
@@ -543,6 +551,18 @@ function applyModalTransform() {
 
 function fitModalView() {
   if (!modalStage || !modalImage?.naturalWidth) return;
+
+  if (
+    window.GalleryModalMobile?.applyMobileFit?.(
+      modalView,
+      modalStage,
+      modalImage,
+    )
+  ) {
+    applyModalTransform();
+    return;
+  }
+
   const padding = 32;
   const stageW = Math.max(1, modalStage.clientWidth - padding);
   const stageH = Math.max(1, modalStage.clientHeight - padding);
@@ -654,8 +674,28 @@ function initModal() {
   );
 
   modalStage.addEventListener("dblclick", resetModalView);
+
+  let lastMobileTap = 0;
+  modalStage.addEventListener(
+    "touchend",
+    (e) => {
+      if (!window.GalleryModalMobile?.isMobile?.()) return;
+      if (e.touches.length > 0 || window.GalleryModalMobile?.isPinching?.())
+        return;
+      const now = Date.now();
+      if (now - lastMobileTap < 320) {
+        e.preventDefault();
+        resetModalView();
+        lastMobileTap = 0;
+        return;
+      }
+      lastMobileTap = now;
+    },
+    { passive: false },
+  );
   modalStage.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || e.target.closest(".modal-toolbar")) return;
+    if (window.GalleryModalMobile?.shouldSkipStagePointer?.(e, modalView)) return;
     modalView.dragging = true;
     modalView.pointerId = e.pointerId;
     modalView.startX = e.clientX;
@@ -729,6 +769,12 @@ function initModal() {
         renderModalStory(photo);
       }
     }
+  });
+
+  window.GalleryModalMobile?.bindImageStage?.({
+    stage: modalStage,
+    getView: () => modalView,
+    applyTransform: applyModalTransform,
   });
 }
 

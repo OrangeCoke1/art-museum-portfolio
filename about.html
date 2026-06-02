@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en" class="about-page">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="About Gallery Walk, an interactive digital museum website designed around slower looking."
+      content="About Gallery Walk — an interactive digital museum designed around slowing down the act of looking."
     />
     <title>Gallery Walk · About</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -45,7 +45,12 @@
       </nav>
 
       <div class="header-actions">
-        <button type="button" class="icon-btn" aria-label="Search">
+        <button
+          type="button"
+          class="icon-btn"
+          data-i18n-aria-label="search"
+          aria-label="Search"
+        >
           <svg
             class="icon-btn__svg"
             viewBox="0 0 24 24"
@@ -92,6 +97,7 @@
           type="button"
           class="icon-btn"
           id="btnMenu"
+          data-i18n-aria-label="menu"
           aria-label="Open menu"
           aria-expanded="false"
           aria-controls="mobileNav"
@@ -135,90 +141,216 @@
       >
     </nav>
 
-    <main class="about-main">
-      <section class="about-hero" aria-labelledby="aboutTitle">
-        <div class="about-hero__copy" id="aboutTitle">
-          <p data-i18n="aboutIntro">
-            Gallery Walk is an interactive digital museum website designed
-            around the idea of
-          </p>
-          <p class="about-quote" data-i18n="aboutQuote">"Slowing down the act of looking"</p>
-          <p data-i18n="aboutP1">
-            On the web, artworks are often consumed quickly as images, with
-            little time spent on their details, context, or material qualities.
-            This project aims to create a more patient viewing experience by
-            allowing users to engage with artworks through scrolling, clicking,
-            dragging, zooming, and rotating.
-          </p>
-          <p data-i18n="aboutP2">
-            Each art form is presented through a different interaction model.
-            Paintings are displayed in a horizontal gallery with classical
-            frames, where the centered artwork gradually becomes clearer as if a
-            museum light has been turned on. Sculptures are shown with pedestals
-            and 3D model previews, allowing users to explore their volume,
-            material, and form from different angles. Photography is presented
-            through the visual language of photographic prints and darkroom
-            development, emphasizing tone, contrast, and the process of
-            revealing an image.
-          </p>
-          <p data-i18n="aboutP3">
-            The website also provides detailed artwork information, including
-            artist, year, medium, dimensions, location, subject, and collection
-            data. By combining visual interaction with contextual information,
-            the project encourages users to move beyond passive browsing and
-            spend more time understanding each work.
-          </p>
-          <p data-i18n="aboutP4">
-            The goal of Gallery Walk is to transform digital art viewing into a
-            slower, more immersive, and more meaningful experience.
-          </p>
-          <p class="about-thanks" data-i18n="aboutThanks">Thanks for your reading.</p>
+    <main class="about-main about-main--cover-flow">
+      <div class="about-cover-pin" id="aboutCoverPin">
+        <div class="about-cover-pin__slot" aria-hidden="true"></div>
+      <section class="about-hero" aria-labelledby="aboutTitle" data-cover-base>
+        <div class="about-hero__bg" aria-hidden="true">
+          <div class="about-parallax" id="aboutParallax">
+            <img
+              class="about-layer about-layer--4"
+              src="images/subscribe/about/4.png"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+              draggable="false"
+            />
+            <img
+              class="about-layer about-layer--3"
+              src="images/subscribe/about/3.png"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+              draggable="false"
+            />
+            <img
+              class="about-layer about-layer--2"
+              src="images/subscribe/about/2.png"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+              draggable="false"
+            />
+            <img
+              class="about-layer about-layer--1"
+              src="images/subscribe/about/1.png"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+              draggable="false"
+            />
+          </div>
         </div>
 
-        <div class="about-hero__visual">
-          <button
-            class="about-art-button"
-            type="button"
-            aria-label="Randomly change about artwork"
+        <div class="about-hero__content">
+          <p class="about-hero__eyebrow" data-i18n="aboutEyebrow">About</p>
+          <h1 class="about-hero__title" id="aboutTitle" data-i18n="aboutHeroTitle">
+            Gallery Walk
+          </h1>
+          <p class="about-hero__lead" data-i18n="aboutHeroLead">
+            Gallery Walk is an interactive digital museum designed around the
+            idea of slowing down the act of looking.
+          </p>
+          <p class="about-hero__text" data-i18n="aboutHeroText">
+            Instead of scrolling past images quickly, we invite you to observe,
+            interact, and rediscover each artwork through movement and
+            attention.
+          </p>
+          <p class="about-hero__tagline" data-i18n="aboutHeroTagline">
+            SLOW LOOKING. DEEP SEEING.
+          </p>
+        </div>
+
+        <a class="about-scroll-cta" href="#about-subscribe">
+          <span class="about-scroll-cta__line" aria-hidden="true"></span>
+          <span class="about-scroll-cta__text" data-i18n="aboutScrollCta"
+            >Scroll to subscribe</span
           >
-            <img
-              class="about-art-image"
-              id="aboutArtwork"
-              src="images/about/1.png"
-              alt="Gallery Walk artwork detail"
-              width="520"
-              height="620"
+        </a>
+      </section>
+
+      <section
+        class="about-subscribe"
+        id="about-subscribe"
+        aria-labelledby="subscribeTitle"
+        data-cover-section
+      >
+        <div class="subscribe-stage" aria-hidden="true">
+          <img
+            class="subscribe-layer subscribe-layer--cloud-left"
+            src="images/subscribe/cloud-1.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="4"
+          />
+          <img
+            class="subscribe-layer subscribe-layer--cloud-top"
+            src="images/subscribe/cloud-2.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="5"
+          />
+          <img
+            class="subscribe-layer subscribe-layer--cloud-bottom"
+            src="images/subscribe/cloud-3.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="6"
+          />
+
+          <img
+            class="subscribe-layer subscribe-layer--adam-line"
+            src="images/subscribe/1.1.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="12"
+          />
+          <img
+            class="subscribe-layer subscribe-layer--god-line"
+            src="images/subscribe/2.1.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="10"
+          />
+
+          <img
+            class="subscribe-layer subscribe-layer--adam-paint"
+            src="images/subscribe/1.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="9"
+          />
+          <img
+            class="subscribe-layer subscribe-layer--god-paint"
+            src="images/subscribe/2.png"
+            alt=""
+            decoding="async"
+            draggable="false"
+            data-subscribe-layer
+            data-depth="8"
+          />
+        </div>
+
+        <div class="subscribe-panel">
+          <p class="subscribe-eyebrow" data-i18n="subscribeEyebrow">Subscribe</p>
+          <h2 class="subscribe-title" id="subscribeTitle">
+            <span class="subscribe-title__group subscribe-title__group--default">
+              <span class="subscribe-title__line" data-i18n="subscribeTitleLine1"
+                >Curated Artworks</span
+              >
+              <span class="subscribe-title__line" data-i18n="subscribeTitleLine2"
+                >in Your Inbox</span
+              >
+            </span>
+            <span
+              class="subscribe-title__group subscribe-title__group--thanks"
+              aria-hidden="true"
+            >
+              <span class="subscribe-title__line" data-i18n="subscribeThanksLine1"
+                >Thank you.</span
+              >
+              <span
+                class="subscribe-title__line subscribe-title__line--thanks-2"
+                data-i18n="subscribeThanksLine2"
+                hidden
+              ></span>
+            </span>
+          </h2>
+          <p class="subscribe-lead" data-i18n="subscribeLead">
+            A quiet selection of artworks, stories, and visual references
+            delivered to you with the pace of a museum visit.
+          </p>
+
+          <form class="subscribe-form" data-subscribe-form novalidate>
+            <label class="subscribe-label" for="subscribeEmail" data-i18n="subscribeEmailLabel">
+              EMAIL ADDRESS
+            </label>
+            <input
+              class="subscribe-input"
+              id="subscribeEmail"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              data-i18n-placeholder="subscribeEmailPlaceholder"
+              autocomplete="email"
+              data-subscribe-input
             />
-          </button>
+            <button
+              class="subscribe-button"
+              type="submit"
+              data-subscribe-button
+              data-i18n="subscribeButton"
+            >
+              SUBSCRIBE
+            </button>
+            <p
+              class="subscribe-message"
+              aria-live="polite"
+              data-subscribe-message
+            ></p>
+          </form>
         </div>
       </section>
+      </div>
     </main>
 
     <script src="i18n.js"></script>
-    <script>
-      const btnMenu = document.getElementById("btnMenu");
-      const mobileNav = document.getElementById("mobileNav");
-
-      btnMenu?.addEventListener("click", () => {
-        if (!mobileNav) return;
-        const open = !mobileNav.classList.contains("is-open");
-        mobileNav.classList.toggle("is-open", open);
-        mobileNav.hidden = !open;
-        btnMenu.setAttribute("aria-expanded", String(open));
-      });
-
-      const aboutArtwork = document.getElementById("aboutArtwork");
-      const aboutArtworkButton = aboutArtwork?.closest(".about-art-button");
-      let currentArtworkIndex = 1;
-
-      aboutArtworkButton?.addEventListener("click", () => {
-        let nextIndex = currentArtworkIndex;
-        while (nextIndex === currentArtworkIndex) {
-          nextIndex = Math.floor(Math.random() * 6) + 1;
-        }
-        currentArtworkIndex = nextIndex;
-        aboutArtwork.src = `images/about/${nextIndex}.png`;
-      });
-    </script>
+    <script src="about.js"></script>
   </body>
 </html>

@@ -1289,6 +1289,24 @@ body.modal-open {
     gap: 1.75rem;
     padding-inline: 1.25rem;
   }
+
+  /* mobile painting visibility fix: IntersectionObserver / load refresh 失败时仍显示作品 */
+  .gallery-hall
+    [data-loop-zone="original"].artwork-card[data-reveal]:not(.is-revealed) {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  .gallery-hall
+    [data-loop-zone="original"].artwork-card[data-reveal].is-active {
+    transform: translate3d(0, 0, 0) scale(1.04) !important;
+  }
+
+  /* mobile painting visibility fix: 保证展厅主区有可视高度 */
+  .gallery-section,
+  .gallery-hall {
+    min-height: min(52svh, 28rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

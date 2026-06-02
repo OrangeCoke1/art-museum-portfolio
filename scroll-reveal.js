@@ -102,6 +102,21 @@
     observer.observe(section);
   }
 
+  function revealIfVisibleInHorizontalRoot(el, root) {
+    const rootRect = root.getBoundingClientRect();
+    if (rootRect.width <= 0 || rootRect.height <= 0) return;
+
+    const elRect = el.getBoundingClientRect();
+    const marginX = rootRect.width * 0.12;
+    const inView =
+      elRect.right >= rootRect.left - marginX &&
+      elRect.left <= rootRect.right + marginX;
+
+    if (inView) {
+      el.classList.add("is-revealed");
+    }
+  }
+
   function observeElement(el) {
     if (!el || isSkippable(el)) return;
 
@@ -114,7 +129,11 @@
       return;
     }
 
-    el.classList.remove("is-revealed");
+    /* data-reveal-once：已浮现的不在 refresh 时重置，避免 load 后画廊整排 opacity:0 */
+    const once = el.hasAttribute("data-reveal-once");
+    if (!once || !el.classList.contains("is-revealed")) {
+      el.classList.remove("is-revealed");
+    }
 
     const mode = el.getAttribute("data-reveal") || "";
 
@@ -133,6 +152,7 @@
         horizontalRoots.set(root, observer);
       }
       observer.observe(el);
+      revealIfVisibleInHorizontalRoot(el, root);
       return;
     }
 

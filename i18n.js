@@ -54,6 +54,30 @@
       aboutP3: "The website also provides detailed artwork information, including artist, year, medium, dimensions, location, subject, and collection data. By combining visual interaction with contextual information, the project encourages users to move beyond passive browsing and spend more time understanding each work.",
       aboutP4: "The goal of Gallery Walk is to transform digital art viewing into a slower, more immersive, and more meaningful experience.",
       aboutThanks: "Thanks for your reading.",
+      aboutEyebrow: "About",
+      aboutHeroTitle: "Gallery Walk",
+      aboutHeroLead:
+        "Gallery Walk is an interactive digital museum designed around the idea of slowing down the act of looking.",
+      aboutHeroText:
+        "Instead of scrolling past images quickly, we invite you to observe, interact, and rediscover each artwork through movement and attention.",
+      aboutHeroTagline: "SLOW LOOKING. DEEP SEEING.",
+      aboutScrollCta: "Scroll to subscribe",
+      subscribeEyebrow: "Subscribe",
+      subscribeTitleLine1: "Curated Artworks",
+      subscribeTitleLine2: "in Your Inbox",
+      subscribeThanks: "Thank you.",
+      subscribeThanksLine1: "Thank you.",
+      subscribeThanksLine2: "",
+      subscribeLead:
+        "A quiet selection of artworks, stories, and visual references delivered to you with the pace of a museum visit.",
+      subscribeEmailLabel: "EMAIL ADDRESS",
+      subscribeButton: "SUBSCRIBE",
+      subscribeButtonDone: "SUBSCRIBED",
+      subscribeEmailPlaceholder: "you@example.com",
+      subscribeErrorEmpty: "Please enter your email.",
+      subscribeErrorInvalid: "Please enter a valid email address.",
+      subscribeSuccessMessage:
+        "Your next artwork recommendation will arrive soon.",
     },
     ja: {
       navPainting: "絵画",
@@ -99,6 +123,29 @@
       aboutP3: "このサイトは作者、年代、技法、寸法、所蔵、主題、コレクション情報などの詳細も提供します。視覚的な操作と文脈情報を組み合わせることで、受動的な閲覧を超え、作品を理解する時間を増やすことを促します。",
       aboutP4: "Gallery Walk の目標は、デジタルでの美術鑑賞を、より遅く、没入的で、意味のある体験へ変えることです。",
       aboutThanks: "お読みいただきありがとうございます。",
+      aboutEyebrow: "概要",
+      aboutHeroTitle: "Gallery Walk",
+      aboutHeroLead:
+        "Gallery Walk は、見る行為をゆっくりにするという考えから生まれたインタラクティブなデジタル美術館です。",
+      aboutHeroText:
+        "画像を素早く流すのではなく、動きと注意を通して作品を観察し、触れ、再発見していただくことを目指しています。",
+      aboutHeroTagline: "ゆっくり見る。深く見る。",
+      aboutScrollCta: "下へスクロールして登録",
+      subscribeEyebrow: "購読",
+      subscribeTitleLine1: "厳選された作品",
+      subscribeTitleLine2: "あなたの受信箱へ",
+      subscribeThanks: "ありがとうございます。",
+      subscribeThanksLine1: "ありがとう",
+      subscribeThanksLine2: "ございます。",
+      subscribeLead:
+        "美術館の訪問のようなペースで、作品・ストーリー・視覚的参考資料をお届けします。",
+      subscribeEmailLabel: "メールアドレス",
+      subscribeButton: "登録する",
+      subscribeButtonDone: "登録済み",
+      subscribeEmailPlaceholder: "you@example.com",
+      subscribeErrorEmpty: "メールアドレスを入力してください。",
+      subscribeErrorInvalid: "有効なメールアドレスを入力してください。",
+      subscribeSuccessMessage: "次の作品レコメンドをまもなくお届けします。",
     },
     "zh-CN": {
       navPainting: "绘画",
@@ -144,6 +191,29 @@
       aboutP3: "网站也提供详细的作品信息，包括艺术家、年份、媒介、尺寸、地点、主题和馆藏数据。通过结合视觉交互与语境信息，项目鼓励用户超越被动浏览，花更多时间理解每件作品。",
       aboutP4: "Gallery Walk 的目标是把数字艺术观看转化为一种更缓慢、更沉浸、更有意义的体验。",
       aboutThanks: "感谢你的阅读。",
+      aboutEyebrow: "关于",
+      aboutHeroTitle: "Gallery Walk",
+      aboutHeroLead:
+        "Gallery Walk 是一座互动数字美术馆，围绕放慢观看这一理念而设计。",
+      aboutHeroText:
+        "我们邀请你不要匆匆滑过图像，而是通过移动与专注去观察、互动，并重新发现每一件作品。",
+      aboutHeroTagline: "慢看 · 深观",
+      aboutScrollCta: "向下滑动订阅",
+      subscribeEyebrow: "订阅",
+      subscribeTitleLine1: "精选艺术作品",
+      subscribeTitleLine2: "送达您的收件箱",
+      subscribeThanks: "感谢。",
+      subscribeThanksLine1: "感谢。",
+      subscribeThanksLine2: "",
+      subscribeLead:
+        "以博物馆参观的节奏，为您呈现精选作品、故事与视觉参考。",
+      subscribeEmailLabel: "电子邮箱",
+      subscribeButton: "订阅",
+      subscribeButtonDone: "已订阅",
+      subscribeEmailPlaceholder: "you@example.com",
+      subscribeErrorEmpty: "请输入您的邮箱。",
+      subscribeErrorInvalid: "请输入有效的邮箱地址。",
+      subscribeSuccessMessage: "您的下一条作品推荐即将送达。",
     },
     "zh-TW": {
       navPainting: "繪畫",
@@ -189,6 +259,29 @@
       aboutP3: "網站也提供詳細的作品資訊，包括藝術家、年份、媒材、尺寸、地點、主題和館藏資料。透過結合視覺互動與脈絡資訊，專案鼓勵使用者超越被動瀏覽，花更多時間理解每件作品。",
       aboutP4: "Gallery Walk 的目標是把數位藝術觀看轉化為一種更緩慢、更沉浸、更有意義的體驗。",
       aboutThanks: "感謝你的閱讀。",
+      aboutEyebrow: "關於",
+      aboutHeroTitle: "Gallery Walk",
+      aboutHeroLead:
+        "Gallery Walk 是一座互動式數位美術館，圍繞放慢觀看這一理念而設計。",
+      aboutHeroText:
+        "我們邀請你不要匆匆滑過圖像，而是透過移動與專注去觀察、互動，並重新發現每一件作品。",
+      aboutHeroTagline: "慢看 · 深觀",
+      aboutScrollCta: "向下滑動訂閱",
+      subscribeEyebrow: "訂閱",
+      subscribeTitleLine1: "精選藝術作品",
+      subscribeTitleLine2: "送達您的收件匣",
+      subscribeThanks: "感謝。",
+      subscribeThanksLine1: "感謝。",
+      subscribeThanksLine2: "",
+      subscribeLead:
+        "以美術館參觀的節奏，為您呈現精選作品、故事與視覺參考。",
+      subscribeEmailLabel: "電子郵件",
+      subscribeButton: "訂閱",
+      subscribeButtonDone: "已訂閱",
+      subscribeEmailPlaceholder: "you@example.com",
+      subscribeErrorEmpty: "請輸入您的電子郵件。",
+      subscribeErrorInvalid: "請輸入有效的電子郵件地址。",
+      subscribeSuccessMessage: "您的下一則作品推薦即將送達。",
     },
     fr: {
       navPainting: "Peinture",
@@ -234,6 +327,30 @@
       aboutP3: "Le site fournit aussi des informations détaillées sur les œuvres, notamment l’artiste, l’année, la technique, les dimensions, le lieu, le sujet et les données de collection. En combinant interaction visuelle et contexte, il encourage les utilisateurs à dépasser la navigation passive et à passer plus de temps avec chaque œuvre.",
       aboutP4: "L’objectif de Gallery Walk est de transformer la découverte numérique de l’art en une expérience plus lente, plus immersive et plus significative.",
       aboutThanks: "Merci pour votre lecture.",
+      aboutEyebrow: "À propos",
+      aboutHeroTitle: "Gallery Walk",
+      aboutHeroLead:
+        "Gallery Walk est un musée numérique interactif conçu autour de l’idée de ralentir l’acte de regarder.",
+      aboutHeroText:
+        "Plutôt que de faire défiler les images rapidement, nous vous invitons à observer, interagir et redécouvrir chaque œuvre par le mouvement et l’attention.",
+      aboutHeroTagline: "REGARD LENT. VISION PROFONDE.",
+      aboutScrollCta: "Faire défiler pour s’abonner",
+      subscribeEyebrow: "S’abonner",
+      subscribeTitleLine1: "Œuvres choisies",
+      subscribeTitleLine2: "par e-mail",
+      subscribeThanks: "Merci.",
+      subscribeThanksLine1: "Merci.",
+      subscribeThanksLine2: "",
+      subscribeLead:
+        "Une sélection d’œuvres, d’histoires et de références visuelles, livrée au rythme d’une visite de musée.",
+      subscribeEmailLabel: "ADRESSE E-MAIL",
+      subscribeButton: "S’ABONNER",
+      subscribeButtonDone: "ABONNÉ",
+      subscribeEmailPlaceholder: "vous@exemple.com",
+      subscribeErrorEmpty: "Veuillez saisir votre adresse e-mail.",
+      subscribeErrorInvalid: "Veuillez saisir une adresse e-mail valide.",
+      subscribeSuccessMessage:
+        "Votre prochaine recommandation d’œuvre arrive bientôt.",
     },
     es: {
       navPainting: "Pintura",
@@ -279,6 +396,30 @@
       aboutP3: "El sitio también ofrece información detallada de las obras, como artista, año, técnica, dimensiones, ubicación, tema y datos de colección. Al combinar interacción visual con contexto, el proyecto anima a ir más allá de la navegación pasiva y dedicar más tiempo a comprender cada obra.",
       aboutP4: "El objetivo de Gallery Walk es transformar la visualización digital del arte en una experiencia más lenta, inmersiva y significativa.",
       aboutThanks: "Gracias por leer.",
+      aboutEyebrow: "Acerca de",
+      aboutHeroTitle: "Gallery Walk",
+      aboutHeroLead:
+        "Gallery Walk es un museo digital interactivo diseñado en torno a la idea de ralentizar el acto de mirar.",
+      aboutHeroText:
+        "En lugar de desplazarte rápidamente por las imágenes, te invitamos a observar, interactuar y redescubrir cada obra mediante el movimiento y la atención.",
+      aboutHeroTagline: "MIRAR LENTO. VER PROFUNDO.",
+      aboutScrollCta: "Desplázate para suscribirte",
+      subscribeEyebrow: "Suscribirse",
+      subscribeTitleLine1: "Obras seleccionadas",
+      subscribeTitleLine2: "en tu correo",
+      subscribeThanks: "Gracias.",
+      subscribeThanksLine1: "Gracias.",
+      subscribeThanksLine2: "",
+      subscribeLead:
+        "Una selección de obras, historias y referencias visuales, entregada al ritmo de una visita al museo.",
+      subscribeEmailLabel: "CORREO ELECTRÓNICO",
+      subscribeButton: "SUSCRIBIRSE",
+      subscribeButtonDone: "SUSCRITO",
+      subscribeEmailPlaceholder: "tu@ejemplo.com",
+      subscribeErrorEmpty: "Introduce tu correo electrónico.",
+      subscribeErrorInvalid: "Introduce una dirección de correo válida.",
+      subscribeSuccessMessage:
+        "Tu próxima recomendación de obra llegará pronto.",
     },
   };
 
@@ -288,7 +429,10 @@
   }
 
   function t(key, lang = getLanguage()) {
-    return TEXT[lang]?.[key] || TEXT.en[key] || key;
+    /* 空字符串是合法译文，不能用 ||（否则 subscribeThanksLine2: "" 会变成键名） */
+    if (TEXT[lang] && key in TEXT[lang]) return TEXT[lang][key];
+    if (key in TEXT.en) return TEXT.en[key];
+    return key;
   }
 
   function format(key, values = {}, lang = getLanguage()) {
@@ -300,13 +444,35 @@
     el.textContent = value;
   }
 
+  function syncThanksTitleLines(lang = getLanguage()) {
+    const line2Text = t("subscribeThanksLine2", lang);
+    const useTwoLines = Boolean(String(line2Text).trim());
+
+    document
+      .querySelectorAll("[data-i18n='subscribeThanksLine2']")
+      .forEach((el) => {
+        setText(el, line2Text);
+        el.hidden = !useTwoLines;
+      });
+
+    document.getElementById("subscribeTitle")?.classList.toggle(
+      "subscribe-title--thanks-two-line",
+      useTwoLines,
+    );
+  }
+
   function applyLanguage(lang = getLanguage()) {
     document.documentElement.lang = lang;
     document.querySelectorAll("[data-i18n]").forEach((el) => {
+      if (el.dataset.i18n === "subscribeThanksLine2") return;
       setText(el, t(el.dataset.i18n, lang));
     });
+    syncThanksTitleLines(lang);
     document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
       el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel, lang));
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      el.placeholder = t(el.dataset.i18nPlaceholder, lang);
     });
     document.querySelectorAll("[data-nav]").forEach((el) => {
       const key = `nav${el.dataset.nav[0]?.toUpperCase() || ""}${el.dataset.nav.slice(1)}`;

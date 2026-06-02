@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" class="subscribe-page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Subscribe to Gallery Walk — curated artworks, stories, and visual references in your inbox."
+    />
+    <title>Gallery Walk · Subscribe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="subscribe.css" />
+    <style>
+      /* 首屏保底：不依赖 JS，避免被全局 overflow / 层叠挡住 */
+      html.subscribe-page,
+      html.subscribe-page body.subscribe-shell {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow: visible !important;
+        overflow-y: auto !important;
+      }
+      html.subscribe-page .subscribe-main {
+        position: relative;
+        z-index: 2;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+    </style>
+  </head>
+  <body class="subscribe-shell">
+    <header class="site-header" id="top">
+      <a class="logo" href="index.html">
+        <img
+          class="logo-img"
+          src="images/logo.png"
+          alt="Gallery Walk"
+          width="160"
+          height="40"
+        />
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="gallery.html" class="site-nav__link" data-nav="painting"
+          >Painting</a
+        >
+        <a href="sculpture.html" class="site-nav__link" data-nav="sculpture"
+          >Sculpture</a
+        >
+        <a href="photography.html" class="site-nav__link" data-nav="photography"
+          >Photography</a
+        >
+        <a href="about.html" class="site-nav__link" data-nav="about">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" aria-label="Search">
+          <svg
+            class="icon-btn__svg"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <circle
+              cx="11"
+              cy="11"
+              r="6.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              d="M16 16l5 5"
+            />
+          </svg>
+        </button>
+        <div class="language-switcher">
+          <button
+            type="button"
+            class="language-toggle"
+            aria-expanded="false"
+            aria-controls="languageMenu"
+          >
+            English
+          </button>
+          <div class="language-menu" id="languageMenu" hidden>
+            <button type="button" data-lang-option="en">English</button>
+            <button type="button" data-lang-option="ja">日本語</button>
+            <button type="button" data-lang-option="zh-CN">简体中文</button>
+            <button type="button" data-lang-option="zh-TW">繁體中文</button>
+            <button type="button" data-lang-option="fr">Français</button>
+            <button type="button" data-lang-option="es">Español</button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="icon-btn"
+          id="btnMenu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+        >
+          <svg
+            class="icon-btn__svg"
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              d="M4 7h16M4 12h16M4 17h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden>
+      <a href="gallery.html" class="site-nav__link" data-nav="painting"
+        >Painting</a
+      >
+      <a href="sculpture.html" class="site-nav__link" data-nav="sculpture"
+        >Sculpture</a
+      >
+      <a href="photography.html" class="site-nav__link" data-nav="photography"
+        >Photography</a
+      >
+      <a href="about.html" class="site-nav__link" data-nav="about">About</a>
+    </nav>
+
+    <main class="subscribe-main" id="main">
+      <section class="subscribe-hero" aria-labelledby="subscribeTitle">
+        <div class="subscribe-hero__inner">
+          <h1 class="subscribe-title" id="subscribeTitle">
+            <span class="subscribe-title__line">Curated Artworks</span>
+            <span class="subscribe-title__line">in Your Inbox</span>
+          </h1>
+
+          <p class="subscribe-lead">
+            A quiet selection of artworks, stories, and visual references
+            delivered to you with the pace of a museum visit.
+          </p>
+
+          <div class="subscribe-form-wrap" id="subscribeFormWrap">
+            <form class="subscribe-form" id="subscribeForm" novalidate>
+              <label class="subscribe-field">
+                <span class="subscribe-field__label">Email address</span>
+                <input
+                  class="subscribe-input"
+                  type="email"
+                  id="subscribeEmail"
+                  name="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+
+              <p
+                class="subscribe-error"
+                id="subscribeError"
+                role="alert"
+                hidden
+              ></p>
+
+              <button class="subscribe-submit" type="submit" id="subscribeBtn">
+                Subscribe
+              </button>
+
+              <p class="subscribe-fine-print">
+                No spam. Only carefully selected visual references.
+              </p>
+            </form>
+          </div>
+
+          <div
+            class="subscribe-success"
+            id="subscribeSuccess"
+            role="status"
+            aria-live="polite"
+            aria-hidden="true"
+          >
+            <p class="subscribe-success__text">Thank you.</p>
+            <button type="button" class="subscribe-reset" id="subscribeReset">
+              Subscribe with another email
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="subscribe-preview"
+        aria-labelledby="subscribePreviewTitle"
+      >
+        <div class="subscribe-preview__inner">
+          <h2 class="subscribe-preview__title" id="subscribePreviewTitle">
+            What you will receive
+          </h2>
+
+          <ol class="subscribe-benefits">
+            <li class="subscribe-benefit">
+              <span class="subscribe-benefit__num">01</span>
+              <div class="subscribe-benefit__body">
+                <h3 class="subscribe-benefit__title">Artwork of the Week</h3>
+                <p class="subscribe-benefit__text">
+                  A selected artwork with short context and viewing notes.
+                </p>
+              </div>
+            </li>
+            <li class="subscribe-benefit">
+              <span class="subscribe-benefit__num">02</span>
+              <div class="subscribe-benefit__body">
+                <h3 class="subscribe-benefit__title">Artist Focus</h3>
+                <p class="subscribe-benefit__text">
+                  Brief stories behind artists, movements, and visual ideas.
+                </p>
+              </div>
+            </li>
+            <li class="subscribe-benefit">
+              <span class="subscribe-benefit__num">03</span>
+              <div class="subscribe-benefit__body">
+                <h3 class="subscribe-benefit__title">Quiet References</h3>
+                <p class="subscribe-benefit__text">
+                  Images, forms, colors, and details for slow observation.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="subscribe-footer">
+      <p>Gallery Walk · Curated digital museum</p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="subscribe.js"></script>
+  </body>
+</html>

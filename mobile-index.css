@@ -1,9 +1,66 @@
 /* mobile section 02 redesign: mobile-only refinements for the index page */
+.entrance-collection__tilt-hint {
+  display: none;
+}
+
 @media (max-width: 768px), (pointer: coarse) {
+  .entrance-title__gallery {
+    transform: translateY(-0.28em);
+  }
+
+  .entrance-title__walk {
+    transform: translateY(0.22em);
+  }
+
+  .entrance-thinker {
+    top: 44%;
+    transform: translate(-50%, -43%);
+  }
+
+  .entrance-intro {
+    bottom: clamp(8.75rem, 23svh, 11.25rem);
+  }
+
+  .entrance-subscribe {
+    left: 50%;
+    right: auto;
+    bottom: clamp(8.75rem, 21svh, 10.5rem);
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .entrance-subscribe:hover {
+    transform: translateX(-50%);
+  }
+
+  /* mobile section 01: Enter Gallery — same scale & centering as section 03 */
+  .entrance-screen > .entrance-enter {
+    left: 50%;
+    right: auto;
+    bottom: clamp(5.25rem, 13.5svh, 6.75rem);
+    display: block;
+    width: max-content;
+    max-width: 92vw;
+    margin: 0;
+    padding: 0.25rem 0.35rem 0.22rem;
+    transform: translateX(-50%);
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .entrance-screen > .entrance-enter:hover {
+    transform: translateX(-50%);
+  }
+
+  .entrance-scroll-hint {
+    bottom: clamp(1.65rem, 5.75svh, 2.85rem);
+  }
+
   .entrance-about {
     position: relative;
     display: block;
-    min-height: 126svh;
+    min-height: 138svh;
     padding: 0 24px clamp(5.5rem, 14svh, 7.5rem);
     overflow: hidden;
   }
@@ -39,7 +96,7 @@
   .entrance-about__lead {
     width: 100%;
     max-width: 100%;
-    margin-bottom: clamp(9rem, 28svh, 12rem);
+    margin-bottom: clamp(13.75rem, 38svh, 17rem);
     font-size: clamp(1.0625rem, 4.6vw, 1.1875rem);
     line-height: 1.6;
   }
@@ -78,8 +135,8 @@
   }
 
   .banana-part {
-    width: clamp(8.5rem, 42vw, 12.5rem);
-    max-height: 36svh;
+    width: clamp(8rem, 38vw, 11.25rem);
+    max-height: 31svh;
     pointer-events: auto;
     touch-action: pan-y;
     filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.14));
@@ -91,19 +148,159 @@
 
   .drag-hint-text {
     z-index: 46;
-    left: auto;
-    right: 24px;
-    top: clamp(8.25rem, 21svh, 10.75rem);
-    width: clamp(4.8rem, 19vw, 6rem);
+    left: clamp(4.4rem, 24vw, 6.8rem);
+    right: auto;
+    top: clamp(22rem, 54svh, 26rem);
+    width: clamp(4.4rem, 18vw, 5.65rem);
     transform: rotate(-5deg);
   }
 
   .drag-hint-arrow {
     z-index: 46;
-    left: auto;
-    right: clamp(3.8rem, 16vw, 5.4rem);
-    top: clamp(10.7rem, 27svh, 13.4rem);
-    width: clamp(3rem, 12vw, 4rem);
+    left: clamp(4rem, 21vw, 6.2rem);
+    right: auto;
+    top: clamp(24rem, 60svh, 28.5rem);
+    width: clamp(2.75rem, 11vw, 3.5rem);
     transform: rotate(12deg);
+  }
+
+  /* mobile section 03 redesign: curatorial card layout for Selected Artworks */
+  .entrance-collection {
+    min-height: 185svh;
+    overflow: hidden;
+  }
+
+  .entrance-collection__inner {
+    display: block;
+    align-items: flex-start;
+    min-height: 185svh;
+    padding: clamp(5.75rem, 13svh, 7rem) 24px clamp(5rem, 12svh, 7rem);
+  }
+
+  .entrance-collection__copy {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .entrance-collection__title {
+    margin-bottom: clamp(1.25rem, 4svh, 1.8rem);
+    font-size: clamp(3.5rem, 15vw, 4rem);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+  }
+
+  .entrance-collection__text {
+    max-width: 100%;
+    margin-bottom: 1.15rem;
+    font-size: clamp(1.0625rem, 4.6vw, 1.1875rem);
+    line-height: 1.6;
+  }
+
+  .entrance-collection__text:last-of-type {
+    margin-bottom: clamp(2rem, 5.5svh, 2.75rem);
+  }
+
+  .entrance-collection__features {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    gap: 0;
+    max-width: 100%;
+    margin: 0;
+    border-top: 1px solid rgba(92, 90, 86, 0.28);
+    border-bottom: 1px solid rgba(92, 90, 86, 0.28);
+  }
+
+  .entrance-collection__feature {
+    display: grid;
+    grid-template-columns: 2.35rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.05rem 0;
+  }
+
+  .entrance-collection__feature + .entrance-collection__feature {
+    border-top: 1px solid rgba(92, 90, 86, 0.28);
+  }
+
+  .entrance-collection__feature-icon {
+    width: 1.75rem;
+  }
+
+  .entrance-collection__feature-label {
+    margin-bottom: 0.18rem;
+    font-size: 0.68rem;
+  }
+
+  .entrance-collection__feature-title {
+    font-size: 1.05rem;
+  }
+
+  .entrance-label--collection {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease;
+  }
+
+  .entrance-collection__copy,
+  .entrance-collection__wall {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease;
+  }
+
+  .entrance-collection__wall {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: clamp(41rem, 98svh, 50rem);
+    right: auto;
+    bottom: auto;
+    width: min(
+      84vw,
+      24rem,
+      calc(min(64svh, 36rem) * var(--wall-frame-w) / var(--wall-frame-h))
+    );
+    margin: 0;
+    max-width: none;
+    transform: translateX(-50%) translateY(1.25rem);
+    pointer-events: none;
+  }
+
+  /* mobile section 03 redesign: full-section reveal on entry, same as section 02 */
+  body.entrance-page.is-collection-phase .entrance-label--collection,
+  body.entrance-page.is-collection-phase .entrance-collection__copy {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  body.entrance-page.is-collection-phase .entrance-collection__wall {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .entrance-enter--in-copy {
+    display: block;
+    width: max-content;
+    margin: clamp(31rem, 74svh, 39rem) auto 1rem;
+    padding: 0.25rem 0.35rem 0.22rem;
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+    line-height: 1.1;
+  }
+
+  .entrance-collection__tilt-hint {
+    display: block;
+    margin: 0 auto;
+    max-width: 17rem;
+    font-family: var(--entrance-sans);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    text-align: center;
+    color: rgba(92, 90, 86, 0.76);
   }
 }

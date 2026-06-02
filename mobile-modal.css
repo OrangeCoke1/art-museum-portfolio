@@ -1,0 +1,243 @@
+/* mobile modal repair — painting / photography modal (max-width: 768px only) */
+
+@media (max-width: 768px) {
+  /* mobile modal repair: scrollable panel */
+  .modal {
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .modal-panel {
+    width: 100%;
+    max-width: none;
+    height: auto !important;
+    max-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0;
+  }
+
+  .modal-body,
+  .museum-modal-layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    grid-template-columns: none;
+    grid-template-rows: none;
+  }
+
+  /* mobile modal repair: sidebar — title, meta card, visit (document flow) */
+  .modal-sidebar {
+    position: static;
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    border-right: none;
+    border-bottom: none;
+    padding: max(0.85rem, env(safe-area-inset-top)) 1.25rem 1rem;
+  }
+
+  .modal-sidebar-head {
+    margin-bottom: 0.35rem;
+  }
+
+  .modal-title {
+    font-size: clamp(1.75rem, 8vw, 2.2rem);
+  }
+
+  .modal-subtitle {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+  }
+
+  /* mobile modal repair: card grows with meta; flip btn never overlaps rows */
+  .modal-info-card {
+    margin-top: 0.85rem;
+    min-height: auto;
+  }
+
+  .modal-info-card__inner {
+    min-height: auto;
+    height: auto;
+  }
+
+  .modal-info-card__face.modal-info-card__front {
+    position: relative;
+    inset: auto;
+    height: auto;
+    min-height: 11rem;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .modal-info-card__face.modal-info-card__back {
+    position: absolute;
+    inset: 0;
+    min-height: 100%;
+  }
+
+  .modal-info-card.is-flipped .modal-info-card__inner {
+    min-height: 16rem;
+    height: 100%;
+  }
+
+  .modal-info-card:hover,
+  .modal-info-card:focus-visible {
+    transform: none;
+    filter: none;
+  }
+
+  .modal-info-card .modal-meta {
+    display: grid;
+    flex: 0 1 auto;
+    min-height: 0;
+    max-height: min(42svh, 17.5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin-bottom: 0;
+    padding-bottom: 0.15rem;
+  }
+
+  .modal-info-card .modal-meta__row {
+    display: grid;
+  }
+
+  .modal-info-card__flip {
+    flex-shrink: 0;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* mobile modal repair: visit link below card, never absolute */
+  .modal-museum-btn {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: auto;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 16px 0 0;
+    padding: 0.75rem 1rem;
+    transform: none !important;
+    box-sizing: border-box;
+  }
+
+  .modal-museum-btn:hover {
+    transform: none !important;
+  }
+
+  /* mobile modal repair: viewer — toolbar above image */
+  .modal-viewer {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    min-height: 0;
+    margin-top: 0.75rem;
+    border-top: 1px solid var(--modal-border);
+  }
+
+  .modal-stage {
+    order: 2;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    max-height: none;
+    padding: 0.35rem 1rem max(0.85rem, env(safe-area-inset-bottom));
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .modal-stage.is-mobile-zoomed {
+    touch-action: none;
+  }
+
+  .modal-stage-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* mobile modal repair: larger centered image */
+  .modal-image {
+    display: block;
+    width: min(90vw, 520px);
+    max-width: min(90vw, 520px);
+    height: auto;
+    max-height: none;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  /* mobile modal repair: no debug / hint line on phone */
+  .modal-hint {
+    display: none !important;
+  }
+
+  .modal-toolbar {
+    order: 1;
+    position: static;
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0;
+    padding: 0.65rem 1rem 0.5rem;
+    background: var(--modal-viewer-bg);
+    border-bottom: 1px solid var(--modal-border);
+    border-top: none;
+  }
+
+  .modal-tool {
+    width: 2.35rem;
+    height: 2.35rem;
+    min-width: 2.35rem;
+    min-height: 2.35rem;
+  }
+
+  .modal-tool--close {
+    position: static;
+    margin-left: 0;
+    box-shadow: none;
+  }
+
+  /* mobile modal repair: hide fullscreen only */
+  #modalBtnFullscreen,
+  #sculpture3dFullscreen {
+    display: none !important;
+  }
+
+  /* mobile modal repair: sculpture modal column */
+  .modal-viewer .sculpture-3d-viewer {
+    order: 2;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: min(52vw, 20rem);
+    max-height: min(72vw, 28rem);
+    height: min(60vw, 24rem);
+  }
+
+  .modal-viewer .sculpture-3d-toolbar {
+    order: 1;
+    position: static;
+    justify-content: center;
+    gap: 12px;
+    padding: 0.65rem 1rem 0.5rem;
+    border-bottom: 1px solid var(--modal-border);
+    border-top: none;
+  }
+}

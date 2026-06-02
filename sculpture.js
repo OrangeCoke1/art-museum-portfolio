@@ -158,7 +158,19 @@ function updateLoopBounds() {
 
 function scrollToLoopStart() {
   updateLoopBounds();
-  if (loop.width > 0) hall.scrollLeft = loop.start;
+  if (loop.width <= 0) return;
+
+  const first = track.querySelector('[data-loop-zone="original"]');
+  if (!first) {
+    hall.scrollLeft = loop.start;
+    return;
+  }
+
+  const targetCenter = first.offsetLeft + first.offsetWidth / 2;
+  const centered = Math.max(0, Math.round(targetCenter - hall.clientWidth / 2));
+  const min = loop.start;
+  const max = Math.max(loop.start, loop.start + loop.width - hall.clientWidth);
+  hall.scrollLeft = Math.min(Math.max(centered, min), max);
 }
 
 function normalizeLoopScroll() {

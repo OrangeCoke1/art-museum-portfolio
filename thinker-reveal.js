@@ -150,10 +150,7 @@ void main() {
         canvas.width = bw;
         canvas.height = bh;
       }
-      if (
-        highlightCanvas.width !== bw ||
-        highlightCanvas.height !== bh
-      ) {
+      if (highlightCanvas.width !== bw || highlightCanvas.height !== bh) {
         highlightCanvas.width = bw;
         highlightCanvas.height = bh;
       }
@@ -589,7 +586,10 @@ void main() {
       const mouseMapY = ((py - paint.dy) / paint.dh) * map.height;
       const broadLight = normalize3(lightX * 0.7, lightY * 0.58, 0.9);
 
-      if (lightCanvas.width !== map.width || lightCanvas.height !== map.height) {
+      if (
+        lightCanvas.width !== map.width ||
+        lightCanvas.height !== map.height
+      ) {
         lightCanvas.width = map.width;
         lightCanvas.height = map.height;
       }

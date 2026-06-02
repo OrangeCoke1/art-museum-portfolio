@@ -333,29 +333,16 @@ function getArtworkCenteredScrollLeft(artwork) {
   return Math.max(0, Math.round(targetCenter - galleryHall.clientWidth / 2));
 }
 
-function getInitialCenteredArtwork() {
-  const originals = [
-    ...galleryTrack.querySelectorAll('[data-loop-zone="original"].artwork-card'),
-  ];
-  if (!originals.length) return null;
-
-  return (
-    originals.find((card) => card.classList.contains("is-active")) ||
-    originals[Math.floor(originals.length / 2)]
-  );
-}
-
 function centerArtworkOnLoad() {
   updateLoopBounds();
   if (loopState.width <= 0) return;
 
-  /*
-   * 初始不要贴着 original 段左边缘，也不要依赖单张图片尚未稳定的 offset。
-   * 直接把视口放到 original 循环段中间，避免从 index / bfcache 进入时落在空墙。
-   */
-  const centered = Math.round(
-    loopState.start + loopState.width / 2 - galleryHall.clientWidth / 2,
+  const first = galleryTrack.querySelector(
+    '[data-loop-zone="original"].artwork-card',
   );
+  if (!first) return;
+
+  const centered = getArtworkCenteredScrollLeft(first);
   const min = loopState.start;
   const max = Math.max(
     loopState.start,
@@ -520,6 +507,16 @@ function createArtworkCard(art, { loopZone = "original" } = {}) {
   return article;
 }
 
+/** 保证原版作品卡可见（scroll-reveal load refresh 曾会卸掉 is-revealed） */
+function ensureGalleryArtworksVisible() {
+  if (!galleryTrack) return;
+  galleryTrack
+    .querySelectorAll('[data-loop-zone="original"].artwork-card')
+    .forEach((card) => {
+      card.classList.add("is-revealed");
+    });
+}
+
 function renderGallery() {
   galleryTrack.replaceChildren();
 
@@ -537,12 +534,7 @@ function renderGallery() {
     window.ScrollReveal.refresh(galleryTrack);
   }
 
-  /* IO 未触发时避免整排 opacity:0；once 保证滚出视口后不会被卸掉 is-revealed */
-  galleryTrack
-    .querySelectorAll('[data-loop-zone="original"].artwork-card')
-    .forEach((card) => {
-      card.classList.add("is-revealed");
-    });
+  ensureGalleryArtworksVisible();
 }
 
 function initLoopGallery() {
@@ -577,13 +569,13 @@ function initLoopGallery() {
     );
   });
 
-  window.addEventListener(
-    "load",
-    scheduleInitialArtworkCenter,
-    { once: true },
-  );
+  const onGalleryReady = () => {
+    ensureGalleryArtworksVisible();
+    scheduleInitialArtworkCenter();
+  };
 
-  window.addEventListener("pageshow", scheduleInitialArtworkCenter);
+  window.addEventListener("load", onGalleryReady, { once: true });
+  window.addEventListener("pageshow", onGalleryReady);
 }
 
 function updateProgressUI() {
@@ -768,6 +760,17 @@ function resetModalView() {
 function fitModalView() {
   if (!modalStage || !modalImage.naturalWidth) return;
 
+  if (
+    window.GalleryModalMobile?.applyMobileFit?.(
+      modalView,
+      modalStage,
+      modalImage,
+    )
+  ) {
+    applyModalTransform();
+    return;
+  }
+
   const stageRect = modalStage.getBoundingClientRect();
   const stageW = Math.max(1, stageRect.width);
   const stageH = Math.max(1, stageRect.height);
@@ -830,8 +833,28 @@ function initModalViewer() {
 
   modalStage.addEventListener("dblclick", () => resetModalView());
 
+  let lastMobileTap = 0;
+  modalStage.addEventListener(
+    "touchend",
+    (e) => {
+      if (!window.GalleryModalMobile?.isMobile?.()) return;
+      if (e.touches.length > 0 || window.GalleryModalMobile?.isPinching?.())
+        return;
+      const now = Date.now();
+      if (now - lastMobileTap < 320) {
+        e.preventDefault();
+        resetModalView();
+        lastMobileTap = 0;
+        return;
+      }
+      lastMobileTap = now;
+    },
+    { passive: false },
+  );
+
   modalStage.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || e.target.closest(".modal-toolbar")) return;
+    if (window.GalleryModalMobile?.shouldSkipStagePointer?.(e, modalView)) return;
     modalView.dragging = true;
     modalView.pointerId = e.pointerId;
     modalView.startX = e.clientX;
@@ -895,6 +918,12 @@ function initModalViewer() {
   });
 
   setModalToolActive("view");
+
+  window.GalleryModalMobile?.bindImageStage?.({
+    stage: modalStage,
+    getView: () => modalView,
+    applyTransform: applyModalTransform,
+  });
 }
 
 function openModal(artId) {

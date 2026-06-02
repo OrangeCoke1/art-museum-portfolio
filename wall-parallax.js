@@ -144,13 +144,7 @@
     }
   }
 
-  scene.addEventListener("pointermove", updateTarget);
-  scene.addEventListener("pointerleave", resetTarget);
-  stage.addEventListener("pointerleave", resetTarget);
-
   function updateTargetIfInside(event) {
-    if (orientationEnabled && coarsePointer) return;
-
     const rect = stage.getBoundingClientRect();
     const inside =
       event.clientX >= rect.left &&
@@ -161,16 +155,19 @@
     if (inside) updateTarget(event);
   }
 
-  window.addEventListener("mousemove", updateTargetIfInside);
-  window.addEventListener("pointermove", updateTargetIfInside, {
-    passive: true,
-  });
-  window.addEventListener("pointerdown", requestOrientationPermissionOnce, {
-    once: true,
-    passive: true,
-  });
-
-  if (coarsePointer) enableOrientationParallax();
+  if (coarsePointer) {
+    /* mobile section 03 redesign: tilt-only parallax; unsupported browsers stay static */
+    enableOrientationParallax();
+    window.addEventListener("pointerdown", requestOrientationPermissionOnce, {
+      once: true,
+      passive: true,
+    });
+  } else {
+    scene.addEventListener("pointermove", updateTarget);
+    scene.addEventListener("pointerleave", resetTarget);
+    stage.addEventListener("pointerleave", resetTarget);
+    window.addEventListener("mousemove", updateTargetIfInside);
+  }
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
