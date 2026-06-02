@@ -243,8 +243,8 @@
 
     /* mobile section 02 redesign: place the banana in the reserved mid-page device area */
     const mobile = isMobileIndexView();
-    const x = r.width * (mobile ? 0.52 : 0.32);
-    const y = r.height * (mobile ? 0.41 : 0.44);
+    const x = r.width * (mobile ? 0.52 : 0.5);
+    const y = r.height * (mobile ? 0.41 : 0.52);
 
     [peel, flesh].forEach((part) => {
       part.x = x;
