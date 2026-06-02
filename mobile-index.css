@@ -88,7 +88,7 @@
     width: 100%;
     max-width: 100%;
     margin-bottom: clamp(1.35rem, 4svh, 1.9rem);
-    font-size: clamp(2.75rem, 12.4vw, 3.5rem);
+    font-size: clamp(2.48rem, 11.2vw, 3.15rem);
     line-height: 0.98;
     letter-spacing: -0.035em;
   }
@@ -135,8 +135,8 @@
   }
 
   .banana-part {
-    width: clamp(8rem, 38vw, 11.25rem);
-    max-height: 31svh;
+    width: clamp(7.2rem, 34vw, 10.1rem);
+    max-height: 28svh;
     pointer-events: auto;
     touch-action: pan-y;
     filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.14));
@@ -185,7 +185,7 @@
 
   .entrance-collection__title {
     margin-bottom: clamp(1.25rem, 4svh, 1.8rem);
-    font-size: clamp(3.5rem, 15vw, 4rem);
+    font-size: clamp(3.15rem, 13.5vw, 3.6rem);
     line-height: 0.94;
     letter-spacing: -0.04em;
   }

@@ -18,6 +18,7 @@
 }
 
 html {
+  font-size: 90%;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -115,22 +116,22 @@ body.entrance-page {
 }
 
 .entrance-title__gallery {
-  height: clamp(5.46rem, 18vw, 13.7rem);
-  max-width: 81.6vw;
-  transform: translate(-60px, -40px);
+  height: clamp(4.92rem, 16.2vw, 12.33rem);
+  max-width: 73.5vw;
+  transform: translate(-54px, -36px);
 }
 
 .entrance-title__walk {
-  height: clamp(3.5rem, 11.5vw, 8.75rem);
-  max-width: 52vw;
+  height: clamp(3.15rem, 10.4vw, 7.88rem);
+  max-width: 47vw;
   margin-left: clamp(-2.5rem, -4vw, -0.75rem);
   margin-bottom: 0.02em;
   transform: translate(0px, 15px);
 }
 
 .entrance-thinker {
-  --thinker-max-h: clamp(27rem, 81vh, 47.5rem);
-  --thinker-max-w: min(94vw, 879px);
+  --thinker-max-h: clamp(24.3rem, 73vh, 42.75rem);
+  --thinker-max-w: min(94vw, 791px);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -179,7 +180,7 @@ body.entrance-page {
   z-index: 4;
   left: clamp(1.75rem, 4.5vw, 3.25rem);
   bottom: clamp(2.5rem, 6vh, 3.5rem);
-  width: min(16rem, 38vw);
+  width: min(14.4rem, 34vw);
 }
 
 .entrance-intro__line {
@@ -234,7 +235,7 @@ body.entrance-page {
   right: clamp(1.75rem, 4.5vw, 3.25rem);
   bottom: clamp(2.5rem, 6vh, 3.5rem);
   font-family: var(--entrance-serif);
-  font-size: clamp(1.05rem, 2.8vw, 1.65rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.49rem);
   font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--entrance-blue);
@@ -411,8 +412,26 @@ body.entrance-page.is-about-phase:not(.is-collection-phase) .drag-hint-arrow {
   color: var(--entrance-ink);
 }
 
-/* 桌面宽屏：锁定第二屏排版尺度，避免线上全屏时 vw 继续放大（与本地窄窗口预览一致） */
+/* 桌面宽屏：锁定三屏排版尺度，避免全屏时 vw 继续放大 */
 @media (min-width: 1100px) {
+  .entrance-title__gallery {
+    height: 12.33rem;
+  }
+
+  .entrance-title__walk {
+    height: 7.88rem;
+  }
+
+  .entrance-thinker {
+    --thinker-max-h: 42.75rem;
+    --thinker-max-w: 791px;
+  }
+
+  .entrance-enter,
+  .entrance-screen > .entrance-enter {
+    font-size: 1.49rem;
+  }
+
   .entrance-about {
     padding-inline: max(
       clamp(2rem, 4vw, 3.5rem),
@@ -452,6 +471,30 @@ body.entrance-page.is-about-phase:not(.is-collection-phase) .drag-hint-arrow {
 
   .drag-hint-arrow {
     width: 5.5rem;
+  }
+
+  .entrance-collection__inner {
+    padding-inline: max(
+      clamp(2rem, 4vw, 3.5rem),
+      calc((100vw - 68rem) / 2)
+    );
+  }
+
+  .entrance-collection__copy {
+    width: 32rem;
+    margin-left: 7.2rem;
+  }
+
+  .entrance-collection__title {
+    font-size: 4.28rem;
+  }
+
+  .entrance-collection__wall {
+    width: min(
+      1026px,
+      calc(min(77.4vh, 1791px) * var(--wall-frame-w) / var(--wall-frame-h))
+    );
+    max-width: calc(100% - 32rem - 7.2rem);
   }
 }
 
@@ -651,8 +694,8 @@ body.entrance-page.is-collection-phase .banana-part {
 
 /* 与第二页 entrance-about__inner 左右对称：第二页靠右，第三页靠左 */
 .entrance-collection__copy {
-  width: min(36rem, 46vw);
-  margin-left: clamp(2.5rem, 7vw, 8rem);
+  width: min(32rem, 40vw);
+  margin-left: clamp(2.25rem, 6.3vw, 7.2rem);
   margin-right: 0;
   opacity: 0;
   transform: translateY(1.25rem);
@@ -684,7 +727,7 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
   flex-direction: column;
   margin: 0 0 0.85rem;
   font-family: var(--entrance-serif);
-  font-size: clamp(2.85rem, 5.8vw, 4.75rem);
+  font-size: clamp(2.55rem, 5.2vw, 4.28rem);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -697,9 +740,9 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
 
 .entrance-collection__text {
   margin: 0 0 1.2rem;
-  max-width: 30rem;
+  max-width: 27rem;
   font-family: var(--entrance-sans);
-  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-size: clamp(0.81rem, 1.08vw, 0.9rem);
   font-weight: 400;
   line-height: 1.78;
   color: var(--entrance-ink);
@@ -789,12 +832,12 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
   z-index: 1;
   aspect-ratio: var(--wall-frame-w) / var(--wall-frame-h);
   width: min(
-    1140px,
-    92vw,
-    calc(min(86vh, 1990px) * var(--wall-frame-w) / var(--wall-frame-h))
+    1026px,
+    83vw,
+    calc(min(77.4vh, 1791px) * var(--wall-frame-w) / var(--wall-frame-h))
   );
   height: auto;
-  max-width: calc(100% - min(36rem, 46vw) - clamp(2rem, 8vw, 8rem));
+  max-width: calc(100% - min(32rem, 40vw) - clamp(1.8rem, 7.2vw, 7.2rem));
   transform: translate(-50%, -50%);
   pointer-events: auto;
   opacity: 0;

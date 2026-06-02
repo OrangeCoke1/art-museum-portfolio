@@ -94,8 +94,8 @@
   display: block;
   width: auto;
   height: auto;
-  max-width: min(300px, 34vw);
-  max-height: min(360px, 42vh);
+  max-width: min(270px, 31vw);
+  max-height: min(324px, 37.8vh);
   object-fit: contain;
   filter: grayscale(100%) contrast(0.72) brightness(0.82);
   opacity: 0.58;
@@ -194,7 +194,7 @@
   }
 
   .photo-image {
-    max-width: min(280px, 58vw);
+    max-width: min(252px, 52vw);
     max-height: 36vh;
   }
 

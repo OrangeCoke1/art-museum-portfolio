@@ -68,7 +68,7 @@ body.subscribe-shell .site-header {
 .subscribe-title {
   margin: 0 0 clamp(1.1rem, 2.5vh, 1.5rem);
   font-family: var(--subscribe-serif);
-  font-size: clamp(2.75rem, 9vw, 4.25rem);
+  font-size: clamp(2.48rem, 8.1vw, 3.83rem);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -317,7 +317,7 @@ body.subscribe-shell .site-header {
 .subscribe-preview__title {
   margin: 0 0 clamp(2rem, 4vh, 2.75rem);
   font-family: var(--subscribe-serif);
-  font-size: clamp(1.75rem, 4.5vw, 2.35rem);
+  font-size: clamp(1.58rem, 4.05vw, 2.12rem);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.01em;
@@ -393,7 +393,7 @@ body.subscribe-shell .site-header {
   }
 
   .subscribe-title {
-    font-size: clamp(2.35rem, 11vw, 3.25rem);
+    font-size: clamp(2.12rem, 9.9vw, 2.93rem);
   }
 
   .subscribe-form-wrap,

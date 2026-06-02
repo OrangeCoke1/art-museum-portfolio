@@ -9,18 +9,18 @@
   --progress: #3b5fb9;
   --gold-frame: url("images/gold-frame.png");
   /* 作品最大显示尺寸（保持 width/height:auto 原比例） */
-  --art-image-max-w: min(260px, 40vw);
-  --art-image-max-h: min(340px, var(--art-image-h));
+  --art-image-max-w: min(234px, 36vw);
+  --art-image-max-h: min(306px, var(--art-image-h));
   --text: #3b5fb9;
   --ink: #3b5fb9;
   --ink-muted: #3b5fb9;
   --accent: #3b5fb9;
   --accent-alt: #3b5fb9;
-  --header-h: 72px;
+  --header-h: 65px;
   --header-bg: #fcf5e4;
-  --header-pad-x: 48px;
-  --floor-h: 4.5rem;
-  --art-image-h: 38vh;
+  --header-pad-x: 43px;
+  --floor-h: 4.05rem;
+  --art-image-h: 34.2vh;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --font-albertus: "Albertus", "Albertus MT", "Albertus Medium", Georgia, serif;
@@ -287,8 +287,11 @@
 }
 
 html {
+  font-size: 90%;
   height: 100%;
   overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -1282,7 +1285,7 @@ body.modal-open {
 
 @media (max-width: 768px) {
   :root {
-    --art-image-h: 32vh;
+    --art-image-h: 28.8vh;
   }
 
   .gallery-track {

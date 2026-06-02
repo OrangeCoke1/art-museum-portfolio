@@ -150,7 +150,7 @@ body.about-shell {
   margin: 0 0 clamp(1.25rem, 3vh, 1.75rem);
   font-family:
     "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
-  font-size: clamp(2.75rem, 7vw, 4rem);
+  font-size: clamp(2.48rem, 6.3vw, 3.6rem);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -359,14 +359,14 @@ body.about-shell .about-hero__tagline {
 .subscribe-layer--cloud-left {
   left: -2.8vw;
   top: 3.5vh;
-  width: min(30vw, 430px);
+  width: min(27vw, 387px);
   z-index: 3;
 }
 
 .subscribe-layer--cloud-top {
   left: 50%;
   top: 3vh;
-  width: min(15vw, 190px);
+  width: min(13.5vw, 171px);
   z-index: 2;
   transform: translate3d(
     calc(-50% + var(--subscribe-layer-x, 0px)),
@@ -378,7 +378,7 @@ body.about-shell .about-hero__tagline {
 .subscribe-layer--cloud-bottom {
   left: 60%;
   bottom: -4vh;
-  width: min(28vw, 420px);
+  width: min(25.2vw, 378px);
   z-index: 2;
   transform: translate3d(
     calc(-50% + var(--subscribe-layer-x, 0px)),
@@ -391,7 +391,7 @@ body.about-shell .about-hero__tagline {
 .subscribe-layer--adam-paint {
   left: -1vw;
   bottom: -1.5vh;
-  width: min(40vw, 575px);
+  width: min(36vw, 518px);
   z-index: 4;
 }
 
@@ -399,7 +399,7 @@ body.about-shell .about-hero__tagline {
 .subscribe-layer--god-paint {
   right: -3.5vw;
   top: 19vh;
-  width: min(43vw, 620px);
+  width: min(38.7vw, 558px);
   z-index: 4;
 }
 
@@ -497,7 +497,7 @@ body.about-shell .about-hero__tagline {
   margin: 0;
   font-family:
     "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 5.3vw, 4.65rem);
+  font-size: clamp(2.7rem, 4.8vw, 4.19rem);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.035em;
@@ -517,7 +517,7 @@ body.about-shell .about-hero__tagline {
   top: 0;
   left: 0;
   width: 100%;
-  font-size: clamp(5.4rem, 9.2vw, 9.35rem);
+  font-size: clamp(4.86rem, 8.3vw, 8.42rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   opacity: 0;
@@ -551,18 +551,18 @@ html[lang="en"] .subscribe-title__group--default .subscribe-title__line + .subsc
 /* 其他语言默认标题：略缩小字号 + 更舒适行距 */
 html[lang="fr"] .subscribe-title__group--default,
 html[lang="es"] .subscribe-title__group--default {
-  font-size: clamp(2.2rem, 4.4vw, 3.5rem);
+  font-size: clamp(1.98rem, 4vw, 3.15rem);
   line-height: 1.12;
 }
 
 html[lang="ja"] .subscribe-title__group--default {
-  font-size: clamp(2.35rem, 4.6vw, 3.7rem);
+  font-size: clamp(2.12rem, 4.15vw, 3.33rem);
   line-height: 1.18;
 }
 
 html[lang="zh-CN"] .subscribe-title__group--default,
 html[lang="zh-TW"] .subscribe-title__group--default {
-  font-size: clamp(2.45rem, 4.8vw, 3.85rem);
+  font-size: clamp(2.2rem, 4.3vw, 3.47rem);
   line-height: 1.16;
 }
 
@@ -585,7 +585,7 @@ html[lang="zh-TW"] .subscribe-title__group--default .subscribe-title__line + .su
 
 /* 感谢语两行（日语）：与默认标题同字号，不用放大单行 */
 .subscribe-title.subscribe-title--thanks-two-line .subscribe-title__group--thanks {
-  font-size: clamp(3rem, 5.3vw, 4.65rem);
+  font-size: clamp(2.7rem, 4.8vw, 4.19rem);
   line-height: 1.18;
   letter-spacing: -0.035em;
 }
@@ -790,26 +790,26 @@ html:not([lang="en"]) .subscribe-lead {
   }
 
   .subscribe-title {
-    font-size: clamp(2.15rem, 8.2vw, 3.35rem);
+    font-size: clamp(1.94rem, 7.4vw, 3.02rem);
   }
 
   .subscribe-title__group--thanks {
-    font-size: clamp(4.2rem, 15.5vw, 6.5rem);
+    font-size: clamp(3.78rem, 14vw, 5.85rem);
   }
 
   .subscribe-title.subscribe-title--thanks-two-line .subscribe-title__group--thanks {
-    font-size: clamp(2.15rem, 8.2vw, 3.35rem);
+    font-size: clamp(1.94rem, 7.4vw, 3.02rem);
   }
 
   html[lang="fr"] .subscribe-title__group--default,
   html[lang="es"] .subscribe-title__group--default {
-    font-size: clamp(1.95rem, 7.2vw, 2.85rem);
+    font-size: clamp(1.76rem, 6.5vw, 2.57rem);
   }
 
   html[lang="ja"] .subscribe-title__group--default,
   html[lang="zh-CN"] .subscribe-title__group--default,
   html[lang="zh-TW"] .subscribe-title__group--default {
-    font-size: clamp(2rem, 7.6vw, 3rem);
+    font-size: clamp(1.8rem, 6.85vw, 2.7rem);
   }
 
   .subscribe-lead {
@@ -838,7 +838,7 @@ html:not([lang="en"]) .subscribe-lead {
     left: auto;
     right: 0;
     bottom: -1vh;
-    width: 58vw;
+    width: 52vw;
     transform: translate3d(
       calc(50% + var(--subscribe-layer-x, 0px)),
       var(--subscribe-layer-y, 0px),
@@ -850,7 +850,7 @@ html:not([lang="en"]) .subscribe-lead {
   .subscribe-layer--adam-paint {
     left: 10vw;
     bottom: -1.5vh;
-    width: 64vw;
+    width: 58vw;
   }
 
   .subscribe-layer--adam-paint {
