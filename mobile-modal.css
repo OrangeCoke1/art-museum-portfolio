@@ -151,7 +151,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 0;
+    min-height: min(48svh, 22rem);
     max-height: none;
     padding: 0.35rem 1rem max(0.85rem, env(safe-area-inset-bottom));
     overflow: hidden;
@@ -170,12 +170,12 @@
     max-width: 100%;
   }
 
-  /* mobile modal repair: larger centered image */
+  /* mobile modal repair: size via JS transform only (avoid double-shrink with fit scale) */
   .modal-image {
     display: block;
-    width: min(90vw, 520px);
-    max-width: min(90vw, 520px);
+    width: auto;
     height: auto;
+    max-width: none;
     max-height: none;
     margin: 0 auto;
     object-fit: contain;

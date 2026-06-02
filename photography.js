@@ -775,6 +775,7 @@ function initModal() {
     stage: modalStage,
     getView: () => modalView,
     applyTransform: applyModalTransform,
+    fit: fitModalView,
   });
 }
 

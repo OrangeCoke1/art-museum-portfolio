@@ -322,7 +322,8 @@ body.app-shell {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   overscroll-behavior: none;
 }
 
@@ -1286,6 +1287,16 @@ body.modal-open {
 @media (max-width: 768px) {
   :root {
     --art-image-h: 28.8vh;
+  }
+
+  /* 移动端浏览器底栏会吃掉可视高度：用 svh 避免页脚进度条被裁切 */
+  body.app-shell {
+    height: 100svh;
+    max-height: 100svh;
+  }
+
+  .site-footer {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   }
 
   .gallery-track {

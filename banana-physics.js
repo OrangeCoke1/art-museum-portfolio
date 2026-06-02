@@ -329,8 +329,9 @@
     active.vy = 0;
     active.av = 0;
 
-    if (stage.setPointerCapture) {
-      stage.setPointerCapture(activePointerId);
+    const captureTarget = active.el;
+    if (captureTarget.setPointerCapture) {
+      captureTarget.setPointerCapture(activePointerId);
     }
   }
 
@@ -370,9 +371,10 @@
       attachBack();
     }
 
-    if (stage.releasePointerCapture) {
+    const captureTarget = active?.el;
+    if (captureTarget?.releasePointerCapture) {
       try {
-        stage.releasePointerCapture(activePointerId);
+        captureTarget.releasePointerCapture(activePointerId);
       } catch (_) {}
     }
 
@@ -436,6 +438,13 @@
     }
   }
 
+  function bindPointerEvents(target) {
+    target.addEventListener("pointerdown", onPointerDown, { passive: false });
+    target.addEventListener("pointermove", onPointerMove, { passive: false });
+    target.addEventListener("pointerup", onPointerUp, { passive: false });
+    target.addEventListener("pointercancel", onPointerUp, { passive: false });
+  }
+
   function init() {
     /* mobile section 02 redesign: the full-screen banana layer must not block page scroll */
     const mobile = isMobileIndexView();
@@ -446,10 +455,12 @@
 
     reset();
 
-    stage.addEventListener("pointerdown", onPointerDown, { passive: false });
-    stage.addEventListener("pointermove", onPointerMove, { passive: false });
-    stage.addEventListener("pointerup", onPointerUp, { passive: false });
-    stage.addEventListener("pointercancel", onPointerUp, { passive: false });
+    if (mobile) {
+      bindPointerEvents(peelEl);
+      bindPointerEvents(fleshEl);
+    } else {
+      bindPointerEvents(stage);
+    }
 
     window.addEventListener("resize", () => {
       window.clearTimeout(stage._bananaResizeTimer);

@@ -106,19 +106,24 @@
       return pinching;
     },
 
-    /* mobile modal repair: larger initial fit from ~90vw width */
+    /* mobile modal repair: fit to stage (natural px + transform; no CSS width on img) */
     applyMobileFit(view, stage, image) {
       if (!isMobile() || !view || !stage || !image?.naturalWidth) return false;
 
-      const targetW = Math.min(window.innerWidth * 0.9, 520);
-      const stageH = Math.max(200, stage.clientHeight || window.innerHeight * 0.38);
+      const pad = 16;
+      const viewportH =
+        window.visualViewport?.height || window.innerHeight;
+      const stageRect = stage.getBoundingClientRect();
+      const stageW = Math.max(1, stageRect.width - pad * 2);
+      const stageH = Math.max(
+        Math.min(viewportH * 0.46, 520),
+        stageRect.height - pad * 2,
+        stage.clientHeight - pad * 2,
+        220,
+      );
       const imgW = image.naturalWidth;
       const imgH = image.naturalHeight;
-      const fitScale = Math.min(
-        1,
-        (targetW / imgW) * 0.98,
-        (stageH / imgH) * 0.95,
-      );
+      const fitScale = Math.min(stageW / imgW, stageH / imgH) * 0.94;
 
       view.fitScale = Math.max(0.04, fitScale);
       view.scale = view.fitScale;
@@ -149,6 +154,19 @@
         updateZoomedClass();
       };
       updateZoomedClass();
+
+      if (api.stage.dataset.mobileModalResize === "1") return;
+      api.stage.dataset.mobileModalResize = "1";
+      const refit = () => {
+        if (!isMobile() || !api.getView || !api.fit) return;
+        const modal = document.getElementById("artModal");
+        if (!modal || modal.hidden) return;
+        api.fit();
+      };
+      const ro = new ResizeObserver(() => refit());
+      ro.observe(api.stage);
+      window.visualViewport?.addEventListener("resize", refit);
+      window.addEventListener("orientationchange", refit);
     },
   };
 })();

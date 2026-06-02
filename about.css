@@ -821,6 +821,13 @@ html:not([lang="en"]) .subscribe-lead {
     margin-top: clamp(0.85rem, 1.6vh, 1.05rem);
   }
 
+  /* 装饰层铺满视口宽，不受 subscribe 区 1.4rem 内边距限制 */
+  .subscribe-stage {
+    left: -1.4rem;
+    right: -1.4rem;
+    width: calc(100% + 2.8rem);
+  }
+
   .subscribe-layer--cloud-left {
     left: -18vw;
     top: 8vh;
@@ -846,16 +853,25 @@ html:not([lang="en"]) .subscribe-lead {
     );
   }
 
+  /* 亚当贴左缘（与右侧上帝 right: -30vw 对称，略溢出裁切透明边） */
   .subscribe-layer--adam-line,
   .subscribe-layer--adam-paint {
-    left: 10vw;
+    left: -14vw;
     bottom: -1.5vh;
     width: 58vw;
   }
 
   .subscribe-layer--adam-paint {
     transform: translate3d(
-      var(--subscribe-layer-x, 0px),
+      calc(-2vw + var(--subscribe-layer-x, 0px)),
+      var(--subscribe-layer-y, 0px),
+      0
+    );
+  }
+
+  .about-subscribe.is-subscribed .subscribe-layer--adam-paint {
+    transform: translate3d(
+      calc(-2vw + var(--subscribe-layer-x, 0px)),
       var(--subscribe-layer-y, 0px),
       0
     );

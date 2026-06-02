@@ -201,33 +201,6 @@ body.entrance-page {
   color: var(--entrance-ink);
 }
 
-/* 首屏：订阅入口（链至 subscribe.html） */
-.entrance-subscribe {
-  position: absolute;
-  z-index: 5;
-  left: clamp(1.75rem, 4.5vw, 3.25rem);
-  bottom: clamp(6.5rem, 14vh, 8.5rem);
-  font-family: var(--entrance-sans);
-  font-size: clamp(0.68rem, 1.8vw, 0.78rem);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--entrance-ink);
-  opacity: 0.72;
-  transition: opacity 0.25s ease, color 0.25s ease;
-}
-
-.entrance-subscribe:hover {
-  opacity: 1;
-  color: var(--entrance-blue);
-}
-
-.entrance-subscribe:focus-visible {
-  outline: 2px solid var(--entrance-blue);
-  outline-offset: 4px;
-}
-
 /* 右下：进入展厅 */
 .entrance-enter {
   position: absolute;
@@ -433,10 +406,7 @@ body.entrance-page.is-about-phase:not(.is-collection-phase) .drag-hint-arrow {
   }
 
   .entrance-about {
-    padding-inline: max(
-      clamp(2rem, 4vw, 3.5rem),
-      calc((100vw - 68rem) / 2)
-    );
+    padding-inline: max(clamp(2rem, 4vw, 3.5rem), calc((100vw - 68rem) / 2));
   }
 
   .entrance-about__inner {
@@ -474,10 +444,7 @@ body.entrance-page.is-about-phase:not(.is-collection-phase) .drag-hint-arrow {
   }
 
   .entrance-collection__inner {
-    padding-inline: max(
-      clamp(2rem, 4vw, 3.5rem),
-      calc((100vw - 68rem) / 2)
-    );
+    padding-inline: max(clamp(2rem, 4vw, 3.5rem), calc((100vw - 68rem) / 2));
   }
 
   .entrance-collection__copy {
@@ -1033,8 +1000,8 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
     z-index: 2;
     top: 56%;
     transform: translate(-50%, -43%);
-    pointer-events: none;
-    touch-action: pan-y;
+    pointer-events: auto;
+    touch-action: none;
   }
 
   .entrance-intro {
@@ -1059,6 +1026,8 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
     z-index: 40;
     width: min(32rem, 88vw);
     margin: 0;
+    margin-left: 0;
+    pointer-events: none;
   }
 
   .entrance-about__title {

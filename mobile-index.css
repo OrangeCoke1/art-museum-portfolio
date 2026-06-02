@@ -21,18 +21,6 @@
     bottom: clamp(8.75rem, 23svh, 11.25rem);
   }
 
-  .entrance-subscribe {
-    left: 50%;
-    right: auto;
-    bottom: clamp(8.75rem, 21svh, 10.5rem);
-    transform: translateX(-50%);
-    text-align: center;
-  }
-
-  .entrance-subscribe:hover {
-    transform: translateX(-50%);
-  }
-
   /* mobile section 01: Enter Gallery — same scale & centering as section 03 */
   .entrance-screen > .entrance-enter {
     left: 50%;
@@ -77,6 +65,8 @@
     max-width: none;
     margin: 0;
     padding-top: clamp(5.4rem, 14svh, 7rem);
+    /* 不挡住下方香蕉拖拽区 */
+    pointer-events: none;
   }
 
   .entrance-about__eyebrow {
@@ -129,7 +119,7 @@
   }
 
   .banana-physics-stage {
-    z-index: 30;
+    z-index: 50;
     pointer-events: none;
     touch-action: pan-y;
   }
@@ -138,7 +128,7 @@
     width: clamp(7.2rem, 34vw, 10.1rem);
     max-height: 28svh;
     pointer-events: auto;
-    touch-action: pan-y;
+    touch-action: none;
     filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.14));
   }
 
