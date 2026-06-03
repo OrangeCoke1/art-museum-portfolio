@@ -78,6 +78,44 @@
       subscribeErrorInvalid: "Please enter a valid email address.",
       subscribeSuccessMessage:
         "Your next artwork recommendation will arrive soon.",
+      indexPageTitle: "Gallery Walk · Museum Entrance",
+      indexMetaDescription:
+        "Gallery Walk — A quiet digital museum where artworks reveal themselves through light, color, and movement.",
+      indexLabel1: "/ Museum Entrance",
+      indexIntro:
+        "A quiet digital museum where artworks reveal themselves through light, color, and movement.",
+      indexEnterGallery: "Enter Gallery →",
+      indexScrollExplore: "Scroll to explore",
+      indexLabel2: "/ Interactive Object",
+      indexAboutEyebrow: "Digital Museum Experience",
+      indexAboutTitle: "A quiet way to encounter art.",
+      indexAboutLead:
+        "Gallery Walk is a digital museum where each artwork is encountered slowly — through light, color, and movement rather than speed.",
+      indexCol1Title: "01 Walk",
+      indexCol1Text:
+        "Move through the gallery at your own pace, as if walking through a quiet exhibition space.",
+      indexCol2Title: "02 Reveal",
+      indexCol2Text:
+        "Artworks gradually reveal their color and detail as you explore them with light.",
+      indexCol3Title: "03 Discover",
+      indexCol3Text:
+        "Each piece invites closer observation, turning viewing into a calm act of discovery.",
+      indexDragHintAlt: "drag it",
+      indexLabel3: "/ Collection Preview",
+      indexCollectionTitle1: "Selected",
+      indexCollectionTitle2: "Artworks",
+      indexCollectionText1:
+        "A curated selection of iconic visual references is presented as movable objects inside a quiet digital exhibition space.",
+      indexCollectionText2Lead: "Each piece can be explored ",
+      indexCollectionText2Strong:
+        "through interaction — dragged, revealed, peeled, or repositioned, turning the act of viewing into a physical gesture.",
+      indexFeature1Label: "MODE",
+      indexFeature1Title: "Interactive viewing",
+      indexFeature2Label: "FOCUS",
+      indexFeature2Title: "Image, object, surface",
+      indexFeature3Label: "GESTURE",
+      indexFeature3Title: "Drag / peel / reveal",
+      indexTiltHint: "Tilt your phone slightly to explore the artwork.",
     },
     ja: {
       navPainting: "絵画",
@@ -146,6 +184,43 @@
       subscribeErrorEmpty: "メールアドレスを入力してください。",
       subscribeErrorInvalid: "有効なメールアドレスを入力してください。",
       subscribeSuccessMessage: "次の作品レコメンドをまもなくお届けします。",
+      indexPageTitle: "Gallery Walk · 美術館入口",
+      indexMetaDescription:
+        "Gallery Walk — 光、色、動きを通して作品が現れる静かなデジタル美術館。",
+      indexLabel1: "/ 美術館入口",
+      indexIntro: "光、色、動きを通して作品が現れる静かなデジタル美術館。",
+      indexEnterGallery: "ギャラリーへ →",
+      indexScrollExplore: "スクロールして探索",
+      indexLabel2: "/ インタラクティブ・オブジェクト",
+      indexAboutEyebrow: "デジタル美術館体験",
+      indexAboutTitle: "芸術と静かに出会う方法。",
+      indexAboutLead:
+        "Gallery Walk は、スピードではなく光・色・動きを通して、作品とゆっくり向き合うデジタル美術館です。",
+      indexCol1Title: "01 歩く",
+      indexCol1Text:
+        "静かな展示空間を歩くように、自分のペースでギャラリーを進みます。",
+      indexCol2Title: "02 現れる",
+      indexCol2Text:
+        "光とともに探索すると、作品の色と細部が徐々に現れます。",
+      indexCol3Title: "03 発見する",
+      indexCol3Text:
+        "各作品はじっくり見ることを促し、鑑賞を穏やかな発見へと変えます。",
+      indexDragHintAlt: "ドラッグ",
+      indexLabel3: "/ コレクション・プレビュー",
+      indexCollectionTitle1: "厳選",
+      indexCollectionTitle2: "作品",
+      indexCollectionText1:
+        "象徴的な視覚的参照が、静かなデジタル展示空間の中で動かせるオブジェクトとして提示されます。",
+      indexCollectionText2Lead: "各作品は ",
+      indexCollectionText2Strong:
+        "インタラクション — ドラッグ、露出、剥がし、再配置 — を通して探索でき、鑑賞が身体的なジェスチャーになります。",
+      indexFeature1Label: "モード",
+      indexFeature1Title: "インタラクティブ鑑賞",
+      indexFeature2Label: "焦点",
+      indexFeature2Title: "画像・物体・表面",
+      indexFeature3Label: "ジェスチャー",
+      indexFeature3Title: "ドラッグ / 剥がす / 現す",
+      indexTiltHint: "スマートフォンを少し傾けて作品を探索してください。",
     },
     "zh-CN": {
       navPainting: "绘画",
@@ -214,6 +289,40 @@
       subscribeErrorEmpty: "请输入您的邮箱。",
       subscribeErrorInvalid: "请输入有效的邮箱地址。",
       subscribeSuccessMessage: "您的下一条作品推荐即将送达。",
+      indexPageTitle: "Gallery Walk · 美术馆入口",
+      indexMetaDescription:
+        "Gallery Walk — 一座安静数字美术馆，作品在光、色与运动中逐渐显现。",
+      indexLabel1: "/ 美术馆入口",
+      indexIntro: "一座安静数字美术馆，作品在光、色与运动中逐渐显现。",
+      indexEnterGallery: "进入展厅 →",
+      indexScrollExplore: "向下滚动探索",
+      indexLabel2: "/ 互动物件",
+      indexAboutEyebrow: "数字美术馆体验",
+      indexAboutTitle: "一种安静遇见艺术的方式。",
+      indexAboutLead:
+        "Gallery Walk 是一座数字美术馆，每件作品都通过光、色与运动，而非速度，被缓慢地遇见。",
+      indexCol1Title: "01 行走",
+      indexCol1Text: "以自己的节奏穿行展厅，如同走过一处安静的展览空间。",
+      indexCol2Title: "02 显现",
+      indexCol2Text: "在光的探索中，作品的颜色与细节逐渐显现。",
+      indexCol3Title: "03 发现",
+      indexCol3Text: "每件作品邀请更近的观察，让观看成为平静的发现之举。",
+      indexDragHintAlt: "拖动",
+      indexLabel3: "/ 馆藏预览",
+      indexCollectionTitle1: "精选",
+      indexCollectionTitle2: "艺术作品",
+      indexCollectionText1:
+        "一组标志性的视觉参照，以可移动物件的形式呈现在安静的数字展览空间中。",
+      indexCollectionText2Lead: "每件作品都可以通过",
+      indexCollectionText2Strong:
+        "互动来探索——拖动、揭示、剥开或重新摆放，让观看变成一种身体性的手势。",
+      indexFeature1Label: "模式",
+      indexFeature1Title: "互动观看",
+      indexFeature2Label: "焦点",
+      indexFeature2Title: "图像、物体、表面",
+      indexFeature3Label: "手势",
+      indexFeature3Title: "拖动 / 剥开 / 揭示",
+      indexTiltHint: "轻轻倾斜手机，探索画面中的作品。",
     },
     "zh-TW": {
       navPainting: "繪畫",
@@ -282,6 +391,40 @@
       subscribeErrorEmpty: "請輸入您的電子郵件。",
       subscribeErrorInvalid: "請輸入有效的電子郵件地址。",
       subscribeSuccessMessage: "您的下一則作品推薦即將送達。",
+      indexPageTitle: "Gallery Walk · 美術館入口",
+      indexMetaDescription:
+        "Gallery Walk — 一座安靜的數位美術館，作品在光、色與運動中逐漸顯現。",
+      indexLabel1: "/ 美術館入口",
+      indexIntro: "一座安靜的數位美術館，作品在光、色與運動中逐漸顯現。",
+      indexEnterGallery: "進入展廳 →",
+      indexScrollExplore: "向下捲動探索",
+      indexLabel2: "/ 互動物件",
+      indexAboutEyebrow: "數位美術館體驗",
+      indexAboutTitle: "一種安靜遇見藝術的方式。",
+      indexAboutLead:
+        "Gallery Walk 是一座數位美術館，每件作品都透過光、色與運動，而非速度，被緩慢地遇見。",
+      indexCol1Title: "01 行走",
+      indexCol1Text: "以自己的節奏穿行展廳，如同走過一處安靜的展覽空間。",
+      indexCol2Title: "02 顯現",
+      indexCol2Text: "在光的探索中，作品的顏色與細節逐漸顯現。",
+      indexCol3Title: "03 發現",
+      indexCol3Text: "每件作品邀請更近的觀察，讓觀看成為平靜的發現之舉。",
+      indexDragHintAlt: "拖曳",
+      indexLabel3: "/ 館藏預覽",
+      indexCollectionTitle1: "精選",
+      indexCollectionTitle2: "藝術作品",
+      indexCollectionText1:
+        "一組標誌性的視覺參照，以可移動物件的形式呈現在安靜的數位展覽空間中。",
+      indexCollectionText2Lead: "每件作品都可以透過",
+      indexCollectionText2Strong:
+        "互動來探索——拖曳、揭示、剝開或重新擺放，讓觀看變成一種身體性的手勢。",
+      indexFeature1Label: "模式",
+      indexFeature1Title: "互動觀看",
+      indexFeature2Label: "焦點",
+      indexFeature2Title: "圖像、物體、表面",
+      indexFeature3Label: "手勢",
+      indexFeature3Title: "拖曳 / 剝開 / 揭示",
+      indexTiltHint: "輕輕傾斜手機，探索畫面中的作品。",
     },
     fr: {
       navPainting: "Peinture",
@@ -351,6 +494,45 @@
       subscribeErrorInvalid: "Veuillez saisir une adresse e-mail valide.",
       subscribeSuccessMessage:
         "Votre prochaine recommandation d’œuvre arrive bientôt.",
+      indexPageTitle: "Gallery Walk · Entrée du musée",
+      indexMetaDescription:
+        "Gallery Walk — Un musée numérique silencieux où les œuvres se révèlent par la lumière, la couleur et le mouvement.",
+      indexLabel1: "/ Entrée du musée",
+      indexIntro:
+        "Un musée numérique silencieux où les œuvres se révèlent par la lumière, la couleur et le mouvement.",
+      indexEnterGallery: "Entrer dans la galerie →",
+      indexScrollExplore: "Faites défiler pour explorer",
+      indexLabel2: "/ Objet interactif",
+      indexAboutEyebrow: "Expérience de musée numérique",
+      indexAboutTitle: "Une manière calme de rencontrer l’art.",
+      indexAboutLead:
+        "Gallery Walk est un musée numérique où chaque œuvre se rencontre lentement — par la lumière, la couleur et le mouvement plutôt que par la vitesse.",
+      indexCol1Title: "01 Marcher",
+      indexCol1Text:
+        "Parcourez la galerie à votre rythme, comme dans un espace d’exposition silencieux.",
+      indexCol2Title: "02 Révéler",
+      indexCol2Text:
+        "Les œuvres révèlent progressivement leur couleur et leurs détails à la lumière.",
+      indexCol3Title: "03 Découvrir",
+      indexCol3Text:
+        "Chaque pièce invite à une observation plus proche, transformant le regard en découverte calme.",
+      indexDragHintAlt: "faire glisser",
+      indexLabel3: "/ Aperçu de la collection",
+      indexCollectionTitle1: "Œuvres",
+      indexCollectionTitle2: "sélectionnées",
+      indexCollectionText1:
+        "Une sélection de références visuelles emblématiques est présentée comme objets mobiles dans un espace d’exposition numérique silencieux.",
+      indexCollectionText2Lead: "Chaque pièce peut être explorée ",
+      indexCollectionText2Strong:
+        "par l’interaction — glissée, révélée, pelée ou repositionnée, transformant le regard en geste physique.",
+      indexFeature1Label: "MODE",
+      indexFeature1Title: "Regard interactif",
+      indexFeature2Label: "FOCUS",
+      indexFeature2Title: "Image, objet, surface",
+      indexFeature3Label: "GESTE",
+      indexFeature3Title: "Glisser / peler / révéler",
+      indexTiltHint:
+        "Inclinez légèrement votre téléphone pour explorer l’œuvre.",
     },
     es: {
       navPainting: "Pintura",
@@ -420,6 +602,45 @@
       subscribeErrorInvalid: "Introduce una dirección de correo válida.",
       subscribeSuccessMessage:
         "Tu próxima recomendación de obra llegará pronto.",
+      indexPageTitle: "Gallery Walk · Entrada del museo",
+      indexMetaDescription:
+        "Gallery Walk — Un museo digital silencioso donde las obras se revelan mediante la luz, el color y el movimiento.",
+      indexLabel1: "/ Entrada del museo",
+      indexIntro:
+        "Un museo digital silencioso donde las obras se revelan mediante la luz, el color y el movimiento.",
+      indexEnterGallery: "Entrar a la galería →",
+      indexScrollExplore: "Desplázate para explorar",
+      indexLabel2: "/ Objeto interactivo",
+      indexAboutEyebrow: "Experiencia de museo digital",
+      indexAboutTitle: "Una forma tranquila de encontrar el arte.",
+      indexAboutLead:
+        "Gallery Walk es un museo digital donde cada obra se encuentra con calma — mediante la luz, el color y el movimiento, no la velocidad.",
+      indexCol1Title: "01 Caminar",
+      indexCol1Text:
+        "Recorre la galería a tu ritmo, como si caminaras por un espacio de exposición silencioso.",
+      indexCol2Title: "02 Revelar",
+      indexCol2Text:
+        "Las obras revelan gradualmente su color y detalle mientras las exploras con la luz.",
+      indexCol3Title: "03 Descubrir",
+      indexCol3Text:
+        "Cada pieza invita a una observación más cercana, convirtiendo la mirada en un acto sereno de descubrimiento.",
+      indexDragHintAlt: "arrastrar",
+      indexLabel3: "/ Vista previa de la colección",
+      indexCollectionTitle1: "Obras",
+      indexCollectionTitle2: "seleccionadas",
+      indexCollectionText1:
+        "Una selección de referencias visuales icónicas se presenta como objetos movibles dentro de un espacio de exposición digital silencioso.",
+      indexCollectionText2Lead: "Cada pieza puede explorarse ",
+      indexCollectionText2Strong:
+        "mediante la interacción — arrastrada, revelada, pelada o reposicionada, convirtiendo la mirada en un gesto físico.",
+      indexFeature1Label: "MODO",
+      indexFeature1Title: "Visualización interactiva",
+      indexFeature2Label: "ENFOQUE",
+      indexFeature2Title: "Imagen, objeto, superficie",
+      indexFeature3Label: "GESTO",
+      indexFeature3Title: "Arrastrar / pelar / revelar",
+      indexTiltHint:
+        "Inclina ligeramente el teléfono para explorar la obra.",
     },
   };
 
@@ -471,8 +692,17 @@
     document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
       el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel, lang));
     });
+    document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+      el.setAttribute("alt", t(el.dataset.i18nAlt, lang));
+    });
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       el.placeholder = t(el.dataset.i18nPlaceholder, lang);
+    });
+    document.querySelectorAll("[data-i18n-content]").forEach((el) => {
+      el.setAttribute("content", t(el.dataset.i18nContent, lang));
+    });
+    document.querySelectorAll("title[data-i18n]").forEach((el) => {
+      setText(el, t(el.dataset.i18n, lang));
     });
     document.querySelectorAll("[data-nav]").forEach((el) => {
       const key = `nav${el.dataset.nav[0]?.toUpperCase() || ""}${el.dataset.nav.slice(1)}`;

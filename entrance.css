@@ -9,6 +9,110 @@
   --entrance-ink: #5c5a56;
   --entrance-serif: "Playfair Display", "Times New Roman", Georgia, serif;
   --entrance-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --header-h: 65px;
+  --header-pad-x: 43px;
+  --ink: #3b5fb9;
+  --text: #3b5fb9;
+}
+
+/* 与展厅页 header 一致：仅右上角语言切换 */
+.entrance-site-header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--header-pad-x);
+  background: transparent;
+  pointer-events: none;
+}
+
+.entrance-site-header .header-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  pointer-events: auto;
+}
+
+.entrance-site-header .language-switcher {
+  position: relative;
+}
+
+.entrance-site-header .language-toggle {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.entrance-site-header .language-toggle:hover,
+.entrance-site-header .language-toggle:focus-visible {
+  color: var(--text);
+}
+
+.entrance-site-header .language-menu {
+  position: absolute;
+  top: calc(100% + 1.1rem);
+  right: 50%;
+  z-index: 210;
+  display: flex;
+  flex-direction: column;
+  min-width: 8.5rem;
+  padding: 0.7rem 0;
+  background: #fcf5e4;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 18px 34px rgba(31, 42, 70, 0.08);
+  transform: translate(50%, -8px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.entrance-site-header .language-menu:not([hidden]) {
+  pointer-events: auto;
+}
+
+.entrance-site-header .language-menu.is-open {
+  transform: translate(50%, 0);
+  opacity: 1;
+}
+
+.entrance-site-header .language-menu button {
+  padding: 0.45rem 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.entrance-site-header .language-menu button:hover,
+.entrance-site-header .language-menu button:focus-visible,
+.entrance-site-header .language-menu button.is-active {
+  color: var(--text);
+  background: rgba(59, 95, 185, 0.08);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-pad-x: 24px;
+  }
 }
 
 *,

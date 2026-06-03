@@ -6,8 +6,9 @@
     <meta
       name="description"
       content="Gallery Walk — A quiet digital museum where artworks reveal themselves through light, color, and movement."
+      data-i18n-content="indexMetaDescription"
     />
-    <title>Gallery Walk · Museum Entrance</title>
+    <title data-i18n="indexPageTitle">Gallery Walk · Museum Entrance</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,9 +19,33 @@
     <link rel="stylesheet" href="mobile-index.css" />
   </head>
   <body class="entrance-page">
+    <header class="site-header entrance-site-header" aria-label="Site header">
+      <div class="header-actions">
+        <div class="language-switcher">
+          <button
+            type="button"
+            class="language-toggle"
+            aria-expanded="false"
+            aria-controls="languageMenu"
+          >
+            English
+          </button>
+          <div class="language-menu" id="languageMenu" hidden>
+            <button type="button" data-lang-option="en">English</button>
+            <button type="button" data-lang-option="ja">日本語</button>
+            <button type="button" data-lang-option="zh-CN">简体中文</button>
+            <button type="button" data-lang-option="zh-TW">繁體中文</button>
+            <button type="button" data-lang-option="fr">Français</button>
+            <button type="button" data-lang-option="es">Español</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <section class="entrance-screen" id="entrance" aria-label="Museum entrance">
       <p class="entrance-label">
-        <span class="entrance-label__num">01</span> / Museum Entrance
+        <span class="entrance-label__num">01</span
+        ><span data-i18n="indexLabel1"> / Museum Entrance</span>
       </p>
 
       <div class="entrance-hero" aria-hidden="true">
@@ -59,53 +84,62 @@
 
       <div class="entrance-intro">
         <span class="entrance-intro__line" aria-hidden="true"></span>
-        <p>
+        <p data-i18n="indexIntro">
           A quiet digital museum where artworks reveal themselves through light,
           color, and movement.
         </p>
       </div>
 
-      <a class="entrance-enter" href="gallery.html">Enter Gallery →</a>
+      <a class="entrance-enter" href="gallery.html" data-i18n="indexEnterGallery"
+        >Enter Gallery →</a
+      >
 
       <a class="entrance-scroll-hint" href="#about">
         <span class="entrance-scroll-hint__line" aria-hidden="true"></span>
-        <span class="entrance-scroll-hint__text">Scroll to explore</span>
+        <span class="entrance-scroll-hint__text" data-i18n="indexScrollExplore"
+          >Scroll to explore</span
+        >
       </a>
     </section>
 
     <section class="entrance-about" id="about" aria-label="About Gallery Walk">
       <p class="entrance-label entrance-label--about">
-        <span class="entrance-label__num">02</span> / Interactive Object
+        <span class="entrance-label__num">02</span
+        ><span data-i18n="indexLabel2"> / Interactive Object</span>
       </p>
 
       <div class="entrance-about__inner" id="thinkerEndAnchor">
-        <p class="entrance-about__eyebrow">Digital Museum Experience</p>
-        <h2 class="entrance-about__title">A quiet way to encounter art.</h2>
-        <p class="entrance-about__lead">
+        <p class="entrance-about__eyebrow" data-i18n="indexAboutEyebrow">
+          Digital Museum Experience
+        </p>
+        <h2 class="entrance-about__title" data-i18n="indexAboutTitle">
+          A quiet way to encounter art.
+        </h2>
+        <p class="entrance-about__lead" data-i18n="indexAboutLead">
           Gallery Walk is a digital museum where each artwork is encountered
           slowly — through light, color, and movement rather than speed.
         </p>
         <div class="entrance-about__columns">
           <article class="entrance-about__col">
             <span class="entrance-about__col-rule" aria-hidden="true"></span>
-            <h3 class="entrance-about__col-title">01 Walk</h3>
-            <p>
+            <h3 class="entrance-about__col-title" data-i18n="indexCol1Title">01 Walk</h3>
+            <p data-i18n="indexCol1Text">
               Move through the gallery at your own pace, as if walking through a
               quiet exhibition space.
             </p>
           </article>
           <article class="entrance-about__col">
             <span class="entrance-about__col-rule" aria-hidden="true"></span>
-            <h3 class="entrance-about__col-title">02 Reveal</h3>
-            <p>
+            <h3 class="entrance-about__col-title" data-i18n="indexCol2Title">02 Reveal</h3>
+            <p data-i18n="indexCol2Text">
               Artworks gradually reveal their color and detail as you explore
               them with light.
             </p>
           </article>
           <article class="entrance-about__col">
             <span class="entrance-about__col-rule" aria-hidden="true"></span>
-            <h3 class="entrance-about__col-title">03 Discover</h3>
-            <p>
+            <h3 class="entrance-about__col-title" data-i18n="indexCol3Title">03 Discover</h3>
+            <p data-i18n="indexCol3Text">
               Each piece invites closer observation, turning viewing into a calm
               act of discovery.
             </p>
@@ -118,6 +152,7 @@
           class="drag-hint-text"
           src="images/drag it.png"
           alt="drag it"
+          data-i18n-alt="indexDragHintAlt"
           width="300"
           height="120"
           loading="lazy"
@@ -165,22 +200,31 @@
       aria-label="Collection preview"
     >
       <p class="entrance-label entrance-label--collection">
-        <span class="entrance-label__num">03</span> / Collection Preview
+        <span class="entrance-label__num">03</span
+        ><span data-i18n="indexLabel3"> / Collection Preview</span>
       </p>
 
       <div class="entrance-collection__inner">
         <div class="entrance-collection__copy">
           <h2 class="entrance-collection__title">
-            <span class="entrance-collection__title-line">Selected</span>
-            <span class="entrance-collection__title-line">Artworks</span>
+            <span
+              class="entrance-collection__title-line"
+              data-i18n="indexCollectionTitle1"
+              >Selected</span
+            >
+            <span
+              class="entrance-collection__title-line"
+              data-i18n="indexCollectionTitle2"
+              >Artworks</span
+            >
           </h2>
-          <p class="entrance-collection__text">
+          <p class="entrance-collection__text" data-i18n="indexCollectionText1">
             A curated selection of iconic visual references is presented as
             movable objects inside a quiet digital exhibition space.
           </p>
           <p class="entrance-collection__text">
-            Each piece can be explored
-            <strong
+            <span data-i18n="indexCollectionText2Lead">Each piece can be explored </span
+            ><strong data-i18n="indexCollectionText2Strong"
               >through interaction — dragged, revealed, peeled, or repositioned,
               turning the act of viewing into a physical gesture.</strong
             >
@@ -199,8 +243,12 @@
                 draggable="false"
               />
               <div class="entrance-collection__feature-body">
-                <span class="entrance-collection__feature-label">MODE</span>
-                <p class="entrance-collection__feature-title">
+                <span
+                  class="entrance-collection__feature-label"
+                  data-i18n="indexFeature1Label"
+                  >MODE</span
+                >
+                <p class="entrance-collection__feature-title" data-i18n="indexFeature1Title">
                   Interactive viewing
                 </p>
               </div>
@@ -217,8 +265,12 @@
                 draggable="false"
               />
               <div class="entrance-collection__feature-body">
-                <span class="entrance-collection__feature-label">FOCUS</span>
-                <p class="entrance-collection__feature-title">
+                <span
+                  class="entrance-collection__feature-label"
+                  data-i18n="indexFeature2Label"
+                  >FOCUS</span
+                >
+                <p class="entrance-collection__feature-title" data-i18n="indexFeature2Title">
                   Image, object, surface
                 </p>
               </div>
@@ -235,18 +287,25 @@
                 draggable="false"
               />
               <div class="entrance-collection__feature-body">
-                <span class="entrance-collection__feature-label">GESTURE</span>
-                <p class="entrance-collection__feature-title">
+                <span
+                  class="entrance-collection__feature-label"
+                  data-i18n="indexFeature3Label"
+                  >GESTURE</span
+                >
+                <p class="entrance-collection__feature-title" data-i18n="indexFeature3Title">
                   Drag / peel / reveal
                 </p>
               </div>
             </article>
           </div>
 
-          <a class="entrance-enter entrance-enter--in-copy" href="gallery.html"
+          <a
+            class="entrance-enter entrance-enter--in-copy"
+            href="gallery.html"
+            data-i18n="indexEnterGallery"
             >Enter Gallery →</a
           >
-          <p class="entrance-collection__tilt-hint">
+          <p class="entrance-collection__tilt-hint" data-i18n="indexTiltHint">
             Tilt your phone slightly to explore the artwork.
           </p>
         </div>
@@ -328,6 +387,7 @@
       </div>
     </section>
 
+    <script src="i18n.js"></script>
     <script src="thinker-reveal.js"></script>
     <script src="entrance-scroll.js"></script>
     <script src="wall-parallax.js"></script>
