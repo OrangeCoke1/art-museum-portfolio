@@ -12,6 +12,7 @@
     "(prefers-reduced-motion: reduce)",
   ).matches;
   const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  const tiltHint = document.querySelector(".entrance-collection__tilt-hint");
 
   /** 1 最前 → 7 最后（Z 越大越靠近镜头）；7 仍最靠后但参与视差 */
   const LAYER_Z = [150, 112, 78, 52, 32, 16, 10];
@@ -42,7 +43,7 @@
   let animationFrame = 0;
   let isVisible = false;
   let orientationEnabled = false;
-  let orientationPermissionAsked = false;
+  let orientationPermissionPending = false;
 
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
@@ -61,7 +62,14 @@
     targetY = 0;
   }
 
-  /* mobile index fix: use subtle phone tilt for the third-page parallax */
+  function needsOrientationPermission() {
+    return (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof DeviceOrientationEvent.requestPermission === "function"
+    );
+  }
+
+  /* mobile: subtle phone tilt for the third-page parallax */
   function updateTargetFromOrientation(event) {
     if (!coarsePointer || reducedMotion) return;
 
@@ -75,31 +83,42 @@
     if (orientationEnabled || !("DeviceOrientationEvent" in window)) return;
 
     orientationEnabled = true;
+    tiltHint?.classList.add("is-tilt-active");
     window.addEventListener("deviceorientation", updateTargetFromOrientation, {
       passive: true,
     });
   }
 
-  function requestOrientationPermissionOnce() {
-    if (!coarsePointer || orientationPermissionAsked || reducedMotion) return;
-    orientationPermissionAsked = true;
+  function requestOrientationAccess() {
+    if (!coarsePointer || reducedMotion || orientationEnabled) return;
+    if (orientationPermissionPending) return;
 
-    const orientation = window.DeviceOrientationEvent;
-    if (!orientation) return;
-
-    if (typeof orientation.requestPermission === "function") {
-      orientation
-        .requestPermission()
+    if (needsOrientationPermission()) {
+      orientationPermissionPending = true;
+      DeviceOrientationEvent.requestPermission()
         .then((state) => {
+          orientationPermissionPending = false;
           if (state === "granted") enableOrientationParallax();
         })
         .catch(() => {
-          orientationEnabled = false;
+          orientationPermissionPending = false;
         });
       return;
     }
 
     enableOrientationParallax();
+  }
+
+  function bindMobileTiltTriggers() {
+    if (tiltHint) {
+      tiltHint.addEventListener("pointerup", requestOrientationAccess, {
+        passive: true,
+      });
+    }
+
+    if (!needsOrientationPermission()) {
+      enableOrientationParallax();
+    }
   }
 
   function animate() {
@@ -156,12 +175,7 @@
   }
 
   if (coarsePointer) {
-    /* mobile section 03 redesign: tilt-only parallax; unsupported browsers stay static */
-    enableOrientationParallax();
-    window.addEventListener("pointerdown", requestOrientationPermissionOnce, {
-      once: true,
-      passive: true,
-    });
+    bindMobileTiltTriggers();
   } else {
     scene.addEventListener("pointermove", updateTarget);
     scene.addEventListener("pointerleave", resetTarget);

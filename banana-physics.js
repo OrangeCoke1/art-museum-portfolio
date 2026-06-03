@@ -135,7 +135,29 @@
     return Math.hypot(dx, dy);
   }
 
+  function hitBoundsLoose(part, x, y, pad) {
+    const dx = x - part.x;
+    const dy = y - part.y;
+    const cos = Math.cos(-part.angle);
+    const sin = Math.sin(-part.angle);
+    const localX = dx * cos - dy * sin + part.w / 2;
+    const localY = dx * sin + dy * cos + part.h / 2;
+    const margin =
+      pad ?? (isMobileIndexView() ? Math.max(20, part.w * 0.14) : 0);
+
+    return (
+      localX >= -margin &&
+      localX <= part.w + margin &&
+      localY >= -margin &&
+      localY <= part.h + margin
+    );
+  }
+
   function hit(part, x, y) {
+    if (isMobileIndexView()) {
+      return hitBoundsLoose(part, x, y);
+    }
+
     // 将鼠标坐标从舞台坐标转换到香蕉自身坐标。
     // 香蕉会 rotate，所以这里必须做一次反向旋转。
     const dx = x - part.x;
@@ -219,6 +241,17 @@
   function pick(event) {
     const p = pointer(event);
 
+    if (isMobileIndexView()) {
+      if (event.target === peelEl || hitBoundsLoose(peel, p.x, p.y)) return peel;
+      if (
+        fleshUnlocked &&
+        (event.target === fleshEl || hitBoundsLoose(flesh, p.x, p.y))
+      ) {
+        return flesh;
+      }
+      return null;
+    }
+
     if (hit(peel, p.x, p.y)) return peel;
     if (fleshUnlocked && hit(flesh, p.x, p.y)) return flesh;
 
@@ -270,7 +303,11 @@
   function unlockFleshIfNeeded() {
     if (fleshUnlocked) return;
 
-    if (distance(peel, flesh) > UNLOCK_DISTANCE) {
+    const unlockDistance = isMobileIndexView()
+      ? UNLOCK_DISTANCE * 0.62
+      : UNLOCK_DISTANCE;
+
+    if (distance(peel, flesh) > unlockDistance) {
       fleshUnlocked = true;
       flesh.locked = false;
       fleshEl.classList.add("is-unlocked");
@@ -446,12 +483,14 @@
   }
 
   function init() {
-    /* mobile section 02 redesign: the full-screen banana layer must not block page scroll */
+    /* mobile: stage 不拦截滚动，事件绑在香蕉图层上 */
     const mobile = isMobileIndexView();
     stage.style.pointerEvents = mobile ? "none" : "auto";
     stage.style.touchAction = mobile ? "pan-y" : "none";
     peelEl.style.pointerEvents = "auto";
+    peelEl.style.touchAction = "none";
     fleshEl.style.pointerEvents = "none";
+    fleshEl.style.touchAction = "none";
 
     reset();
 

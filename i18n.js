@@ -120,7 +120,7 @@
       indexFeature2Title: "Image, object, surface",
       indexFeature3Label: "GESTURE",
       indexFeature3Title: "Drag / peel / reveal",
-      indexTiltHint: "Tilt your phone slightly to explore the artwork.",
+      indexTiltHint: "Tap here, then tilt your phone to explore the artwork.",
     },
     ja: {
       navPainting: "絵画",
@@ -337,7 +337,7 @@
       indexFeature2Title: "图像、物体、表面",
       indexFeature3Label: "手势",
       indexFeature3Title: "拖动 / 剥开 / 揭示",
-      indexTiltHint: "轻轻倾斜手机，探索画面中的作品。",
+      indexTiltHint: "轻触此处，然后倾斜手机探索画框中的作品。",
     },
     "zh-TW": {
       navPainting: "繪畫",
@@ -444,7 +444,7 @@
       indexFeature2Title: "圖像、物體、表面",
       indexFeature3Label: "手勢",
       indexFeature3Title: "拖曳 / 剝開 / 揭示",
-      indexTiltHint: "輕輕傾斜手機，探索畫面中的作品。",
+      indexTiltHint: "輕觸此處，然後傾斜手機探索畫框中的作品。",
     },
     fr: {
       navPainting: "Peinture",
