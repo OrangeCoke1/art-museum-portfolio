@@ -259,7 +259,8 @@
     margin: 0;
     max-width: none;
     transform: translateX(-50%) translateY(1.25rem);
-    pointer-events: none;
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   /* mobile section 03 redesign: full-section reveal on entry, same as section 02 */

@@ -8,6 +8,7 @@
   const stage = scene.closest(".entrance-collection__wall");
   if (!stage) return;
 
+  const collection = document.getElementById("collection");
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -28,10 +29,10 @@
   });
 
   /** 绕垂直轴：一侧离你更近、另一侧明显地退回景深（rotateY） */
-  const MAX_ROT_Y = reducedMotion ? 0 : coarsePointer ? 10 : 26;
+  const MAX_ROT_Y = reducedMotion ? 0 : coarsePointer ? 12 : 26;
   /** 绕水平轴：上边略翘起或下边离你更近（rotateX） */
-  const MAX_ROT_X = reducedMotion ? 0 : coarsePointer ? 7 : 18;
-  const MAX_SHIFT = reducedMotion ? 0 : coarsePointer ? 16 : 36;
+  const MAX_ROT_X = reducedMotion ? 0 : coarsePointer ? 8 : 18;
+  const MAX_SHIFT = reducedMotion ? 0 : coarsePointer ? 18 : 36;
   const SCENE_PULL_Z = -200;
   /** 透视中心紧跟鼠标，加强「铰链」感 */
   const PERSPECTIVE_SHIFT = 54;
@@ -43,6 +44,7 @@
   let animationFrame = 0;
   let isVisible = false;
   let orientationEnabled = false;
+  let orientationListenersAttached = false;
   let orientationPermissionPending = false;
 
   function clamp(value, min, max) {
@@ -69,36 +71,53 @@
     );
   }
 
-  /* mobile: subtle phone tilt for the third-page parallax */
   function updateTargetFromOrientation(event) {
     if (!coarsePointer || reducedMotion) return;
 
     const gamma = typeof event.gamma === "number" ? event.gamma : 0;
     const beta = typeof event.beta === "number" ? event.beta : 0;
-    targetX = clamp(gamma / 28, -0.5, 0.5);
-    targetY = clamp((beta - 45) / 42, -0.5, 0.5);
+    targetX = clamp(gamma / 24, -0.5, 0.5);
+    targetY = clamp((beta - 45) / 38, -0.5, 0.5);
   }
 
-  function enableOrientationParallax() {
-    if (orientationEnabled || !("DeviceOrientationEvent" in window)) return;
+  function attachOrientationListeners() {
+    if (orientationListenersAttached) return;
+    orientationListenersAttached = true;
 
-    orientationEnabled = true;
-    tiltHint?.classList.add("is-tilt-active");
     window.addEventListener("deviceorientation", updateTargetFromOrientation, {
       passive: true,
     });
+    window.addEventListener(
+      "deviceorientationabsolute",
+      updateTargetFromOrientation,
+      { passive: true },
+    );
+  }
+
+  function markOrientationActive() {
+    orientationEnabled = true;
+    tiltHint?.classList.add("is-tilt-active");
+  }
+
+  function enableOrientationParallax() {
+    if (!("DeviceOrientationEvent" in window)) return;
+
+    attachOrientationListeners();
+    markOrientationActive();
   }
 
   function requestOrientationAccess() {
-    if (!coarsePointer || reducedMotion || orientationEnabled) return;
+    if (!coarsePointer || reducedMotion) return;
     if (orientationPermissionPending) return;
+
+    attachOrientationListeners();
 
     if (needsOrientationPermission()) {
       orientationPermissionPending = true;
       DeviceOrientationEvent.requestPermission()
         .then((state) => {
           orientationPermissionPending = false;
-          if (state === "granted") enableOrientationParallax();
+          if (state === "granted") markOrientationActive();
         })
         .catch(() => {
           orientationPermissionPending = false;
@@ -106,19 +125,26 @@
       return;
     }
 
-    enableOrientationParallax();
+    markOrientationActive();
   }
 
   function bindMobileTiltTriggers() {
-    if (tiltHint) {
-      tiltHint.addEventListener("pointerup", requestOrientationAccess, {
-        passive: true,
-      });
-    }
+    attachOrientationListeners();
 
     if (!needsOrientationPermission()) {
-      enableOrientationParallax();
+      markOrientationActive();
+      return;
     }
+
+    const permissionTargets = [tiltHint, stage, collection].filter(Boolean);
+
+    permissionTargets.forEach((el) => {
+      el.addEventListener("click", requestOrientationAccess, { passive: true });
+      el.addEventListener("touchstart", requestOrientationAccess, {
+        passive: true,
+        once: true,
+      });
+    });
   }
 
   function animate() {
