@@ -76,6 +76,11 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "Please enter your email.",
       subscribeErrorInvalid: "Please enter a valid email address.",
+      subscribeErrorNoApi:
+        "Subscription API is unavailable. Use the deployed Vercel site or run vercel dev locally.",
+      subscribeErrorNotConfigured:
+        "Email service is not configured. Add RESEND_API_KEY on Vercel.",
+      subscribeErrorServer: "Something went wrong. Please try again later.",
       subscribeSuccessMessage:
         "Your next artwork recommendation will arrive soon.",
       indexPageTitle: "Gallery Walk · Museum Entrance",
@@ -183,6 +188,11 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "メールアドレスを入力してください。",
       subscribeErrorInvalid: "有効なメールアドレスを入力してください。",
+      subscribeErrorNoApi:
+        "購読 API が利用できません。Vercel 上の公開サイト、またはローカルで vercel dev を使ってください。",
+      subscribeErrorNotConfigured:
+        "メールサービスが未設定です。Vercel に RESEND_API_KEY を追加してください。",
+      subscribeErrorServer: "問題が発生しました。しばらくしてから再度お試しください。",
       subscribeSuccessMessage: "次の作品レコメンドをまもなくお届けします。",
       indexPageTitle: "Gallery Walk · 美術館入口",
       indexMetaDescription:
@@ -288,6 +298,11 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "请输入您的邮箱。",
       subscribeErrorInvalid: "请输入有效的邮箱地址。",
+      subscribeErrorNoApi:
+        "订阅接口不可用。请使用已部署的 Vercel 网站，或在本地运行 vercel dev。",
+      subscribeErrorNotConfigured:
+        "邮件服务未配置。请在 Vercel 中添加 RESEND_API_KEY。",
+      subscribeErrorServer: "提交失败，请稍后再试。",
       subscribeSuccessMessage: "您的下一条作品推荐即将送达。",
       indexPageTitle: "Gallery Walk · 美术馆入口",
       indexMetaDescription:
@@ -390,6 +405,11 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "請輸入您的電子郵件。",
       subscribeErrorInvalid: "請輸入有效的電子郵件地址。",
+      subscribeErrorNoApi:
+        "訂閱 API 不可用。請使用已部署的 Vercel 網站，或在本地執行 vercel dev。",
+      subscribeErrorNotConfigured:
+        "郵件服務未設定。請在 Vercel 新增 RESEND_API_KEY。",
+      subscribeErrorServer: "提交失敗，請稍後再試。",
       subscribeSuccessMessage: "您的下一則作品推薦即將送達。",
       indexPageTitle: "Gallery Walk · 美術館入口",
       indexMetaDescription:
@@ -492,6 +512,11 @@
       subscribeEmailPlaceholder: "vous@exemple.com",
       subscribeErrorEmpty: "Veuillez saisir votre adresse e-mail.",
       subscribeErrorInvalid: "Veuillez saisir une adresse e-mail valide.",
+      subscribeErrorNoApi:
+        "L’API d’abonnement est indisponible. Utilisez le site Vercel déployé ou lancez vercel dev en local.",
+      subscribeErrorNotConfigured:
+        "Le service e-mail n’est pas configuré. Ajoutez RESEND_API_KEY sur Vercel.",
+      subscribeErrorServer: "Une erreur s’est produite. Veuillez réessayer plus tard.",
       subscribeSuccessMessage:
         "Votre prochaine recommandation d’œuvre arrive bientôt.",
       indexPageTitle: "Gallery Walk · Entrée du musée",
@@ -600,6 +625,11 @@
       subscribeEmailPlaceholder: "tu@ejemplo.com",
       subscribeErrorEmpty: "Introduce tu correo electrónico.",
       subscribeErrorInvalid: "Introduce una dirección de correo válida.",
+      subscribeErrorNoApi:
+        "La API de suscripción no está disponible. Usa el sitio desplegado en Vercel o ejecuta vercel dev en local.",
+      subscribeErrorNotConfigured:
+        "El servicio de correo no está configurado. Añade RESEND_API_KEY en Vercel.",
+      subscribeErrorServer: "Algo salió mal. Inténtalo de nuevo más tarde.",
       subscribeSuccessMessage:
         "Tu próxima recomendación de obra llegará pronto.",
       indexPageTitle: "Gallery Walk · Entrada del museo",

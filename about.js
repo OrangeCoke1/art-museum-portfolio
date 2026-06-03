@@ -364,6 +364,28 @@ const ABOUT_IDLE_FLOAT = {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   }
 
+  function isLocalDevHost() {
+    const { hostname, protocol } = window.location;
+    return (
+      protocol === "file:" ||
+      hostname === "localhost" ||
+      hostname === "127.0.0.1" ||
+      hostname === "[::1]"
+    );
+  }
+
+  function isApiUnavailableStatus(status) {
+    return status === 404 || status === 405;
+  }
+
+  function completeLocalSubscribe(email) {
+    saveSubscriber(email);
+    animateSubscribeSuccess();
+    console.info(
+      "[Gallery Walk] Local preview: subscription saved to localStorage only (no email sent).",
+    );
+  }
+
   function isCloudLayer(el) {
     return (
       el.classList.contains("subscribe-layer--cloud-left") ||
@@ -486,21 +508,58 @@ const ABOUT_IDLE_FLOAT = {
 
       const result = await response.json().catch(() => ({}));
 
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || "Failed to subscribe");
+      if (response.ok && result.success) {
+        saveSubscriber(email);
+        animateSubscribeSuccess();
+        return;
       }
 
-      saveSubscriber(email);
-      animateSubscribeSuccess();
+      if (isLocalDevHost() && isApiUnavailableStatus(response.status)) {
+        completeLocalSubscribe(email);
+        return;
+      }
+
+      if (response.status === 405 || response.status === 404) {
+        throw new Error(
+          trOr(
+            "subscribeErrorNoApi",
+            "Subscription API is unavailable. Open the deployed Vercel site or run `vercel dev` locally.",
+          ),
+        );
+      }
+
+      if (response.status === 503 && result.code === "missing_api_key") {
+        throw new Error(
+          trOr(
+            "subscribeErrorNotConfigured",
+            "Email service is not configured. Add RESEND_API_KEY on Vercel.",
+          ),
+        );
+      }
+
+      throw new Error(
+        result.detail ||
+          result.error ||
+          trOr("subscribeErrorServer", "Something went wrong. Please try again later."),
+      );
     } catch (error) {
+      if (
+        isLocalDevHost() &&
+        (error?.name === "TypeError" || error?.message === "Failed to fetch")
+      ) {
+        completeLocalSubscribe(email);
+        return;
+      }
+
       console.error(error);
       button.disabled = false;
       button.textContent = defaultButtonLabel;
       setMessage(
-        trOr(
-          "subscribeErrorServer",
-          "Something went wrong. Please try again later.",
-        ),
+        error?.message ||
+          trOr(
+            "subscribeErrorServer",
+            "Something went wrong. Please try again later.",
+          ),
         "error",
       );
     }

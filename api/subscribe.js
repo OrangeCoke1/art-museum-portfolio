@@ -15,8 +15,14 @@ export default async function handler(req, res) {
 
   if (!process.env.RESEND_API_KEY) {
     console.error("Subscribe API error: RESEND_API_KEY is not set");
-    return res.status(500).json({ error: "Failed to send email" });
+    return res.status(503).json({
+      error: "Email service is not configured",
+      code: "missing_api_key",
+    });
   }
+
+  const from =
+    process.env.RESEND_FROM || "Gallery Walk <onboarding@resend.dev>";
 
   try {
     const response = await fetch("https://api.resend.com/emails", {
@@ -26,7 +32,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Gallery Walk <onboarding@resend.dev>",
+        from,
         to,
         subject: "Your Gallery Walk artwork recommendation",
         html: `
@@ -45,14 +51,36 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Resend error:", errorText);
-      return res.status(500).json({ error: "Failed to send email" });
+      let detail = "";
+      try {
+        const payload = await response.json();
+        detail =
+          payload?.message ||
+          payload?.error ||
+          (Array.isArray(payload?.errors)
+            ? payload.errors.map((item) => item.message).join("; ")
+            : "");
+      } catch {
+        detail = await response.text();
+      }
+
+      console.error("Resend error:", detail || response.status);
+
+      return res.status(502).json({
+        error: "Failed to send email",
+        code: "resend_rejected",
+        detail:
+          detail ||
+          "Resend rejected the request. Verify RESEND_FROM and domain settings.",
+      });
     }
 
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error("Subscribe API error:", error);
-    return res.status(500).json({ error: "Failed to send email" });
+    return res.status(500).json({
+      error: "Failed to send email",
+      code: "server_error",
+    });
   }
 }

@@ -141,6 +141,19 @@ body.entrance-page {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 隐藏纵向滚动条，保留滚轮/触控滚动 */
+html:has(body.entrance-page) {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html:has(body.entrance-page)::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 .entrance-visually-hidden {
   position: absolute;
   width: 1px;
@@ -251,8 +264,9 @@ body.entrance-page {
   cursor: default;
 }
 
+.entrance-screen .entrance-thinker:hover,
 .entrance-thinker.thinker-viewer--active {
-  cursor: crosshair;
+  cursor: none;
 }
 
 .entrance-thinker__color {
