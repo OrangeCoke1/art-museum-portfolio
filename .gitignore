@@ -1,3 +1,6 @@
 .DS_Store
 *.psd
 .pydeps
+.env
+.env.local
+.env*.local

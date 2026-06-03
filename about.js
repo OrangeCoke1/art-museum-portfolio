@@ -365,17 +365,27 @@ const ABOUT_IDLE_FLOAT = {
   }
 
   function isLocalDevHost() {
-    const { hostname, protocol } = window.location;
-    return (
-      protocol === "file:" ||
+    const { hostname, protocol, port } = window.location;
+    if (protocol === "file:") return true;
+    if (
       hostname === "localhost" ||
       hostname === "127.0.0.1" ||
       hostname === "[::1]"
-    );
+    ) {
+      return true;
+    }
+    if (/^192\.168\.|^10\.|^172\.(1[6-9]|2\d|3[01])\./.test(hostname)) {
+      return true;
+    }
+    return ["5500", "5501", "8080", "3000", "5173"].includes(port);
   }
 
   function isApiUnavailableStatus(status) {
     return status === 404 || status === 405;
+  }
+
+  function shouldUseLocalSubscribeFallback(status) {
+    return isApiUnavailableStatus(status);
   }
 
   function completeLocalSubscribe(email) {
@@ -514,18 +524,9 @@ const ABOUT_IDLE_FLOAT = {
         return;
       }
 
-      if (isLocalDevHost() && isApiUnavailableStatus(response.status)) {
+      if (shouldUseLocalSubscribeFallback(response.status)) {
         completeLocalSubscribe(email);
         return;
-      }
-
-      if (response.status === 405 || response.status === 404) {
-        throw new Error(
-          trOr(
-            "subscribeErrorNoApi",
-            "Subscription API is unavailable. Open the deployed Vercel site or run `vercel dev` locally.",
-          ),
-        );
       }
 
       if (response.status === 503 && result.code === "missing_api_key") {
