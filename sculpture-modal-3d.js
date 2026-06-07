@@ -18,14 +18,16 @@ let lastFocusedBeforeModal = null;
 let currentSculptureCard = null;
 
 function fillModal(card) {
-  if (modalTitle) modalTitle.textContent = card.dataset.title || "Vénus de Milo";
-  if (modalSubtitle) modalSubtitle.textContent = `${card.dataset.artist || "Alexandros of Antioch"}, ${
-    card.dataset.year || "c. 150-125 BCE"
-  }`;
+  if (modalTitle) modalTitle.textContent = card.dataset.title || "";
+  if (modalSubtitle) {
+    modalSubtitle.textContent = [card.dataset.artist, card.dataset.year].filter(Boolean).join(", ");
+  }
   renderModalMeta(card.dataset);
   renderModalStory(card.dataset);
   if (modalLink) {
-    modalLink.href = card.dataset.museumUrl || "https://www.louvre.fr/en/explore/the-palace";
+    const museumUrl = card.dataset.museumUrl;
+    modalLink.hidden = !museumUrl;
+    modalLink.href = museumUrl || "#";
   }
   modalInfoCard?.classList.remove("is-flipped");
 }
@@ -44,14 +46,14 @@ function renderModalStory(artwork) {
 
   if (modalStoryTitle) {
     modalStoryTitle.textContent = window.GalleryI18n.format("storyInContext", {
-      title: artwork.title || "Vénus de Milo",
-      artist: artwork.artist || "Alexandros of Antioch",
+      title: artwork.title || "",
+      artist: artwork.artist || "",
     });
   }
   if (modalStoryText) {
     modalStoryText.textContent = window.GalleryI18n.format("sculptureStoryGeneric", {
-      title: artwork.title || "Vénus de Milo",
-      artist: artwork.artist || "Alexandros of Antioch",
+      title: artwork.title || "",
+      artist: artwork.artist || "",
     });
   }
 }
@@ -83,9 +85,15 @@ function renderModalMeta(artwork) {
     .join("");
 }
 
-function buildViewer() {
-  const t = window.GalleryI18n?.t || ((key) => key);
-  modalViewer.innerHTML = `
+function escapeAttr(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;");
+}
+
+function buildToolbarHtml() {
+  return `
     <div class="sculpture-3d-toolbar" role="toolbar" aria-label="3D viewer tools">
       <button type="button" class="modal-tool" id="sculpture3dReset" aria-label="Reset view" title="Reset view">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -103,10 +111,17 @@ function buildViewer() {
         </svg>
       </button>
     </div>
+  `;
+}
+
+function buildSketchfabViewerHtml(card) {
+  const embedSrc = card?.dataset.sketchfabEmbed || "";
+  const iframeTitle = escapeAttr(card?.dataset.iframeTitle || card?.dataset.title || "Sculpture");
+  return `
     <div class="sculpture-3d-viewer" id="sculpture3dViewer">
       <div class="sketchfab-embed-wrapper">
         <iframe
-          title="Venus de Milo sculpture"
+          title="${iframeTitle}"
           frameborder="0"
           allowfullscreen
           mozallowfullscreen="true"
@@ -116,23 +131,76 @@ function buildViewer() {
           execution-while-out-of-viewport
           execution-while-not-rendered
           web-share
-          src="https://sketchfab.com/models/3c1b8320b7eb4beb931dd3d9886d026a/embed?autostart=1&transparent=1&ui_animations=0&ui_infos=0&ui_stop=0&ui_watermark_link=0&ui_watermark=0&ui_hint=0&ui_ar=0&ui_help=0&ui_vr=0&ui_annotations=0"
+          src="${embedSrc}"
         ></iframe>
       </div>
     </div>
-    <p class="modal-hint">
-      ${t("hintSculpture")}
-    </p>
   `;
+}
 
+function buildGlbViewerHtml(card) {
+  const modelSrc = encodeURI(card?.dataset.modelGlb || "");
+  const modelTitle = escapeAttr(card?.dataset.title || "Sculpture");
+  return `
+    <div class="sculpture-3d-viewer sculpture-3d-viewer--glb" id="sculpture3dViewer">
+      <model-viewer
+        class="sculpture-glb-viewer"
+        src="${modelSrc}"
+        alt="${modelTitle}"
+        camera-controls
+        touch-action="pan-y"
+        shadow-intensity="0"
+        environment-image="neutral"
+        exposure="1.05"
+        interaction-prompt="none"
+        disable-tap
+        auto-rotate="false"
+        tone-mapping="commerce"
+      ></model-viewer>
+    </div>
+  `;
+}
+
+function resetGlbViewer(modelViewer) {
+  if (!modelViewer?.__initialView) return;
+  const { orbit, target, fieldOfView } = modelViewer.__initialView;
+  modelViewer.cameraOrbit = orbit;
+  modelViewer.cameraTarget = target;
+  if (fieldOfView) modelViewer.fieldOfView = fieldOfView;
+}
+
+function initGlbViewer(modelViewer) {
+  if (!modelViewer) return;
+
+  const saveInitialView = () => {
+    const orbit = modelViewer.getCameraOrbit();
+    const target = modelViewer.getCameraTarget();
+    modelViewer.__initialView = {
+      orbit: `${orbit.theta}rad ${orbit.phi}rad ${orbit.radius}m`,
+      target: `${target.x}m ${target.y}m ${target.z}m`,
+      fieldOfView: `${modelViewer.getFieldOfView()}rad`,
+    };
+  };
+
+  if (modelViewer.loaded) saveInitialView();
+  else modelViewer.addEventListener("load", saveInitialView, { once: true });
+}
+
+function bindViewerControls(viewerType) {
   modalViewer
     .querySelector("[data-close-modal]")
     ?.addEventListener("click", closeSculptureModal);
+
   modalViewer.querySelector("#sculpture3dReset")?.addEventListener("click", () => {
+    if (viewerType === "glb") {
+      resetGlbViewer(modalViewer.querySelector("model-viewer"));
+      return;
+    }
     const iframe = modalViewer.querySelector(".sketchfab-embed-wrapper iframe");
     if (!iframe) return;
     iframe.src = iframe.src;
   });
+
   modalViewer.querySelector("#sculpture3dFullscreen")?.addEventListener("click", async () => {
     if (!modalPanel) return;
     try {
@@ -142,6 +210,28 @@ function buildViewer() {
       /* noop */
     }
   });
+}
+
+function buildViewer(card) {
+  const t = window.GalleryI18n?.t || ((key) => key);
+  const viewerType = card?.dataset.modelGlb ? "glb" : "sketchfab";
+  const viewerHtml = viewerType === "glb" ? buildGlbViewerHtml(card) : buildSketchfabViewerHtml(card);
+
+  modalViewer.innerHTML = `
+    ${buildToolbarHtml()}
+    ${viewerHtml}
+    <p class="modal-hint">
+      ${t("hintSculpture")}
+    </p>
+  `;
+
+  bindViewerControls(viewerType);
+
+  if (viewerType === "glb") {
+    customElements.whenDefined("model-viewer").then(() => {
+      initGlbViewer(modalViewer.querySelector("model-viewer"));
+    });
+  }
 }
 
 function openSculptureModal(card) {
@@ -159,7 +249,7 @@ function openSculptureModal(card) {
   modal.classList.remove("is-open");
 
   fillModal(card);
-  buildViewer();
+  buildViewer(card);
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => modal.classList.add("is-open"));
@@ -224,7 +314,7 @@ function initModalEvents() {
   window.addEventListener("gallery-languagechange", () => {
     if (modal?.hidden || !currentSculptureCard) return;
     fillModal(currentSculptureCard);
-    buildViewer();
+    buildViewer(currentSculptureCard);
   });
 }
 
