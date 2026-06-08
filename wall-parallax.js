@@ -43,7 +43,6 @@
   let currentY = 0;
   let animationFrame = 0;
   let isVisible = false;
-  let orientationEnabled = false;
   let orientationListenersAttached = false;
   let orientationPermissionPending = false;
 
@@ -95,15 +94,7 @@
   }
 
   function markOrientationActive() {
-    orientationEnabled = true;
     tiltHint?.classList.add("is-tilt-active");
-  }
-
-  function enableOrientationParallax() {
-    if (!("DeviceOrientationEvent" in window)) return;
-
-    attachOrientationListeners();
-    markOrientationActive();
   }
 
   function requestOrientationAccess() {

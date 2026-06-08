@@ -196,7 +196,12 @@ function createPhotoCard(photo, loopZone = "original") {
   article.innerHTML = `
     <div class="photo-print">
       <div class="photo-light"></div>
-      <img class="photo-image" src="${window.GalleryImages?.thumbSrc(photo.image) ?? photo.image}" alt="${photo.title}" loading="lazy" decoding="async" draggable="false" />
+      ${window.GalleryImages?.trackPicture({
+        src: photo.image,
+        alt: photo.title,
+        className: "photo-image",
+        attrs: 'loading="lazy" decoding="async" draggable="false"',
+      }) ?? `<img class="photo-image" src="${photo.image}" alt="${photo.title}" loading="lazy" decoding="async" draggable="false" />`}
       <div class="artwork-label photo-label">
         <h3>${photo.title}</h3>
         <p>${photo.artist} · ${photo.year}</p>

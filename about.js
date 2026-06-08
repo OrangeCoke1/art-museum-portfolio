@@ -391,9 +391,6 @@ const ABOUT_IDLE_FLOAT = {
   function completeLocalSubscribe(email) {
     saveSubscriber(email);
     animateSubscribeSuccess();
-    console.info(
-      "[Gallery Walk] Local preview: subscription saved to localStorage only (no email sent).",
-    );
   }
 
   function isCloudLayer(el) {

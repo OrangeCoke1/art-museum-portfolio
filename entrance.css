@@ -1001,6 +1001,17 @@ body.entrance-page.is-collection-phase .entrance-collection__wall {
   pointer-events: none;
 }
 
+picture.wall-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 @media (max-width: 900px) {
   .entrance-collection__inner {
     align-items: flex-start;

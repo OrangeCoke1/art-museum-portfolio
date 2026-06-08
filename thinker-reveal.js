@@ -114,7 +114,11 @@ void main() {
       willReadFrequently: true,
     });
     const whiteImg = new Image();
-    whiteImg.src = whiteSrc;
+    if (window.GalleryImages?.loadFullImage) {
+      window.GalleryImages.loadFullImage(whiteImg, whiteSrc);
+    } else {
+      whiteImg.src = whiteSrc;
+    }
 
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -808,9 +812,6 @@ void main() {
   function initAllThinkerReveal() {
     document.querySelectorAll(".thinker-viewer").forEach(initThinkerReveal);
   }
-
-  global.initThinkerReveal = initThinkerReveal;
-  global.initAllThinkerReveal = initAllThinkerReveal;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initAllThinkerReveal);

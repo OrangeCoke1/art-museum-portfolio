@@ -484,7 +484,12 @@ function createArtworkCard(art, { loopZone = "original" } = {}) {
   article.innerHTML = `
     <div class="framed-artwork">
       <div class="mat-board">
-        <img class="artwork-image" src="${window.GalleryImages?.thumbSrc(art.image) ?? art.image}" alt="${art.title}" loading="lazy" decoding="async" />
+        ${window.GalleryImages?.trackPicture({
+          src: art.image,
+          alt: art.title,
+          className: "artwork-image",
+          attrs: 'loading="lazy" decoding="async"',
+        }) ?? `<img class="artwork-image" src="${art.image}" alt="${art.title}" loading="lazy" decoding="async" />`}
       </div>
     </div>
     ${labelHtml}

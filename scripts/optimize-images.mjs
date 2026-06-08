@@ -1,5 +1,5 @@
 /**
- * 批量压缩站点图片并生成展厅缩略图。
+ * 批量压缩站点图片，生成 WebP 与展厅缩略图。
  * 用法：npm run optimize:images
  */
 import fs from "node:fs/promises";
@@ -24,9 +24,13 @@ const SKIP_REL = new Set([
   "images/sculpture.png",
   "images/photography.png",
   "images/about.png",
+  "images/move-icon.png",
+  "images/hand-icon.png",
+  "images/gold-frame.png",
+  "images/frame.png",
 ]);
 
-/** @type {Array<{ label: string, files: string[], fullMax?: number, thumbMax?: number, jpegQuality?: number, thumbQuality?: number }>} */
+/** @type {Array<{ label: string, files: string[], fullMax?: number, thumbMax?: number, jpegQuality?: number, thumbQuality?: number, webpQuality?: number }>} */
 const GROUPS = [
   {
     label: "gallery paintings",
@@ -44,6 +48,7 @@ const GROUPS = [
     thumbMax: 520,
     jpegQuality: 82,
     thumbQuality: 76,
+    webpQuality: 80,
   },
   {
     label: "sculpture previews",
@@ -58,6 +63,7 @@ const GROUPS = [
     ],
     fullMax: 960,
     thumbMax: 540,
+    webpQuality: 82,
   },
   {
     label: "photography prints",
@@ -75,11 +81,13 @@ const GROUPS = [
     thumbMax: 560,
     jpegQuality: 82,
     thumbQuality: 76,
+    webpQuality: 80,
   },
   {
     label: "index wall parallax",
     files: ["3d/1.png", "3d/2.png", "3d/3.png", "3d/4.png", "3d/5.png", "3d/6.png", "3d/7.png"],
     fullMax: 1600,
+    webpQuality: 82,
   },
   {
     label: "index / entrance assets",
@@ -91,11 +99,10 @@ const GROUPS = [
       "images/wall-spry.png",
       "images/thinker-co.png",
       "images/think-wh.png",
-      "images/gold-frame.png",
-      "images/frame.png",
       "images/about.jpg",
     ],
     fullMax: 1400,
+    webpQuality: 82,
   },
   {
     label: "about subscribe",
@@ -105,12 +112,15 @@ const GROUPS = [
       "images/subscribe/2.png",
       "images/subscribe/2.1.png",
       "images/subscribe/cloud-1.png",
+      "images/subscribe/cloud-2.png",
       "images/subscribe/cloud-3.png",
       "images/subscribe/about/1.png",
+      "images/subscribe/about/2.png",
       "images/subscribe/about/3.png",
       "images/subscribe/about/4.png",
     ],
     fullMax: 1200,
+    webpQuality: 82,
   },
 ];
 
@@ -126,15 +136,17 @@ function thumbPath(relPath) {
   return path.join(dir, "thumbs", base);
 }
 
+function webpPath(outputAbs) {
+  return outputAbs.replace(/\.(jpe?g|png)$/i, ".webp");
+}
+
 async function fileSize(absPath) {
   const stat = await fs.stat(absPath);
   return stat.size;
 }
 
-async function writeOptimized(inputAbs, outputAbs, { maxEdge, jpegQuality, asThumb = false }) {
-  const ext = path.extname(outputAbs).toLowerCase();
+async function buildPipeline(inputAbs, { maxEdge }) {
   let pipeline = sharp(inputAbs, { failOn: "none" }).rotate();
-
   if (maxEdge) {
     pipeline = pipeline.resize({
       width: maxEdge,
@@ -143,23 +155,57 @@ async function writeOptimized(inputAbs, outputAbs, { maxEdge, jpegQuality, asThu
       withoutEnlargement: true,
     });
   }
+  return pipeline;
+}
+
+async function writeRaster(inputAbs, outputAbs, { maxEdge, jpegQuality, asThumb = false }) {
+  const ext = path.extname(outputAbs).toLowerCase();
+  const pipeline = await buildPipeline(inputAbs, { maxEdge });
 
   if (ext === ".jpg" || ext === ".jpeg") {
-    pipeline = pipeline.jpeg({
-      quality: asThumb ? jpegQuality - 4 : jpegQuality,
-      mozjpeg: true,
-    });
-  } else if (ext === ".png") {
-    pipeline = pipeline.png({
-      compressionLevel: 9,
-      adaptiveFiltering: true,
-      palette: asThumb,
-      quality: asThumb ? 78 : 90,
-    });
+    await fs.mkdir(path.dirname(outputAbs), { recursive: true });
+    await pipeline
+      .jpeg({
+        quality: asThumb ? jpegQuality - 4 : jpegQuality,
+        mozjpeg: true,
+      })
+      .toFile(outputAbs);
+    return;
   }
 
+  if (ext === ".png") {
+    await fs.mkdir(path.dirname(outputAbs), { recursive: true });
+    await pipeline
+      .png({
+        compressionLevel: 9,
+        adaptiveFiltering: true,
+        palette: asThumb,
+        quality: asThumb ? 78 : 90,
+      })
+      .toFile(outputAbs);
+  }
+}
+
+async function writeWebp(inputAbs, outputAbs, { maxEdge, webpQuality, asThumb = false }) {
+  const pipeline = await buildPipeline(inputAbs, { maxEdge });
   await fs.mkdir(path.dirname(outputAbs), { recursive: true });
-  await pipeline.toFile(outputAbs);
+  await pipeline
+    .webp({
+      quality: asThumb ? webpQuality - 6 : webpQuality,
+      effort: 4,
+      alphaQuality: asThumb ? 78 : 90,
+    })
+    .toFile(outputAbs);
+}
+
+async function replaceIfSmaller(tempAbs, targetAbs, beforeSize) {
+  const afterSize = await fileSize(tempAbs);
+  if (afterSize < beforeSize) {
+    await fs.rename(tempAbs, targetAbs);
+    return afterSize;
+  }
+  await fs.unlink(tempAbs);
+  return beforeSize;
 }
 
 async function optimizeFile(relPath, options) {
@@ -173,51 +219,57 @@ async function optimizeFile(relPath, options) {
     return null;
   }
 
-  const before = await fileSize(inputAbs);
-  const tempAbs = `${inputAbs}.opt.tmp`;
   const jpegQuality = options.jpegQuality ?? 82;
+  const webpQuality = options.webpQuality ?? 80;
+  const before = await fileSize(inputAbs);
+  const tempAbs = `${inputAbs}.opt.tmp${path.extname(inputAbs)}`;
 
-  await writeOptimized(inputAbs, tempAbs, {
+  await writeRaster(inputAbs, tempAbs, {
     maxEdge: options.fullMax,
     jpegQuality,
   });
+  const afterRaster = await replaceIfSmaller(tempAbs, inputAbs, before);
 
-  const afterFull = await fileSize(tempAbs);
-  if (afterFull < before) {
-    await fs.rename(tempAbs, inputAbs);
-  } else {
-    await fs.unlink(tempAbs);
-  }
+  const webpAbs = webpPath(inputAbs);
+  await writeWebp(inputAbs, webpAbs, {
+    maxEdge: options.fullMax,
+    webpQuality,
+  });
+  const webpSize = await fileSize(webpAbs);
 
-  let thumbSaved = 0;
+  let thumbWebpSize = 0;
   if (options.thumbMax) {
     const thumbRel = thumbPath(relPath);
     const thumbAbs = path.join(ROOT, thumbRel);
-    const thumbBefore = await fs.access(thumbAbs).then(() => fileSize(thumbAbs)).catch(() => 0);
-
-    await writeOptimized(inputAbs, thumbAbs, {
+    await writeRaster(inputAbs, thumbAbs, {
       maxEdge: options.thumbMax,
       jpegQuality: options.thumbQuality ?? jpegQuality,
       asThumb: true,
     });
 
-    const thumbAfter = await fileSize(thumbAbs);
-    thumbSaved = thumbBefore - thumbAfter;
+    const thumbWebpAbs = webpPath(thumbAbs);
+    await writeWebp(inputAbs, thumbWebpAbs, {
+      maxEdge: options.thumbMax,
+      webpQuality,
+      asThumb: true,
+    });
+    thumbWebpSize = await fileSize(thumbWebpAbs);
   }
 
-  const after = await fileSize(inputAbs);
   return {
     relPath,
     before,
-    after,
-    saved: before - after,
-    thumbSaved,
+    afterRaster,
+    webpSize,
+    thumbWebpSize,
   };
 }
 
 async function main() {
   let totalBefore = 0;
-  let totalAfter = 0;
+  let totalRaster = 0;
+  let totalWebp = 0;
+  let totalThumbWebp = 0;
 
   for (const group of GROUPS) {
     console.log(`\n# ${group.label}`);
@@ -225,17 +277,19 @@ async function main() {
       const result = await optimizeFile(relPath, group);
       if (!result) continue;
       totalBefore += result.before;
-      totalAfter += result.after;
+      totalRaster += result.afterRaster;
+      totalWebp += result.webpSize;
+      totalThumbWebp += result.thumbWebpSize;
       console.log(
-        `${result.relPath}: ${formatBytes(result.before)} -> ${formatBytes(result.after)}${
-          result.thumbSaved ? ` (thumb ${formatBytes(result.thumbSaved)} saved)` : ""
+        `${result.relPath}: ${formatBytes(result.before)} -> raster ${formatBytes(result.afterRaster)}, webp ${formatBytes(result.webpSize)}${
+          result.thumbWebpSize ? `, thumb webp ${formatBytes(result.thumbWebpSize)}` : ""
         }`,
       );
     }
   }
 
   console.log(
-    `\nDone. Full-size total: ${formatBytes(totalBefore)} -> ${formatBytes(totalAfter)} (${formatBytes(totalBefore - totalAfter)} saved)`,
+    `\nDone. Raster ${formatBytes(totalBefore)} -> ${formatBytes(totalRaster)}; WebP total ${formatBytes(totalWebp + totalThumbWebp)}`,
   );
 }
 

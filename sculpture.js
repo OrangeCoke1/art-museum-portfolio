@@ -177,7 +177,12 @@ function createSculptureCard(item, loopZone = "original") {
 
   article.innerHTML = `
     <figure class="sculpture-figure">
-      <img class="sculpture-image" src="${window.GalleryImages?.thumbSrc(item.image) ?? item.image}" alt="${item.title}" loading="lazy" decoding="async" draggable="false" />
+      ${window.GalleryImages?.trackPicture({
+        src: item.image,
+        alt: item.title,
+        className: "sculpture-image",
+        attrs: 'loading="lazy" decoding="async" draggable="false"',
+      }) ?? `<img class="sculpture-image" src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" draggable="false" />`}
     </figure>
     <div class="sculpture-label">
       <h2>${item.title}</h2>

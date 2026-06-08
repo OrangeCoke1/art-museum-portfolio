@@ -20,7 +20,11 @@
 
     const ctx = canvas.getContext("2d", { alpha: true });
     const whiteImg = new Image();
-    whiteImg.src = whiteSrc;
+    if (window.GalleryImages?.loadFullImage) {
+      window.GalleryImages.loadFullImage(whiteImg, whiteSrc);
+    } else {
+      whiteImg.src = whiteSrc;
+    }
 
     let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let lightFadeMs = reduceMotion ? 320 : 1100;
@@ -192,6 +196,5 @@
     document.querySelectorAll(".liberty-viewer").forEach(initLibertyReveal);
   }
 
-  global.initLibertyReveal = initLibertyReveal;
   global.initAllLibertyReveal = initAllLibertyReveal;
 })(window);
