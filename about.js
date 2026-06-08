@@ -643,4 +643,12 @@ const ABOUT_IDLE_FLOAT = {
   if (location.hash === "#about-subscribe") {
     requestAnimationFrame(() => window.scrollToAboutSubscribe(false));
   }
+
+  window.GalleryHeaderSearch?.init({
+    placeholderKey: "searchPromptPainting",
+    onSearch(query) {
+      sessionStorage.setItem("gallerySearchQuery", query);
+      window.location.href = "gallery.html";
+    },
+  });
 })();

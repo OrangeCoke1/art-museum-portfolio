@@ -1091,7 +1091,6 @@ function scrollToNavTarget(slug) {
 function initHeaderNav() {
   const btnMenu = document.getElementById("btnMenu");
   const mobileNav = document.getElementById("mobileNav");
-  const btnSearch = document.getElementById("btnSearch");
 
   document.querySelectorAll(".site-nav__link").forEach((link) => {
     link.addEventListener("click", (e) => {
@@ -1119,18 +1118,19 @@ function initHeaderNav() {
     btnMenu.setAttribute("aria-expanded", String(open));
   });
 
-  btnSearch?.addEventListener("click", () => {
-    const query = window.prompt(window.GalleryI18n?.t("searchPromptPainting") || "Search artworks", "");
-    if (!query) return;
-    const q = query.trim().toLowerCase();
-    const hit = ARTWORKS.find(
-      (a) =>
-        a.title.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q),
-    );
-    if (hit) {
-      openModal(hit.id);
-      scrollArtworkIntoView(hit.id);
-    }
+  window.GalleryHeaderSearch?.init({
+    placeholderKey: "searchPromptPainting",
+    onSearch(query) {
+      const q = query.trim().toLowerCase();
+      const hit = ARTWORKS.find(
+        (a) =>
+          a.title.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q),
+      );
+      if (hit) {
+        openModal(hit.id);
+        scrollArtworkIntoView(hit.id);
+      }
+    },
   });
 
   window.addEventListener("gallery-languagechange", () => {
@@ -1159,6 +1159,22 @@ function initEntranceDeepLink() {
   });
 }
 
+function runPendingGallerySearch() {
+  const pending = sessionStorage.getItem("gallerySearchQuery");
+  if (!pending) return;
+  sessionStorage.removeItem("gallerySearchQuery");
+  const q = pending.trim().toLowerCase();
+  if (!q) return;
+  const hit = ARTWORKS.find(
+    (a) =>
+      a.title.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q),
+  );
+  if (hit) {
+    openModal(hit.id);
+    scrollArtworkIntoView(hit.id);
+  }
+}
+
 function init() {
   if (!galleryHall || !galleryTrack || !modal || !modalImage) {
     console.warn(
@@ -1177,6 +1193,7 @@ function init() {
     initProgressBar();
     initModal();
     initEntranceDeepLink();
+    runPendingGallerySearch();
   } catch (err) {
     console.error("[Gallery] 初始化失败:", err);
   }

@@ -136,7 +136,6 @@ const progress = document.getElementById("scrollProgress");
 const progressFill = document.getElementById("scrollProgressFill");
 const btnMenu = document.getElementById("btnMenu");
 const mobileNav = document.getElementById("mobileNav");
-const btnSearch = document.getElementById("btnSearch");
 
 const loop = {
   start: 0,
@@ -471,15 +470,16 @@ function initHeader() {
     });
   });
 
-  btnSearch?.addEventListener("click", () => {
-    const query = window.prompt(window.GalleryI18n?.t("searchPromptSculpture") || "Search sculptures", "");
-    if (!query) return;
-    const q = query.trim().toLowerCase();
-    const hit = SCULPTURES.find(
-      (item) =>
-        item.title.toLowerCase().includes(q) || item.artist.toLowerCase().includes(q),
-    );
-    if (hit) scrollSculptureIntoView(hit.id);
+  window.GalleryHeaderSearch?.init({
+    placeholderKey: "searchPromptSculpture",
+    onSearch(query) {
+      const q = query.trim().toLowerCase();
+      const hit = SCULPTURES.find(
+        (item) =>
+          item.title.toLowerCase().includes(q) || item.artist.toLowerCase().includes(q),
+      );
+      if (hit) scrollSculptureIntoView(hit.id);
+    },
   });
 }
 

@@ -134,7 +134,6 @@ const progress = document.getElementById("scrollProgress");
 const progressFill = document.getElementById("scrollProgressFill");
 const btnMenu = document.getElementById("btnMenu");
 const mobileNav = document.getElementById("mobileNav");
-const btnSearch = document.getElementById("btnSearch");
 const modal = document.getElementById("artModal");
 const modalPanel = modal?.querySelector(".modal-panel");
 const modalImage = document.getElementById("modalImage");
@@ -482,15 +481,16 @@ function initHeader() {
     });
   });
 
-  btnSearch?.addEventListener("click", () => {
-    const query = window.prompt(window.GalleryI18n?.t("searchPromptPhotography") || "Search photographs", "");
-    if (!query) return;
-    const q = query.trim().toLowerCase();
-    const hit = PHOTOGRAPHS.find(
-      (item) =>
-        item.title.toLowerCase().includes(q) || item.artist.toLowerCase().includes(q),
-    );
-    if (hit) scrollPhotoIntoView(hit.id);
+  window.GalleryHeaderSearch?.init({
+    placeholderKey: "searchPromptPhotography",
+    onSearch(query) {
+      const q = query.trim().toLowerCase();
+      const hit = PHOTOGRAPHS.find(
+        (item) =>
+          item.title.toLowerCase().includes(q) || item.artist.toLowerCase().includes(q),
+      );
+      if (hit) scrollPhotoIntoView(hit.id);
+    },
   });
 }
 
