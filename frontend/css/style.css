@@ -7,7 +7,7 @@
   --wall: #f8f4e3;
   --wall-deep: #e8e4d4;
   --progress: #3b5fb9;
-  --gold-frame: url("images/gold-frame.png");
+  --gold-frame: url("../images/gold-frame.png");
   /* 作品最大显示尺寸（保持 width/height:auto 原比例） */
   --art-image-max-w: min(234px, 36vw);
   --art-image-max-h: min(306px, var(--art-image-h));

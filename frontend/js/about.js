@@ -281,6 +281,9 @@ const ABOUT_IDLE_FLOAT = {
 
 /* about subscribe cover section */
 (function () {
+  const SUBSCRIBE_API =
+    window.GALLERY_SUBSCRIBE_API || "http://localhost:3000/api/subscribe";
+
   const subscribeSection = document.getElementById("about-subscribe");
   if (!subscribeSection) return;
 
@@ -337,60 +340,14 @@ const ABOUT_IDLE_FLOAT = {
 
   window.addEventListener("gallery-languagechange", syncSubscribeDynamicCopy);
 
-  function getSubscribers() {
-    try {
-      const stored = JSON.parse(
-        localStorage.getItem("galleryWalkSubscribers") || "[]",
-      );
-      return Array.isArray(stored) ? stored : [];
-    } catch (_) {
-      return [];
-    }
-  }
-
-  function saveSubscriber(email) {
-    const normalizedEmail = email.trim().toLowerCase();
-    const subscribers = getSubscribers();
-    if (!subscribers.includes(normalizedEmail)) {
-      subscribers.push(normalizedEmail);
-      localStorage.setItem(
-        "galleryWalkSubscribers",
-        JSON.stringify(subscribers),
-      );
-    }
-  }
-
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   }
 
-  function isLocalDevHost() {
-    const { hostname, protocol, port } = window.location;
-    if (protocol === "file:") return true;
-    if (
-      hostname === "localhost" ||
-      hostname === "127.0.0.1" ||
-      hostname === "[::1]"
-    ) {
-      return true;
-    }
-    if (/^192\.168\.|^10\.|^172\.(1[6-9]|2\d|3[01])\./.test(hostname)) {
-      return true;
-    }
-    return ["5500", "5501", "8080", "3000", "5173"].includes(port);
-  }
-
-  function isApiUnavailableStatus(status) {
-    return status === 404 || status === 405;
-  }
-
-  function shouldUseLocalSubscribeFallback(status) {
-    return isApiUnavailableStatus(status);
-  }
-
-  function completeLocalSubscribe(email) {
-    saveSubscriber(email);
-    animateSubscribeSuccess();
+  function resetSubmitButton(defaultButtonLabel) {
+    if (!button) return;
+    button.disabled = false;
+    button.textContent = defaultButtonLabel;
   }
 
   function isCloudLayer(el) {
@@ -505,61 +462,49 @@ const ABOUT_IDLE_FLOAT = {
     setMessage("", "neutral");
 
     try {
-      const response = await fetch("/api/subscribe", {
+      const response = await fetch(SUBSCRIBE_API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          source: "website",
+        }),
       });
 
       const result = await response.json().catch(() => ({}));
 
       if (response.ok && result.success) {
-        saveSubscriber(email);
         animateSubscribeSuccess();
         return;
       }
 
-      if (shouldUseLocalSubscribeFallback(response.status)) {
-        completeLocalSubscribe(email);
-        return;
-      }
-
-      if (response.status === 503 && result.code === "missing_api_key") {
-        throw new Error(
-          trOr(
-            "subscribeErrorNotConfigured",
-            "Email service is not configured. Add RESEND_API_KEY on Vercel.",
-          ),
-        );
-      }
-
-      throw new Error(
-        result.detail ||
-          result.error ||
-          trOr("subscribeErrorServer", "Something went wrong. Please try again later."),
-      );
-    } catch (error) {
       if (
-        isLocalDevHost() &&
-        (error?.name === "TypeError" || error?.message === "Failed to fetch")
+        response.status === 409 ||
+        result.message === "This email is already subscribed."
       ) {
-        completeLocalSubscribe(email);
+        resetSubmitButton(defaultButtonLabel);
+        setMessageKey("subscribeAlreadySubscribed", "error");
         return;
       }
 
+      if (
+        response.status === 400 ||
+        result.message === "Invalid email format."
+      ) {
+        resetSubmitButton(defaultButtonLabel);
+        setMessageKey("subscribeErrorInvalid", "error");
+        input.focus();
+        return;
+      }
+
+      resetSubmitButton(defaultButtonLabel);
+      setMessageKey("subscribeErrorServer", "error");
+    } catch (error) {
       console.error(error);
-      button.disabled = false;
-      button.textContent = defaultButtonLabel;
-      setMessage(
-        error?.message ||
-          trOr(
-            "subscribeErrorServer",
-            "Something went wrong. Please try again later.",
-          ),
-        "error",
-      );
+      resetSubmitButton(defaultButtonLabel);
+      setMessageKey("subscribeErrorServer", "error");
     }
   }
 

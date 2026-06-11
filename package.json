@@ -1,9 +1,9 @@
 {
-  "name": "artmuseum",
+  "name": "art-gallery-project",
   "private": true,
   "type": "module",
   "scripts": {
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node frontend/scripts/optimize-images.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.2"

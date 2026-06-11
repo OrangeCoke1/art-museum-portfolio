@@ -6,6 +6,8 @@
     <link rel="icon" href="favicon-32.png" type="image/png" />
     <link rel="apple-touch-icon" href="images/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 线上订阅：Render 部署 backend 后填入公网 API 地址 -->
+    <!-- <meta name="gallery-subscribe-api" content="https://YOUR-API.onrender.com/api/subscribe" /> -->
     <meta
       name="description"
       content="About Gallery Walk — an interactive digital museum designed around slowing down the act of looking."
@@ -17,8 +19,8 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="about.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/about.css" />
   </head>
   <body class="app-shell about-shell">
     <header class="site-header" id="top">
@@ -375,9 +377,10 @@
       </div>
     </main>
 
-    <script src="i18n.js"></script>
-    <script src="image-utils.js"></script>
-    <script src="header-search.js"></script>
-    <script src="about.js?v=2-local-subscribe"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/image-utils.js"></script>
+    <script src="js/header-search.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/about.js"></script>
   </body>
 </html>

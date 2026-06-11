@@ -68,6 +68,8 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "Please enter your email.",
       subscribeErrorInvalid: "Please enter a valid email address.",
+      subscribeAlreadySubscribed: "This email is already subscribed.",
+      subscribeButtonSending: "Sending...",
       subscribeErrorNotConfigured:
         "Email service is not configured. Add RESEND_API_KEY on Vercel.",
       subscribeErrorServer: "Something went wrong. Please try again later.",
@@ -170,6 +172,8 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "メールアドレスを入力してください。",
       subscribeErrorInvalid: "有効なメールアドレスを入力してください。",
+      subscribeAlreadySubscribed: "このメールアドレスはすでに登録されています。",
+      subscribeButtonSending: "送信中...",
       subscribeErrorNotConfigured:
         "メールサービスが未設定です。Vercel に RESEND_API_KEY を追加してください。",
       subscribeErrorServer: "問題が発生しました。しばらくしてから再度お試しください。",
@@ -270,6 +274,8 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "请输入您的邮箱。",
       subscribeErrorInvalid: "请输入有效的邮箱地址。",
+      subscribeAlreadySubscribed: "该邮箱已经订阅过了。",
+      subscribeButtonSending: "提交中...",
       subscribeErrorNotConfigured:
         "邮件服务未配置。请在 Vercel 中添加 RESEND_API_KEY。",
       subscribeErrorServer: "提交失败，请稍后再试。",
@@ -367,6 +373,8 @@
       subscribeEmailPlaceholder: "you@example.com",
       subscribeErrorEmpty: "請輸入您的電子郵件。",
       subscribeErrorInvalid: "請輸入有效的電子郵件地址。",
+      subscribeAlreadySubscribed: "此電子郵件已訂閱過。",
+      subscribeButtonSending: "提交中...",
       subscribeErrorNotConfigured:
         "郵件服務未設定。請在 Vercel 新增 RESEND_API_KEY。",
       subscribeErrorServer: "提交失敗，請稍後再試。",
@@ -464,6 +472,8 @@
       subscribeEmailPlaceholder: "vous@exemple.com",
       subscribeErrorEmpty: "Veuillez saisir votre adresse e-mail.",
       subscribeErrorInvalid: "Veuillez saisir une adresse e-mail valide.",
+      subscribeAlreadySubscribed: "Cette adresse e-mail est déjà inscrite.",
+      subscribeButtonSending: "Envoi...",
       subscribeErrorNotConfigured:
         "Le service e-mail n’est pas configuré. Ajoutez RESEND_API_KEY sur Vercel.",
       subscribeErrorServer: "Une erreur s’est produite. Veuillez réessayer plus tard.",
@@ -567,6 +577,8 @@
       subscribeEmailPlaceholder: "tu@ejemplo.com",
       subscribeErrorEmpty: "Introduce tu correo electrónico.",
       subscribeErrorInvalid: "Introduce una dirección de correo válida.",
+      subscribeAlreadySubscribed: "Este correo ya está suscrito.",
+      subscribeButtonSending: "Enviando...",
       subscribeErrorNotConfigured:
         "El servicio de correo no está configurado. Añade RESEND_API_KEY en Vercel.",
       subscribeErrorServer: "Algo salió mal. Inténtalo de nuevo más tarde.",

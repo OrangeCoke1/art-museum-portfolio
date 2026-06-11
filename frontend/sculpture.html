@@ -6,19 +6,19 @@
     <link rel="icon" href="favicon-32.png" type="image/png" />
     <link rel="apple-touch-icon" href="images/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Gallery Walk — Photography 横向摄影展厅" />
-    <title>Gallery Walk · Photography</title>
+    <meta name="description" content="Gallery Walk — Sculpture 横向雕塑展厅" />
+    <title>Gallery Walk · Sculpture</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mobile-modal.css" />
-    <link rel="stylesheet" href="photography.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mobile-modal.css" />
+    <link rel="stylesheet" href="css/sculpture.css" />
   </head>
-  <body class="app-shell photography-shell">
+  <body class="app-shell sculpture-shell">
     <header class="site-header" id="top">
       <a class="logo" href="index.html">
         <img
@@ -34,13 +34,13 @@
         <a href="gallery.html" class="site-nav__link" data-nav="painting"
           >Painting</a
         >
-        <a href="sculpture.html" class="site-nav__link" data-nav="sculpture"
+        <a
+          href="sculpture.html"
+          class="site-nav__link is-active"
+          data-nav="sculpture"
           >Sculpture</a
         >
-        <a
-          href="photography.html"
-          class="site-nav__link is-active"
-          data-nav="photography"
+        <a href="photography.html" class="site-nav__link" data-nav="photography"
           >Photography</a
         >
         <a href="about.html" class="site-nav__link" data-nav="about">About</a>
@@ -53,8 +53,8 @@
               type="search"
               class="header-search__input"
               id="headerSearchInput"
-              data-i18n-placeholder="searchPromptPhotography"
-              placeholder="Search photographs"
+              data-i18n-placeholder="searchPromptSculpture"
+              placeholder="Search sculptures"
               autocomplete="off"
               enterkeyhint="search"
             />
@@ -64,7 +64,7 @@
             class="icon-btn header-search__toggle"
             id="btnSearch"
             data-i18n-aria-label="search"
-            aria-label="搜索摄影作品"
+            aria-label="搜索雕塑"
             aria-expanded="false"
             aria-controls="headerSearchInput"
           >
@@ -142,47 +142,47 @@
       <a href="gallery.html" class="site-nav__link" data-nav="painting"
         >Painting</a
       >
-      <a href="sculpture.html" class="site-nav__link" data-nav="sculpture"
+      <a
+        href="sculpture.html"
+        class="site-nav__link is-active"
+        data-nav="sculpture"
         >Sculpture</a
       >
-      <a
-        href="photography.html"
-        class="site-nav__link is-active"
-        data-nav="photography"
+      <a href="photography.html" class="site-nav__link" data-nav="photography"
         >Photography</a
       >
       <a href="about.html" class="site-nav__link" data-nav="about">About</a>
     </nav>
 
-    <main class="app-main photography-page">
-      <section class="gallery-section photography-section" aria-label="Photography gallery">
-        <div class="gallery-hall photography-hall" id="photographyHall" tabindex="0">
-          <div class="gallery-track photography-track" id="photographyTrack"></div>
+    <main class="app-main sculpture-main">
+      <section class="sculpture-section" aria-label="横向雕塑展厅">
+        <div class="sculpture-hall" id="sculptureHall" tabindex="0">
+          <div class="sculpture-track" id="sculptureTrack"></div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer photography-footer" id="about">
+    <footer class="site-footer sculpture-footer" id="about">
       <div class="scroll-progress-wrap">
-        <label class="scroll-progress-label" for="scrollProgress" data-i18n="progressPhotography"
-          >展示进度</label
+        <label class="scroll-progress-label" for="scrollProgress" data-i18n="progressSculpture"
+          >雕塑展厅进度</label
         >
         <div class="scroll-progress-bar" role="presentation">
           <div class="scroll-progress-fill" id="scrollProgressFill"></div>
           <input
+            type="range"
             class="scroll-progress-input"
             id="scrollProgress"
-            type="range"
             min="0"
             max="100"
             value="0"
             aria-valuemin="0"
             aria-valuemax="100"
             aria-valuenow="0"
-            aria-label="Gallery scroll progress"
+            aria-label="横向滚动进度"
           />
         </div>
-        <p class="footer-copy" data-i18n="footerPhotography">Gallery Walk · Photography wall experience</p>
+        <p class="footer-copy" data-i18n="footerSculpture">Gallery Walk · Sculpture hall</p>
       </div>
     </footer>
 
@@ -265,99 +265,20 @@
           <section
             class="modal-viewer"
             id="modalViewer"
-            aria-label="Photography image viewer"
-          >
-            <div
-              class="modal-toolbar"
-              role="toolbar"
-              aria-label="Artwork viewer tools"
-            >
-              <button
-                type="button"
-                class="modal-tool is-active"
-                id="modalBtnView"
-                aria-label="View mode"
-                aria-pressed="true"
-                title="View"
-                data-tool="view"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-width="1.4" d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" />
-                  <circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.4" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                class="modal-tool"
-                id="modalBtnPan"
-                aria-label="Pan mode"
-                aria-pressed="false"
-                title="Pan"
-                data-tool="pan"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M9 11V6.5a2.5 2.5 0 1 1 5 0V11M12 11v7M8 15h8" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                class="modal-tool"
-                id="modalBtnFit"
-                aria-label="Fit to window"
-                aria-pressed="false"
-                title="Fit to window"
-                data-tool="fit"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <rect x="5" y="5" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.4" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                class="modal-tool"
-                id="modalBtnFullscreen"
-                aria-label="Fullscreen"
-                title="Fullscreen"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                class="modal-tool modal-tool--close"
-                data-close-modal
-                aria-label="Close"
-                title="Close"
-              >
-                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
-                </svg>
-              </button>
-            </div>
-            <div class="modal-stage" id="modalStage">
-              <div class="modal-stage-inner" id="modalStageInner">
-                <img
-                  class="modal-image"
-                  id="modalImage"
-                  src=""
-                  alt=""
-                  draggable="false"
-                />
-              </div>
-            </div>
-            <p class="modal-hint" data-i18n="hintImage">
-              Drag to move · Scroll to zoom · Double click to reset
-            </p>
-          </section>
+            aria-label="Sculpture 3D model viewer"
+          ></section>
         </div>
       </div>
     </div>
 
-    <script src="i18n.js"></script>
-    <script src="image-utils.js"></script>
-    <script src="header-search.js"></script>
-    <script src="mobile-modal.js"></script>
-    <script src="photography.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/image-utils.js"></script>
+    <script src="js/header-search.js"></script>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
+    <script src="js/sculpture.js"></script>
+    <script type="module" src="js/sculpture-modal-3d.js"></script>
   </body>
 </html>
